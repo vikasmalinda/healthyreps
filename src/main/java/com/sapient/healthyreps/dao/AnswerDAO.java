@@ -6,11 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.sapient.healthyreps.entity.Answer;
 import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.IAnswerDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
+@Service
 public class AnswerDAO implements IAnswerDAO {
 
 	@Override

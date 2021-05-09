@@ -9,7 +9,7 @@ import java.util.Properties;
 public class DbConnect {
 
 	public static Connection getMySQLConn() {
-
+		// TODO
 		try {
 			Properties prop = new Properties();
 			prop.load(new FileInputStream("src/main/resources/db.properties"));
@@ -32,5 +32,8 @@ public class DbConnect {
 
 		return null;
 	}
+
+//	public Connection getOraleConn() {}
+//	public Connection getDB2Conn() {}
 
 }
