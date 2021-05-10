@@ -14,7 +14,7 @@ public class QuestionDAO implements IQuestionDAO {
 
 	public boolean insertQuestion(Question question) {
 
-		String sql = "insert into questions values(?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into question values(?,?,?,?,?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -37,14 +37,14 @@ public class QuestionDAO implements IQuestionDAO {
 	}
 
 	public List<Question> getAllQuestion() {
-		String sql = "select questionId,title,description,votes,modifiedAt,categoryID,userID,imageLink,reliability from questions";
+		String sql = "select questionId,title,description,votes,modifiedAt,categoryID,userID,imageLink,reliability from question";
 
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql); ResultSet rs = ps.executeQuery(); // DQL
 																														// statement
 		) {
-			 while (rs.next()) {
+			while (rs.next()) {
 
 				Question question = new Question();
 				question.setQuestionID(rs.getInt(1));
@@ -56,10 +56,9 @@ public class QuestionDAO implements IQuestionDAO {
 				question.setImageLink(rs.getString(8));
 				question.setReliability(rs.getInt(9));
 				question.setModifiedAt(rs.getString(5));
-				
-				
-				list.add(question); 
-				
+
+				list.add(question);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

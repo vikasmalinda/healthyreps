@@ -23,9 +23,6 @@ public class AnswerController {
 	@GetMapping("/answers/{id}")
 	public Answer getAnswerbyID(@PathVariable int id) {
 
-		System.out.println("In function");
-
-//		return "Hello World";
 		return answerDAO.getAnswerByAnswerID(id);
 
 	}
