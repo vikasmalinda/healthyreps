@@ -7,7 +7,5 @@ variable - camel case (empSalary)
 const - uppercase 
 package names - lower case 
 
-
-##Live Website Link
+## Live Website Link
 http://healthyreps.herokuapp.com/
-

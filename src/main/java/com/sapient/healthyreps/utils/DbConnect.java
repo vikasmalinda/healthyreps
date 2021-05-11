@@ -8,7 +8,15 @@ import java.util.Properties;
 
 public class DbConnect {
 
+	static Connection con = null;
+
 	public static Connection getMySQLConn() {
+		if (con != null)
+			return con;
+		return getMySQLConnFactory();
+	}
+
+	private static Connection getMySQLConnFactory() {
 		// TODO
 		try {
 			Properties prop = new Properties();
@@ -20,7 +28,7 @@ public class DbConnect {
 			String password = prop.getProperty("password");
 
 			Class.forName(driver);
-			return DriverManager.getConnection(url, userName, password);
+			con = DriverManager.getConnection(url, userName, password);
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -32,8 +40,5 @@ public class DbConnect {
 
 		return null;
 	}
-
-//	public Connection getOraleConn() {}
-//	public Connection getDB2Conn() {}
 
 }
