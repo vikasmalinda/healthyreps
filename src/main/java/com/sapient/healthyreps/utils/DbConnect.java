@@ -29,13 +29,14 @@ public class DbConnect {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
+			return con;
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-
+			
 		}
 
 		return null;
