@@ -38,10 +38,17 @@ public class AnswerController {
 		return answerDAO.getAnswerByAnswerID(id);
 
 	}
-	@GetMapping("question/{qid}/answers")
-	public List<Answer> getAllAnswersByQuestionID(@PathVariable int qid) {
+	@GetMapping("question/{qid}/answers/asc")
+	public List<Answer> getAllAnswersByQuestionIDAsc(@PathVariable int qid) {
 
 		return answerDAO.getAllAnswersASC(qid);
+
+	}
+	
+	@GetMapping("question/{qid}/answers/desc")
+	public List<Answer> getAllAnswersByQuestionIDDesc(@PathVariable int qid) {
+
+		return answerDAO.getAllAnswersDESC(qid);
 
 	}
 	
