@@ -16,7 +16,7 @@ class CategoryDAOTest {
 	void test() {
 //		fail("Not yet implemented");
 	}
-
+//	@Test
 	void CRUDCheckingWhenCorrectInput() {
 
 		Category cat = new Category();
@@ -75,7 +75,7 @@ class CategoryDAOTest {
 		assertNull(dao.getCategoryById(100));
 	}
 
-	@Test
+//	@Test
 	void getCategoryIDByCategoryNameWhenInvalidCategoryName() {
 		ICategoryDAO dao = new CategoryDAO();
 		assertEquals(-1, dao.getCategoryIDByCategoryName("alpha"));
