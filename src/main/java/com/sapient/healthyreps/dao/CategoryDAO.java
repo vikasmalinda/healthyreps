@@ -1,6 +1,5 @@
 package com.sapient.healthyreps.dao;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sapient.healthyreps.entity.Category;
-import com.sapient.healthyreps.entity.SampleUser;
 import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.ICategoryDAO;
 import com.sapient.healthyreps.utils.DbConnect;
@@ -20,15 +18,14 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public boolean insertCategory(Category category) {
-//			checkInputs(category);
-
+		
 		String sql = "INSERT INTO category (categoryName) VALUES (?)	";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, category.getCategoryName());
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -42,7 +39,7 @@ public class CategoryDAO implements ICategoryDAO {
 
 		List<Category> list = new ArrayList<>();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);) {
-			ResultSet rs = ps.executeQuery(); // DQL // statement
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Category cat = new Category();
 				cat.setCategoryID(rs.getInt(1));
@@ -57,13 +54,12 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public Category getCategoryById(int categoryID) {
-//		checkID(categoryID);
 
 		String sql = "SELECT categoryID, categoryName FROM category WHERE categoryID = ?";
 		Category cat = new Category();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);) {
 			ps.setInt(1, categoryID);
-			ResultSet rs = ps.executeQuery(); // DQL // statement
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				cat.setCategoryID(rs.getInt(1));
 				cat.setCategoryName(rs.getString(2));
@@ -78,12 +74,11 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public boolean removeCategory(int categoryID) {
-//		checkID(categoryID);
 		String sql = "DELETE FROM category WHERE categoryID = ?";
 
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql)) {
 			ps.setInt(1, categoryID);
-			return ps.executeUpdate() > 0; // DQL statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +87,6 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public boolean updateCategory(Category category) {
-//		checkID(category.getCategoryID());
 
 		String sql = "UPDATE category SET categoryName=? WHERE categoryID = ?";
 

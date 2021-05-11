@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sapient.healthyreps.dao.AnswerDAO;
 import com.sapient.healthyreps.dao.CategoryDAO;
-import com.sapient.healthyreps.entity.Answer;
 import com.sapient.healthyreps.entity.Category;
 import com.sapient.healthyreps.exception.InvalidID;
 
@@ -80,24 +77,3 @@ public class CategoryController {
 	}
 
 }
-
-//public class AnswerController {
-//
-//	@Autowired
-//	AnswerDAO answerDAO;
-//
-//	@GetMapping
-//	public String health() {
-//		return "Welcome to healthyreps blog and QnA Homepage!";
-//	}
-//
-//	@GetMapping("/answers/{id}")
-//	public Answer getAnswerbyID(@PathVariable int id) {
-//
-//		System.out.println("In function");
-//
-////		return "Hello World";
-//		return answerDAO.getAnswerByAnswerID(id);
-//
-//	}
-//}

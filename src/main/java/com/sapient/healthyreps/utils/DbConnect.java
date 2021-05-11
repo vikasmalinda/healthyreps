@@ -17,7 +17,7 @@ public class DbConnect {
 	}
 
 	private static Connection getMySQLConnFactory() {
-		// TODO
+		
 		try {
 			Properties prop = new Properties();
 			prop.load(new FileInputStream("src/main/resources/db.properties"));
