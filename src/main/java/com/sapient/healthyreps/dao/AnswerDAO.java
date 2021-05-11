@@ -212,14 +212,15 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public boolean updateAnswerByAnswerID(Answer answer) {
 		// TODO Auto-generated method stub
-		try {
-			checkID(answer.getAnswerID());
-		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return false;
-		}
+//		try {
+//			checkID(answer.getAnswerID());
+//		} catch (InvalidID e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//			return false;
+//		}
 
+//		Answer ans = new Answer(1,"modified",2,"2020-01-09 15:10:10",1,3,10);
 		String sql = "UPDATE answer SET Description=?,Votes=?,ModifiedAt=?,QuestionID=?,UserID=?,Reliability=? WHERE AnswerID=?";
 
 		try {
@@ -279,7 +280,7 @@ public class AnswerDAO implements IAnswerDAO {
 	private void checkQuestionID(int questionID) throws InvalidID {
 		// TODO Auto-generated method stub
 
-		String sqlForException = "SELECT * FROM question WHERE QuestionID=?";
+		String sqlForException = "SELECT * FROM questions WHERE QuestionID=?";
 		try {
 			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
 			psException.setInt(1, questionID);
