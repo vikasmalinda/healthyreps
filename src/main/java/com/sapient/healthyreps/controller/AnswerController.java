@@ -15,11 +15,6 @@ public class AnswerController {
 	@Autowired
 	AnswerDAO answerDAO;
 
-	@GetMapping
-	public String health() {
-		return "Welcome to healthyreps blog and QnA Homepage!";
-	}
-
 	@GetMapping("/answers/{id}")
 	public Answer getAnswerbyID(@PathVariable int id) {
 

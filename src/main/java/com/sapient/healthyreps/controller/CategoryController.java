@@ -70,10 +70,4 @@ public class CategoryController {
 		res = cat.updateCategory(category) ? "Updated" : "Not Updated";
 		return res;
 	}
-
-	@GetMapping("/*")
-	public String handleError() {
-		return "Error !!!";
-	}
-
 }

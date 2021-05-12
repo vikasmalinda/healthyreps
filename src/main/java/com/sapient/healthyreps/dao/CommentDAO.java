@@ -11,22 +11,10 @@ import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.ICommentDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
-public class CommentDAO implements ICommentDAO {
+import org.springframework.stereotype.Service;
 
-	private void checkID(int ID) throws InvalidID {
-		String sqlForException = "SELECT * FROM comment WHERE CommentID=?";
-		try {
-			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-			psException.setInt(1, ID);
-			ResultSet rs = psException.executeQuery();
-			if (!rs.next()) {
-				throw new InvalidID("Comment");
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
+@Service
+public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean insertComment(Comment comment) {
@@ -40,7 +28,7 @@ public class CommentDAO implements ICommentDAO {
 			ps.setInt(4, comment.getUserID());
 			ps.setInt(5, comment.getReliability());
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -53,12 +41,12 @@ public class CommentDAO implements ICommentDAO {
 		try {
 			checkID(CommentID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 			return null;
 		}
 
-		String sql = "select * from comment where CommentID=?";
+		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment where CommentID=?";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -85,15 +73,14 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public List<Comment> getAllComment(int AnswerID) {
-		String sql = "select * from comment where AnswerID=? order by ModifiedAt DESC";
+	public List<Comment> getAllComments() {
+		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment order by ModifiedAt DESC";
 
 		List<Comment> list;
 		list = new ArrayList<Comment>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
-			ResultSet rs = ps.executeQuery(); // DQL statement
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 
@@ -115,14 +102,14 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean deleteComment(int CommentID) {
-		// TODO Auto-generated method stub
+		
 
 		try {
 			String sql = "DELETE from comment where CommentID= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, CommentID);
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,13 +120,13 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean deleteCommentsByAnswerID(int AnswerID) {
-		// TODO Auto-generated method stub
+		
 		try {
 			String sql = "DELETE from comment where AnswerID= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, AnswerID);
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,7 +137,7 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean updateCommentByCommentID(Comment comment) {
-		// TODO Auto-generated method stub
+		
 		String sql = "UPDATE comment SET Description=?,ModifiedAt=?,AnswerID=?,UserID=?,Reliability=? WHERE CommentID=?";
 
 		try {
@@ -187,6 +174,44 @@ public class CommentDAO implements ICommentDAO {
 			e.printStackTrace();
 		}
 		return -1;
+	}
 
+	@Override
+	public boolean updateComment(Comment comment) {
+
+		String sql = "UPDATE comment SET Description=?, ModifiedAt=?, AnswerID=?, UserID=?, Reliability=? WHERE commentID = ?";
+
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setString(1, comment.getDescription());
+			ps.setString(2, comment.getModifiedAt());
+			ps.setInt(3, comment.getAnswerID());
+			ps.setInt(4, comment.getUserID());
+			ps.setInt(5, comment.getReliability());
+			ps.setInt(6, comment.getCommentID());
+
+			return ps.executeUpdate() > 0;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public void checkID(int ID) throws InvalidID {
+		String sqlForException = "SELECT CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability FROM comment WHERE CommentID=?";
+		try {
+			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
+			psException.setInt(1, ID);
+			ResultSet rs = psException.executeQuery();
+			if (!rs.next()) {
+				throw new InvalidID("Comment");
+			}
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
 	}
 }

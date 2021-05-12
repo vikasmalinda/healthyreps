@@ -3,11 +3,14 @@ package com.sapient.healthyreps.interfaces;
 import java.util.List;
 
 import com.sapient.healthyreps.entity.Comment;
+import com.sapient.healthyreps.exception.InvalidID;
 
 public interface ICommentDAO {
+	public void checkID(int ID) throws InvalidID;
+
 	public boolean insertComment(Comment comment);
 
-	public List<Comment> getAllComment(int AnswerID);
+	public List<Comment> getAllComments();
 
 	public boolean deleteComment(int CommentID);
 
@@ -15,7 +18,9 @@ public interface ICommentDAO {
 
 	public boolean updateCommentByCommentID(Comment comment);
 
-	Comment getCommentByCommentID(int CommentID);
+	public Comment getCommentByCommentID(int CommentID);
 
-	int getLatestCommentID();
+	public int getLatestCommentID();
+
+	public boolean updateComment(Comment comment);
 }

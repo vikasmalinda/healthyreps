@@ -28,7 +28,7 @@ public class QuestionDAO implements IQuestionDAO {
 			ps.setString(8, question.getImageLink());
 			ps.setInt(9, question.getReliability());
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +67,7 @@ public class QuestionDAO implements IQuestionDAO {
 	}
 
 	public Question getQuestion(int questionID) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
