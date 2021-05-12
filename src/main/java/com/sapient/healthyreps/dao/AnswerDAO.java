@@ -227,7 +227,7 @@ public class AnswerDAO implements IAnswerDAO {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, answer.getDescription());
 			ps.setInt(2, answer.getVotes());
-			ps.setString(3, answer.getModifiedAt());
+			ps.setString(3,answer.getModifiedAt());
 			ps.setInt(4, answer.getQuestionID());
 			ps.setInt(5, answer.getUserID());
 			ps.setInt(6, answer.getReliability());
