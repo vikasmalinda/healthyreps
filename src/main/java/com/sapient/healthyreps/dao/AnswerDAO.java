@@ -18,7 +18,6 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public boolean insertAnswer(Answer answer) {
-		// TODO Auto-generated method stub
 
 		String sql = "insert into answer (Description,Votes,ModifiedAt,QuestionID,UserID,Reliability) values(?,?,?,?,?,?)";
 		try {
@@ -31,7 +30,7 @@ public class AnswerDAO implements IAnswerDAO {
 			ps.setInt(5, answer.getUserID());
 			ps.setInt(6, answer.getReliability());
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +44,6 @@ public class AnswerDAO implements IAnswerDAO {
 		try {
 			checkID(AnswerID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
 		}
@@ -82,7 +80,6 @@ public class AnswerDAO implements IAnswerDAO {
 		try {
 			checkQuestionID(QuestionID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
 		}
@@ -94,7 +91,7 @@ public class AnswerDAO implements IAnswerDAO {
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, QuestionID);
-			ResultSet rs = ps.executeQuery(); // DQL statement
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 
@@ -119,12 +116,11 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public List<Answer> getAllAnswersDESC(int QuestionID) {
-		// TODO Auto-generated method stub
 
 		try {
 			checkQuestionID(QuestionID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 			return null;
 		}
@@ -135,7 +131,7 @@ public class AnswerDAO implements IAnswerDAO {
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, QuestionID);
-			ResultSet rs = ps.executeQuery(); // DQL statement
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 
@@ -159,11 +155,11 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public boolean deleteAnswer(int AnswerID) {
-		// TODO Auto-generated method stub
+		
 		try {
 			checkID(AnswerID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 			return false;
 		}
@@ -173,7 +169,7 @@ public class AnswerDAO implements IAnswerDAO {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, AnswerID);
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -185,11 +181,11 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public boolean deleteAnswersByQuestionID(int QuestionID) {
-		// TODO Auto-generated method stub
+		
 		try {
 			checkQuestionID(QuestionID);
 		} catch (InvalidID e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 			return false;
 		}
@@ -199,7 +195,7 @@ public class AnswerDAO implements IAnswerDAO {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, QuestionID);
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,6 +207,7 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public boolean updateAnswerByAnswerID(Answer answer) {
+
 		// TODO Auto-generated method stub
 //		try {
 //			checkID(answer.getAnswerID());
@@ -272,13 +269,13 @@ public class AnswerDAO implements IAnswerDAO {
 				throw new InvalidID("Answer");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 	}
 
 	private void checkQuestionID(int questionID) throws InvalidID {
-		// TODO Auto-generated method stub
+		
 
 		String sqlForException = "SELECT * FROM questions WHERE QuestionID=?";
 		try {
@@ -289,29 +286,10 @@ public class AnswerDAO implements IAnswerDAO {
 				throw new InvalidID("Question");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 
 	}
-
-//	private void checkInputs(Answer answer) throws InvalidCategoryInputs {
-//		String sql = "SELECT * FROM category where categoryName= ?";
-//		int size = 0;
-//		try {
-//			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sql);
-//			psException.setString(1, category.getCategoryName());
-//			ResultSet rs = psException.executeQuery();
-//			if (rs != null) {
-//				rs.last(); // moves cursor to the last row
-//				size = rs.getRow(); // get row id
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		if (size >= 1)
-//			throw new InvalidCategoryInputs("\n Category Name \n CategoryName");
-//	}
 
 }

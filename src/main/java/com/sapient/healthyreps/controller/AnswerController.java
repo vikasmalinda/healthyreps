@@ -21,19 +21,15 @@ public class AnswerController {
 	@Autowired
 	AnswerDAO answerDAO;
 
-//	@GetMapping
-//	public String health() {
-//		return "Welcome to healthyreps blog and QnA Homepage!";
-//	}
 
-	
+
 	@PostMapping("question/{qid}/answers")
 	public boolean postAnswer(@RequestBody Answer answer )
 	{
 		 return  answerDAO.insertAnswer(answer);
 	}
 	@GetMapping("question/{qid}/answers/{id}")
-	public Answer getAnswerbyID(@PathVariable int id) {
+     public Answer getAnswerbyID(@PathVariable int id) {
 
 		return answerDAO.getAnswerByAnswerID(id);
 

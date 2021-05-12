@@ -21,7 +21,7 @@ public class SampleUserDAO implements ISampleUserDAO {
 			ps.setString(1, user.getUserName());
 			ps.setInt(2, user.getReputation());
 
-			return ps.executeUpdate() > 0; // DML statement
+			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class SampleUserDAO implements ISampleUserDAO {
 		list = new ArrayList<SampleUser>();
 		try (   
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql); 
-				ResultSet rs = ps.executeQuery(); // DQL																											// statement
+				ResultSet rs = ps.executeQuery();																											// statement
 		) {
 			while (rs.next()) {
 
@@ -62,7 +62,7 @@ public class SampleUserDAO implements ISampleUserDAO {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 		) {
 			ps.setInt(1, userID);
-			ResultSet rs = ps.executeQuery(); // DQL																											// statement
+			ResultSet rs = ps.executeQuery();																										// statement
 			while (rs.next()) {
 				user.setUserID(rs.getInt(1));
 				user.setUserName(rs.getString(2));
@@ -78,12 +78,11 @@ public class SampleUserDAO implements ISampleUserDAO {
 	@Override
 	public boolean removeUser(int userID) {
 		String sql = "delete from sampleuser where userID =?";
-		SampleUser user = new SampleUser();
 		try (   
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 		) {
 			ps.setInt(1, userID);
-			return ps.executeUpdate()>0; // DQL statement
+			return ps.executeUpdate()>0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
