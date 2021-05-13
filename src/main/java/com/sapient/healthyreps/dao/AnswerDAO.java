@@ -41,14 +41,9 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public Answer getAnswerByAnswerID(int AnswerID) {
 
-		try {
-			checkID(AnswerID);
-		} catch (InvalidID e1) {
-			e1.printStackTrace();
-			return null;
-		}
 
-		String sql = "select * from answer where AnswerID=?";
+
+		String sql = "select AnswerID,Description,Votes,ModifiedAt,QuestionID,UserID,Reliability from answer where AnswerID=?";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -76,21 +71,18 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersASC(int QuestionID) {
-		try {
-			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
-			e1.printStackTrace();
-			return null;
-		}
+	public List<Answer> getAllAnswersByQuestionID(int QuestionID,String order) {
+		
 
-		String sql = "select * from answer where QuestionID= ? order by Votes ASC";
+
+		String sql = "select AnswerID,Description,Votes,ModifiedAt,QuestionID,UserID,Reliability from answer where QuestionID= ? order by Votes "+order;
 
 		List<Answer> list;
 		list = new ArrayList<Answer>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, QuestionID);
+//			ps.setString(2, order);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -114,56 +106,11 @@ public class AnswerDAO implements IAnswerDAO {
 
 	}
 
-	@Override
-	public List<Answer> getAllAnswersDESC(int QuestionID) {
-
-		try {
-			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
-			
-			e1.printStackTrace();
-			return null;
-		}
-		String sql = "select * from answer where QuestionID= ? order by Votes DESC";
-
-		List<Answer> list;
-		list = new ArrayList<Answer>();
-		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-
-				Answer answer = new Answer();
-				answer.setAnswerID(rs.getInt(1));
-				answer.setDescription(rs.getString(2));
-				answer.setVotes(rs.getInt(3));
-				answer.setModifiedAt(rs.getString(4));
-				answer.setQuestionID(rs.getInt(5));
-				answer.setUserID(rs.getInt(6));
-				answer.setReliability(rs.getInt(7));
-
-				list.add(answer);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
+	
 
 	@Override
 	public boolean deleteAnswer(int AnswerID) {
-		
-		try {
-			checkID(AnswerID);
-		} catch (InvalidID e1) {
-			
-			e1.printStackTrace();
-			return false;
-		}
-
+	
 		try {
 			String sql = "DELETE from answer where AnswerID= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -182,13 +129,6 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public boolean deleteAnswersByQuestionID(int QuestionID) {
 		
-		try {
-			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
-			
-			e1.printStackTrace();
-			return false;
-		}
 
 		try {
 			String sql = "DELETE from answer where QuestionID= ? ";
@@ -208,16 +148,8 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public boolean updateAnswerByAnswerID(Answer answer) {
 
-		// TODO Auto-generated method stub
-//		try {
-//			checkID(answer.getAnswerID());
-//		} catch (InvalidID e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//			return false;
-//		}
+		
 
-//		Answer ans = new Answer(1,"modified",2,"2020-01-09 15:10:10",1,3,10);
 		String sql = "UPDATE answer SET Description=?,Votes=?,ModifiedAt=?,QuestionID=?,UserID=?,Reliability=? WHERE AnswerID=?";
 
 		try {
@@ -259,37 +191,6 @@ public class AnswerDAO implements IAnswerDAO {
 
 	}
 
-	private void checkID(int ID) throws InvalidID {
-		String sqlForException = "SELECT * FROM answer WHERE AnswerID=?";
-		try {
-			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-			psException.setInt(1, ID);
-			ResultSet rs = psException.executeQuery();
-			if (!rs.next()) {
-				throw new InvalidID("Answer");
-			}
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
-		}
-	}
-
-	private void checkQuestionID(int questionID) throws InvalidID {
-		
-
-		String sqlForException = "SELECT * FROM questions WHERE QuestionID=?";
-		try {
-			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-			psException.setInt(1, questionID);
-			ResultSet rs = psException.executeQuery();
-			if (!rs.next()) {
-				throw new InvalidID("Question");
-			}
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
-		}
-
-	}
+	
 
 }
