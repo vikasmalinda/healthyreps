@@ -9,8 +9,7 @@ import java.util.List;
 
 import com.sapient.healthyreps.entity.Category;
 import com.sapient.healthyreps.entity.SampleUser;
-import com.sapient.healthyreps.exception.InvalidCategoryInputs;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.*;
 import com.sapient.healthyreps.interfaces.ICategoryDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -62,7 +61,7 @@ public class CategoryDAO implements ICategoryDAO {
 	public Category getCategoryById(int categoryID) {
 		try {
 			checkID(categoryID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
@@ -88,7 +87,7 @@ public class CategoryDAO implements ICategoryDAO {
 	public boolean removeCategory(int categoryID)  {
 		try {
 			checkID(categoryID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 		}
 		String sql = "DELETE FROM category WHERE categoryID = ?";
@@ -106,7 +105,7 @@ public class CategoryDAO implements ICategoryDAO {
 	public boolean updateCategory(Category category) {
 		try {
 			checkID(category.getCategoryID());
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -126,14 +125,14 @@ public class CategoryDAO implements ICategoryDAO {
 		return false;
 	}
 
-	private void checkID(int ID) throws InvalidID {
+	private void checkID(int ID) throws InvalidId {
 		String sqlForException = "SELECT categoryID FROM category WHERE categoryID=?";
 		try {
 			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
 			psException.setInt(1, ID);
 			ResultSet rs = psException.executeQuery();
 			if (!rs.next()) {
-				throw new InvalidID("Category");
+				throw new InvalidId("Category");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -168,10 +167,10 @@ public class CategoryDAO implements ICategoryDAO {
 			ps.setString(1, name);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
-				throw new InvalidID("Category");
+				throw new InvalidId("Category");
 			}
 			return rs.getInt(1);
-		}catch (InvalidID e) {
+		}catch (InvalidId e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
