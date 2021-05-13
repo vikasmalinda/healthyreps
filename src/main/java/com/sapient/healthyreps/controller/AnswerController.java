@@ -44,14 +44,14 @@ public class AnswerController {
      public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
-			checkID(id);
+			checkID(aid);
 		} catch (InvalidID e1) {
 			e1.printStackTrace();
 			return null;
 		}
 		
 		
-		return answerDAO.getAnswerByAnswerID(id);
+		return answerDAO.getAnswerByAnswerID(aid);
 
 	}
 	@GetMapping("question/{qid}/answers/order/{ord}")
