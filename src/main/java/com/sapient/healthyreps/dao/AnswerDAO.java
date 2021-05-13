@@ -76,46 +76,7 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersASC(int QuestionID) {
-		try {
-			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
-			e1.printStackTrace();
-			return null;
-		}
-
-		String sql = "select * from answer where QuestionID= ? order by Votes ASC";
-
-		List<Answer> list;
-		list = new ArrayList<Answer>();
-		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-
-				Answer answer = new Answer();
-				answer.setAnswerID(rs.getInt(1));
-				answer.setDescription(rs.getString(2));
-				answer.setVotes(rs.getInt(3));
-				answer.setModifiedAt(rs.getString(4));
-				answer.setQuestionID(rs.getInt(5));
-				answer.setUserID(rs.getInt(6));
-				answer.setReliability(rs.getInt(7));
-
-				list.add(answer);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-
-	}
-
-	@Override
-	public List<Answer> getAllAnswersDESC(int QuestionID) {
+	public List<Answer> getAllAnswers(int QuestionID,String sortBy) {
 
 		try {
 			checkQuestionID(QuestionID);
@@ -124,7 +85,8 @@ public class AnswerDAO implements IAnswerDAO {
 			e1.printStackTrace();
 			return null;
 		}
-		String sql = "select * from answer where QuestionID= ? order by Votes DESC";
+
+		String sql="select answerID, description, votes, modifiedAt, questionID, userID, reliability from answer where QuestionID= ? order by "+sortBy+" DESC";
 
 		List<Answer> list;
 		list = new ArrayList<Answer>();

@@ -9,8 +9,7 @@ import com.sapient.healthyreps.entity.Answer;
 public interface IAnswerDAO {
 	
 	public boolean insertAnswer(Answer answer); 
-	public List<Answer> getAllAnswersASC(int QuestionID); 
-	public List<Answer> getAllAnswersDESC(int QuestionID); 
+	public List<Answer> getAllAnswers(int QuestionID,String sortBy);
 	public boolean deleteAnswer(int AnswerID);
 	public boolean deleteAnswersByQuestionID(int QuestionID);
 	public boolean updateAnswerByAnswerID(Answer answer);

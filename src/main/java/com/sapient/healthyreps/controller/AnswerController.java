@@ -21,44 +21,34 @@ public class AnswerController {
 	@Autowired
 	AnswerDAO answerDAO;
 
-
-
-	@PostMapping("question/{qid}/answers")
-	public boolean postAnswer(@RequestBody Answer answer )
+	@PostMapping("question/{qid}/answer")
+	public boolean insertAnswer(@RequestBody Answer answer )
 	{
 		 return  answerDAO.insertAnswer(answer);
 	}
-	@GetMapping("question/{qid}/answers/{id}")
-     public Answer getAnswerbyID(@PathVariable int id) {
+	@GetMapping("question/{qid}/answer/{aid}")
+     public Answer getAnswerbyID(@PathVariable int aid) {
 
-		return answerDAO.getAnswerByAnswerID(id);
-
-	}
-	@GetMapping("question/{qid}/answers/asc")
-	public List<Answer> getAllAnswersByQuestionIDAsc(@PathVariable int qid) {
-
-		return answerDAO.getAllAnswersASC(qid);
+		return answerDAO.getAnswerByAnswerID(aid);
 
 	}
 	
-	@GetMapping("question/{qid}/answers/desc")
-	public List<Answer> getAllAnswersByQuestionIDDesc(@PathVariable int qid) {
+	@GetMapping("question/{qid}/answer/sortBy/{sortType}")
+	public List<Answer> getAllAnswers(@PathVariable int qid,@PathVariable String sortType) {
 
-		return answerDAO.getAllAnswersDESC(qid);
+		return answerDAO.getAllAnswers(qid,sortType);
 
 	}
 	
-	@PutMapping("question/{qid}/answers/{id}")
+	@PutMapping("question/{qid}/answer/{aid}")
 	public boolean updateAnswer(@RequestBody Answer answer) {
 		
 		return answerDAO.updateAnswerByAnswerID(answer);
 		
 	}
 	
-	@DeleteMapping("question/{qid}/answers/{id}")
-	public boolean deleteAnswerByAnswerId(@PathVariable int id) {
-		return answerDAO.deleteAnswer(id);
+	@DeleteMapping("question/{qid}/answer/{aid}")
+	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
+		return answerDAO.deleteAnswer(aid);
 	}
-	
-	
 }

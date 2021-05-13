@@ -21,44 +21,40 @@ public class CommentController {
     @Autowired
 	CommentDAO comDAO;
 
-	@GetMapping("/comment/{id}")
-	public String getCommentFromID(@PathVariable int id) {
+	@PostMapping("answer/{aid}/comment")
+	public boolean insertComment(@RequestBody Comment comment) {
+		return comDAO.insertComment(comment);
+	}
+
+	@GetMapping("answer/{aid}/comment{cid}")
+	public String getCommentbyID(@PathVariable int cid) {
 		try {
-			comDAO.checkID(id);
+			comDAO.checkID(cid);
 		} catch (InvalidID e) {
 			e.printStackTrace();
 			return "Invalid Cat ID";
 		}
-		return comDAO.getCommentByCommentID(id).toString();
+		return comDAO.getCommentByCommentID(cid).toString();
 	}
 
-	@GetMapping("/comment")
-	public List<Comment> getAllComments() {
-		List<Comment> list = comDAO.getAllComments();
-		return list;
+	@GetMapping("answer/{aid}/comment/sort/{sortBy}")
+	public List<Comment> getAllComments(@PathVariable int aid,@PathVariable String sortBy) {
+		return comDAO.getAllComments(aid,sortBy);
 	}
 
-	@PostMapping("/comment")
-	public String insertComment(@RequestBody Comment comment) {
-		String res = "";
-		res = comDAO.insertComment(comment) ? "Inserted" : "Not Inserted";
-		return res;
-	}
-
-	@DeleteMapping("/comment/{id}")
-	public String deleteComment(@PathVariable int id) {
+	@DeleteMapping("comment/{cid}")
+	public String deleteComment(@PathVariable int cid) {
 		try {
-			comDAO.checkID(id);
+			comDAO.checkID(cid);
 		} catch (InvalidID e) {
 			e.printStackTrace();
 			return "Invalid Cat ID";
 		}
-		String res;
-		res = comDAO.deleteComment(id) ? "Deleted" : "Not Deleted";
-		return res;
+
+		return comDAO.deleteComment(cid) ? "Deleted" : "Not Deleted";
 	}
 
-	@PutMapping("/comment")
+	@PutMapping("answer/{aid}/comment/{cid}")
 	public String updateComment(@RequestBody Comment comment) {
 		try {
 			comDAO.checkID(comment.getCommentID());
