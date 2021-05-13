@@ -1,14 +1,19 @@
 package com.sapient.healthyreps.exception;
 
-public class InvalidID extends Exception {
 
+public class InvalidId extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 
-	public InvalidID() {
+	public InvalidId() {
 //		id = "";
 	}
 
-	public InvalidID(String id) {
+	public InvalidId(String id) {
 		this.id = id;
 	}
 
