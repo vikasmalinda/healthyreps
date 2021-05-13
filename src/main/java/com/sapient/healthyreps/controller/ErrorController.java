@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ErrorController {
-    @GetMapping("/*")
+    @GetMapping("*")
 	public String handleError() {
 		return "Error !!!";
 	}

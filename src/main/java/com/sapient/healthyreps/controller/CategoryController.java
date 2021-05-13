@@ -21,7 +21,7 @@ public class CategoryController {
 	@Autowired
 	CategoryDAO cat;
 
-	@GetMapping("/category/{id}")
+	@GetMapping("category/{id}")
 	public String getCategoryFromID(@PathVariable int id) {
 		try {
 			cat.checkID(id);
@@ -32,20 +32,20 @@ public class CategoryController {
 		return cat.getCategoryById(id).getCategoryName();
 	}
 
-	@GetMapping("/category")
+	@GetMapping("category")
 	public List<Category> getAllCategories() {
 		List<Category> list = cat.getAllCategory();
 		return list;
 	}
 
-	@PostMapping("/category")
+	@PostMapping("category")
 	public String insertCategory(@RequestBody Category Cat) {
 		String res = "";
 		res = cat.insertCategory(Cat) ? "Inserted" : "Not Inserted";
 		return res;
 	}
 
-	@DeleteMapping("/category/{id}")
+	@DeleteMapping("category/{id}")
 	public String deleteCategory(@PathVariable int id) {
 		try {
 			cat.checkID(id);
@@ -58,7 +58,7 @@ public class CategoryController {
 		return res;
 	}
 
-	@PutMapping("/category")
+	@PutMapping("category")
 	public String updateCategory(@RequestBody Category category) {
 		try {
 			cat.checkID(category.getCategoryID());

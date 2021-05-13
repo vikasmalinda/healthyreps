@@ -10,7 +10,7 @@ public interface ICommentDAO {
 
 	public boolean insertComment(Comment comment);
 
-	public List<Comment> getAllComments();
+	public List<Comment> getAllComments(int AnswerID,String sortBy);
 
 	public boolean deleteComment(int CommentID);
 

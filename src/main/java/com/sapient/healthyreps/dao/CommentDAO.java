@@ -73,13 +73,14 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public List<Comment> getAllComments() {
-		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment order by ModifiedAt DESC";
+	public List<Comment> getAllComments(int AnswerID,String sortBy) {
 
-		List<Comment> list;
-		list = new ArrayList<Comment>();
+		String sql="select commentID, description, modifiedAt, answerID, userID, reliability from comment where AnswerID= ? order by "+sortBy+" DESC";
+
+		List<Comment> list=new ArrayList<Comment>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, AnswerID);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -93,6 +94,7 @@ public class CommentDAO implements ICommentDAO {
 				comment.setReliability(rs.getInt(6));
 
 				list.add(comment);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

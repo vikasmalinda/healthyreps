@@ -40,8 +40,8 @@ public class AnswerController {
 		
 		return  answerDAO.insertAnswer(answer);
 	}
-	@GetMapping("question/{qid}/answers/{id}")
-     public Answer getAnswerbyID(@PathVariable int id) {
+	@GetMapping("question/{qid}/answer/{aid}")
+     public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
 			checkID(id);
