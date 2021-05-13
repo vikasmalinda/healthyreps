@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sapient.healthyreps.entity.Answer;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IAnswerDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -44,7 +44,7 @@ public class AnswerDAO implements IAnswerDAO {
 
 		try {
 			checkID(AnswerID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
@@ -81,7 +81,7 @@ public class AnswerDAO implements IAnswerDAO {
 	public List<Answer> getAllAnswersASC(int QuestionID) {
 		try {
 			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
@@ -123,7 +123,7 @@ public class AnswerDAO implements IAnswerDAO {
 
 		try {
 			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return null;
@@ -162,7 +162,7 @@ public class AnswerDAO implements IAnswerDAO {
 		// TODO Auto-generated method stub
 		try {
 			checkID(AnswerID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
@@ -188,7 +188,7 @@ public class AnswerDAO implements IAnswerDAO {
 		// TODO Auto-generated method stub
 		try {
 			checkQuestionID(QuestionID);
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
@@ -214,7 +214,7 @@ public class AnswerDAO implements IAnswerDAO {
 		// TODO Auto-generated method stub
 		try {
 			checkID(answer.getAnswerID());
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
@@ -261,14 +261,14 @@ public class AnswerDAO implements IAnswerDAO {
 
 	}
 
-	private void checkID(int ID) throws InvalidID {
+	private void checkID(int ID) throws InvalidId {
 		String sqlForException = "SELECT * FROM answer WHERE AnswerID=?";
 		try {
 			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
 			psException.setInt(1, ID);
 			ResultSet rs = psException.executeQuery();
 			if (!rs.next()) {
-				throw new InvalidID("Answer");
+				throw new InvalidId("Answer");
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -276,7 +276,7 @@ public class AnswerDAO implements IAnswerDAO {
 		}
 	}
 
-	private void checkQuestionID(int questionID) throws InvalidID {
+	private void checkQuestionID(int questionID) throws InvalidId {
 		// TODO Auto-generated method stub
 
 		String sqlForException = "SELECT * FROM questions WHERE QuestionID=?";
@@ -285,7 +285,7 @@ public class AnswerDAO implements IAnswerDAO {
 			psException.setInt(1, questionID);
 			ResultSet rs = psException.executeQuery();
 			if (!rs.next()) {
-				throw new InvalidID("Question");
+				throw new InvalidId("Question");
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

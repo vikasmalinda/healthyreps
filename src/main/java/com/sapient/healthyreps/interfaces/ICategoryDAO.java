@@ -3,7 +3,7 @@ package com.sapient.healthyreps.interfaces;
 import java.util.List;
 
 import com.sapient.healthyreps.entity.Category;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 
 public interface ICategoryDAO {
 	public boolean insertCategory(Category category);
