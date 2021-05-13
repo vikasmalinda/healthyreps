@@ -279,7 +279,7 @@ public class AnswerDAO implements IAnswerDAO {
 	private void checkQuestionID(int questionID) throws InvalidId {
 		// TODO Auto-generated method stub
 
-		String sqlForException = "SELECT * FROM questions WHERE QuestionID=?";
+		String sqlForException = "SELECT * FROM question WHERE QuestionID=?";
 		try {
 			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
 			psException.setInt(1, questionID);
