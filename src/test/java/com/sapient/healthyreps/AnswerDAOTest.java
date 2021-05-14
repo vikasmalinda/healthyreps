@@ -1,8 +1,6 @@
 package com.sapient.healthyreps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.sapient.healthyreps.dao.PermissionDAO;
 
@@ -20,6 +18,7 @@ class AnswerDAOTest {
 	@BeforeEach
 	void initialize() {
 		this.answerDAO = new AnswerDAO();
+		this.permissionDAO = new PermissionDAO();
 	}
 
 	@Test
@@ -37,49 +36,19 @@ class AnswerDAOTest {
 
 		int id = permissionDAO.getLastID("answer");
 
-		Answer ans = answerDAO.getAnswerByAnswerID(14);
+		answer = answerDAO.getAnswerByAnswerID(id);
 
-		assertEquals(ans.getDescription(), "Test Answer");
+		assertEquals(answer.getDescription(), "Test Answer");
 
 		// Update test
 
-		ans.setDescription("Updated Test answer");
+		answer.setDescription("Updated Test answer");
 
-		assertTrue(answerDAO.updateAnswerByAnswerID(ans));
+		assertTrue(answerDAO.updateAnswerByAnswerID(answer));
 
 		// Delete test
 
 		assertTrue(answerDAO.deleteAnswer(id));
-
-	}
-
-	@Test
-	void CreateFail() {
-
-		Answer answer = new Answer(14, "Test Answer", 4, "ahaha", 2, 1, 10);
-		assertFalse(answerDAO.insertAnswer(answer));
-
-	}
-
-	@Test
-	void ReadFail() {
-
-		assertNull(answerDAO.getAnswerByAnswerID(150));
-
-	}
-
-	@Test
-	void UpdateFail() {
-
-		Answer answer = new Answer(155, "Test Answer", 4, "2020-01-01 10:10:10", 2, 1, 10);
-		assertFalse(answerDAO.updateAnswerByAnswerID(answer));
-
-	}
-
-	@Test
-	void DeleteFail() {
-
-		assertFalse(answerDAO.deleteAnswer(155));
 
 	}
 
