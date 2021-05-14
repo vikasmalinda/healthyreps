@@ -3,67 +3,58 @@ package com.sapient.healthyreps.controller;
 import java.util.List;
 
 import com.sapient.healthyreps.dao.Comments_postDAO;
-import com.sapient.healthyreps.entity.Comments_post;
-import com.sapient.healthyreps.exception.InvalidId;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sapient.healthyreps.entity.Comments_post;
+
+import com.sapient.healthyreps.exception.InvalidId;
+import com.sapient.healthyreps.interfaces.IComments_postDAO;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Comments_post")
 public class Comments_postController {
 
-    @Autowired
-	Comments_postDAO commentDAO;
-
-	@PostMapping("answer/{aid}/comment")
-	public boolean insertComment(@RequestBody Comments_post comment_post) {
-		return commentDAO.insertComment(comment_post);
+	
+	IComments_postDAO Comments_postDAO = new Comments_postDAO();
+	
+	@GetMapping
+	public String generalPage() {
+		return "Welcome to Comments under the Blog posts";
 	}
-
-	@GetMapping("answer/{aid}/comment{cid}")
-	public String getCommentbyID(@PathVariable int comid) {
+	
+	@GetMapping("/all")
+	public List<Comments_post> getAllComments(){
+		
+		List<Comments_post> allComments = Comments_postDAO.getAllComments();
+		
+		return allComments;
+		
+	}
+	
+	@GetMapping("/user/{uid}")
+	public List<Comments_post> getAllCommentsByPostId(@PathVariable int pid) {
+		
+		List<Comments_post> allCommentsOfAPost= Comments_postDAO.getAllCommentsByPostId(pid);
+		return allCommentsOfAPost;
+	}
+	
+	@GetMapping("post/{pid}/comment{comid}")
+	public String getCommentbyCommentId(@PathVariable int comid) {
 		try {
-			commentDAO.checkCommentId(comid);
+			Comments_postDAO.checkCommentId(comid);
 		} catch (InvalidId e) {
 			e.printStackTrace();
-			return "Invalid Cat ID";
+			return "Invalid Comment ID";
 		}
-		return commentDAO.getCommentByCommentId(comid).toString();
+		return Comments_postDAO.getCommentByCommentId(comid).toString();
 	}
-
-	@GetMapping("answer/{aid}/comment/sort/{sortBy}")
-	public List<Comments_post> getAllComments() {
-		return commentDAO.getAllComments();
-	}
-
-	@DeleteMapping("comment/{cid}")
-	public String deleteComment(@PathVariable int comid) {
-		try {
-			commentDAO.checkCommentId(comid);
-		} catch (InvalidId e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";
-		}
-
-		return commentDAO.deleteCommentById(comid) ? "Deleted" : "Not Deleted";
-	}
-
-	@PutMapping("answer/{aid}/comment/{cid}")
-	public String updateComment(@RequestBody Comments_post comment) {
-		try {
-			commentDAO.checkCommentId(comment.getId());
-		} catch (InvalidId e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";// redirect in future
-		}
-		String res;
-		res = commentDAO.updateComment(comment) ? "Updated" : "Not Updated";
-		return res;
-	}
+	
 }
