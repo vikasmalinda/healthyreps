@@ -61,6 +61,29 @@ public class PostDAO implements IPostDAO{
 		} 
 		return false;
 	}
+	
+	//Added today
+	public boolean insertPost(Post post) {
+		String sql = "INSERT INTO Post(UID, title, category_id, content, votes, time_stamp, reported) VALUES(?,?,?,?,?,?,?)";
+		
+		try{
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				
+				ps.setInt(1, post.getUid());
+				ps.setString(2, post.getTitle());
+				ps.setInt(3, post.getCategoryId());
+				ps.setString(4, post.getContent());
+				ps.setInt(5, post.getVotes());
+				ps.setTimestamp(6, post.getReported());
+				ps.setInt(7, post.getTimeStamp());
+				
+				return ps.executeUpdate() > 0;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 	@Override
 	public List<Post> getAllPosts() {
@@ -91,6 +114,41 @@ public class PostDAO implements IPostDAO{
 					}
 		
 		return posts;
+	}
+	
+	@Override
+	public Post getPostbyId(int pid) {
+		try {
+			checkPostId(pid);
+		} catch(InvalidId e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		String sql = "Select * Post WHERE PID = ?";
+		
+		
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, pid);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {		
+				Post post = new Post(rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getInt(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getTimestamp(7),
+						rs.getInt(8));  
+				
+				return post;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	@Override
@@ -141,6 +199,27 @@ public class PostDAO implements IPostDAO{
 		return false;
 	}
 
+	public boolean insertPost(Post post) {
+		String sql = "UPDATE Post SET title=?, content=?, category_id=?, votes=?, time_stamp=?, reported=? WHERE PID=?";
+		
+		try{
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				
+				ps.setString(1, post.getTitle());
+				ps.setString(2, post.getContent());
+				ps.setInt(3, post.getCategoryId());
+				ps.setInt(4, post.getVotes());
+				ps.setInt(5, post.getTimeStamp());
+				ps.setTimestamp(6, post.getReported());
+				ps.setInt(7,post.getPid());
+				
+				return ps.executeUpdate() > 0;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	@Override
 	public boolean updateVoteCountbyId(int pid, int votes) {
 		

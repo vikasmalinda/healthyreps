@@ -9,9 +9,18 @@ public interface IPostDAO {
 
 	public boolean insertPost(int pid, int uid, String title, int categoryId, String content, int votes, Timestamp timestamp, int reported);
 	public boolean insertPost(int uid, String title, int categoryId, String content, int votes, Timestamp timestamp, int reported);
+	
+	//added today
+	public boolean insertPost(Post post);
+	
 	public List<Post> getAllPosts();
 	public boolean deletePostbyId(int pid);
 	public boolean updatePost(int pid,String title, String content,  int categoryId, int votes, Timestamp timestamp, int reported);
+	
+	//added today
+	public boolean updatePost(Post post);
+	public Post getPostbyId(int pid);
+	
 	public boolean updateVoteCountbyId(int pid, int votes);
 	
 	public List<Post> getAllPostsByCategoryId(int categoryId);
