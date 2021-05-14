@@ -1,43 +1,32 @@
 package com.sapient.healthyreps.dao;
-import java.sql.Timestamp;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
-import org.springframework.stereotype.Service;
-
-import com.sapient.healthyreps.entity.Comments_post;
 import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IComments_postDAO;
 import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.Comments_post;
 
 
 public class Comments_postDAO implements IComments_postDAO{
 	
-	
 	@Override
-	public boolean insertComment(int votes, String content, int pid, int uid, Timestamp timestamp, int reported) {
-String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, reported) VALUES (?,?,?,?,?,?)";
-		
-		
+	public boolean insertComment(Comments_post comment)
+	{
+		String sql = "insert into Comments_post (votes, content , PID, UID, time_stamp, reported) values(?,?,?,?,?,?)";
 		try {
-			PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, votes);
-			ps.setString(2, content);
-			ps.setInt(3, pid);
-			ps.setInt(4, uid);
-			ps.setTimestamp(5, timestamp);
-			ps.setInt(6, reported);
-			
-			return ps.executeUpdate() >0;
-		}
-		
-		catch(SQLException e) 
-		{
-			//TODO Auto-generated
+
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, comment.getVotes());
+			ps.setString(2, comment.getContent());
+			ps.setInt(3, comment.getPid());
+			ps.setInt(4, comment.getUid());
+			ps.setTimestamp(5, comment.getTimestamp());
+			ps.setInt(6, comment.getReported());
+
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -46,29 +35,26 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 	@Override
 	public boolean insertComment(int comid, int votes, String content, int pid, int uid, Timestamp timestamp, int reported)
 	{
-		String sql= "INSERT INTO Comments_post(COMID, votes, content, pid, uid, time_stamp, reported) VALUES (?,?,?,?,?,?,?)";
-		
-		
+		String sql = "insert into Comments_post (COMID, votes, content , PID, UID, time_stamp, reported) values(?,?,?,?,?,?,?)";
 		try {
-			PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1,comid);
+
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, comid);
 			ps.setInt(2, votes);
 			ps.setString(3, content);
 			ps.setInt(4, pid);
 			ps.setInt(5, uid);
 			ps.setTimestamp(6, timestamp);
 			ps.setInt(7, reported);
-			
-			return ps.executeUpdate() >0;
-		}
-		
-		catch(SQLException e) 
-		{
-			//TODO Auto-generated
+
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
+
 	}
+	
 	
 	@Override 
 	public boolean updateComment(int comid, int votes, String content, int pid, int uid, Timestamp timestamp, int reported)
@@ -96,8 +82,30 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 		
 		return false;
 	}
-	
-	
+	 @Override
+	 public boolean updateComment(Comments_post comment)
+	 {
+		 
+		 String sql = "UPDATE comment SET votes=?, content=?, pid=?, uid=?, time_stamp=?, reported= ? WHERE COMID = ?";
+
+			try {
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				ps.setInt(1, comment.getVotes());
+				ps.setString(2, comment.getContent());
+				ps.setInt(3, comment.getPid());
+				ps.setInt(4, comment.getUid());
+				ps.setTimestamp(5, comment.getTimestamp());
+				ps.setInt(6, comment.getReported());
+				ps.setInt(7, comment.getId());
+
+				return ps.executeUpdate() > 0;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return false;
+	 }
 	 @Override
 	 public List<Comments_post> getAllComments()
 	 {
@@ -123,31 +131,46 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 				}
 			return commentsPost;
 	 }
+	 
 	 @Override
-	 public boolean deleteCommentById(int comid)
-	 {
-		 try {
-				checkCommentId(comid);
-			} catch(InvalidId e1) {
-				e1.printStackTrace();
-				return false;
-			}
-			
-			String sql = "DELETE FROM Comments_post WHERE comid = ?";
+		public Comments_post getCommentByCommentId(int comid) {
+
 			try {
+				checkCommentId(comid);
+			} catch (InvalidId e1) {
+				
+				e1.printStackTrace();
+				return null;
+			}
+
+			String sql = "select COMID, votes, content, PID, UID, time_stamp,reported from Comments_post where COMID=?";
+			try {
+
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 				ps.setInt(1, comid);
-				
-				return ps.executeUpdate() > 0;
+				ResultSet rs = ps.executeQuery();
+
+				rs.next();
+
+				Comments_post comment = new Comments_post();
+				comment.setId(rs.getInt(1));
+				comment.setVotes(rs.getInt(2));
+				comment.setContent(rs.getString(3));
+				comment.setPid(rs.getInt(4));
+				comment.setUid(rs.getInt(5));
+				comment.setTimestamp(rs.getTimestamp(6));
+				comment.setReported(rs.getInt(7));
+
+				return comment;
+
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return false;
-	 }
-	 
+			return null;
 
-	@Override
+		}
+
+	 @Override
 	 public List<Comments_post> getAllCommentsByPostId(int pid) {
 			List<Comments_post> commentsPost = new ArrayList<>();
 			String statement = "select COMID, votes, content, PID, UID, time_stamp, reported from Comments_post where PID = ?";
@@ -174,6 +197,31 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 		}
 	 
 	 
+	 @Override
+	 public boolean deleteCommentById(int comid)
+	 {
+		 try {
+				checkCommentId(comid);
+			} catch(InvalidId e1) {
+				e1.printStackTrace();
+				return false;
+			}
+			
+			String sql = "DELETE FROM Comments_post WHERE comid = ?";
+			try {
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				ps.setInt(1, comid);
+				
+				return ps.executeUpdate() > 0;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+	 }
+	 
+
+	
 	 @Override
 		public boolean updateVotebyCommentId(int comid, int votes) {
 			
@@ -247,7 +295,7 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 		 
 	 }
 	 
-	 private void checkCommentId(int comid) throws InvalidId {
+	 public void checkCommentId(int comid) throws InvalidId {
 			// TODO Auto-generated method stub
 
 			String sqlForException = "SELECT * FROM Comments_post WHERE COMID = ?";
@@ -263,6 +311,8 @@ String sql= "INSERT INTO Comments_post(votes, content, pid, uid, time_stamp, rep
 				e1.printStackTrace();
 			}
 		}
+
+	
 
 
 		
