@@ -2,7 +2,6 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.sapient.healthyreps.dao.PostDAO;
@@ -39,33 +38,30 @@ public class PostController {
 	
 	@GetMapping("{pid}")
 	public Post getPostbyId(@PathVariable int pid) {
-		return postDAO.getPostbyId(pid)
-				? "Get success":"Failed";
+		return postDAO.getPostbyId(pid);
 	}
 
 	@PostMapping("/new_post/{uid}/{pid}")
-	public Boolean postPost(@RequestBody Post post, @PathVariable int uid,@PathVariable int pid) {
-		return postDao.insertPost(post)
+	public String postPost(@RequestBody Post post, @PathVariable int uid,@PathVariable int pid) {
+		return postDAO.insertPost(post)
 				?"Inserted":"Not Inserted";
 	}
 	
-	@DeleteMapping("/new_post/{uid}/{pid}"){
-		public Boolean deletePost(@PathVariable int pid) {
+	@DeleteMapping("/new_post/{uid}/{pid}")
+		public String deletePost(@PathVariable int pid) {
 			return postDAO.deletePostbyId(pid)
 					?"Deleted":"Not Deleted";
 		}
-	}
 	
 	@PutMapping("/new_post/{uid}/{pid}")
-	public Boolean updatePost(@RequestBode Post post) {
+	public String updatePost(@RequestBody Post post) {
 		return postDAO.updatePost(post)
 				?"Updated":"Not Updated";
 	}
 	
 	@GetMapping("all/{uid}")
 	public List<Post> getAllPostbyUserId(@PathVariable int uid){
-		return postDAO.getAllPostbyUserId(uid)
-				? "Get success":"Failed";
+		return postDAO.getAllPostbyUserId(uid);
 	}
 
 	@GetMapping("/reported")

@@ -74,8 +74,8 @@ public class PostDAO implements IPostDAO{
 				ps.setInt(3, post.getCategoryId());
 				ps.setString(4, post.getContent());
 				ps.setInt(5, post.getVotes());
-				ps.setTimestamp(6, post.getReported());
-				ps.setInt(7, post.getTimeStamp());
+				ps.setTimestamp(6, post.getTimeStamp());
+				ps.setInt(7, post.getReported());
 				
 				return ps.executeUpdate() > 0;
 		}catch (SQLException e) {
@@ -122,7 +122,7 @@ public class PostDAO implements IPostDAO{
 			checkPostId(pid);
 		} catch(InvalidId e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 		
 		String sql = "Select * Post WHERE PID = ?";
@@ -199,7 +199,7 @@ public class PostDAO implements IPostDAO{
 		return false;
 	}
 
-	public boolean insertPost(Post post) {
+	public boolean updatePost(Post post) {
 		String sql = "UPDATE Post SET title=?, content=?, category_id=?, votes=?, time_stamp=?, reported=? WHERE PID=?";
 		
 		try{
@@ -209,8 +209,8 @@ public class PostDAO implements IPostDAO{
 				ps.setString(2, post.getContent());
 				ps.setInt(3, post.getCategoryId());
 				ps.setInt(4, post.getVotes());
-				ps.setInt(5, post.getTimeStamp());
-				ps.setTimestamp(6, post.getReported());
+				ps.setTimestamp(5, post.getTimeStamp());
+				ps.setInt(6, post.getReported());
 				ps.setInt(7,post.getPid());
 				
 				return ps.executeUpdate() > 0;
