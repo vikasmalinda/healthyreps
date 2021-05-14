@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sapient.healthyreps.entity.Comment;
-import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.ICommentDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -38,14 +37,6 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public Comment getCommentByCommentID(int CommentID) {
 
-		try {
-			checkID(CommentID);
-		} catch (InvalidID e1) {
-			
-			e1.printStackTrace();
-			return null;
-		}
-
 		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment where CommentID=?";
 		try {
 
@@ -73,9 +64,9 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public List<Comment> getAllComments(int AnswerID,String sortBy) {
+	public List<Comment> getAllComments(int AnswerID) {
 
-		String sql="select commentID, description, modifiedAt, answerID, userID, reliability from comment where AnswerID= ? order by "+sortBy+" DESC";
+		String sql="select commentID, description, modifiedAt, answerID, userID, reliability from comment where AnswerID= ?";
 
 		List<Comment> list=new ArrayList<Comment>();
 		try {
@@ -160,23 +151,7 @@ public class CommentDAO implements ICommentDAO {
 		return false;
 	}
 
-	@Override
-	public int getLatestCommentID() {
-
-		String sql = "SELECT CommentID from comment ORDER BY CommentID DESC LIMIT 1";
-
-		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-
-			rs.next();
-
-			return rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
+	
 
 	@Override
 	public boolean updateComment(Comment comment) {
@@ -199,21 +174,5 @@ public class CommentDAO implements ICommentDAO {
 		}
 
 		return false;
-	}
-
-	@Override
-	public void checkID(int ID) throws InvalidID {
-		String sqlForException = "SELECT CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability FROM comment WHERE CommentID=?";
-		try {
-			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-			psException.setInt(1, ID);
-			ResultSet rs = psException.executeQuery();
-			if (!rs.next()) {
-				throw new InvalidID("Comment");
-			}
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
-		}
 	}
 }

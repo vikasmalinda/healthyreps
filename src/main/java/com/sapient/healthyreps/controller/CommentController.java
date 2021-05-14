@@ -3,6 +3,7 @@ package com.sapient.healthyreps.controller;
 import java.util.List;
 
 import com.sapient.healthyreps.dao.CommentDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Comment;
 import com.sapient.healthyreps.exception.InvalidID;
 
@@ -20,6 +21,7 @@ public class CommentController {
 
     @Autowired
 	CommentDAO comDAO;
+	PermissionDAO permissionDAO;
 
 	@PostMapping("answer/{aid}/comment")
 	public boolean insertComment(@RequestBody Comment comment) {
@@ -29,27 +31,27 @@ public class CommentController {
 	@GetMapping("answer/{aid}/comment{cid}")
 	public String getCommentbyID(@PathVariable int cid) {
 		try {
-			comDAO.checkID(cid);
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";
-		}
+			permissionDAO.isIDPresent(cid,"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
 		return comDAO.getCommentByCommentID(cid).toString();
 	}
 
-	@GetMapping("answer/{aid}/comment/sort/{sortBy}")
-	public List<Comment> getAllComments(@PathVariable int aid,@PathVariable String sortBy) {
-		return comDAO.getAllComments(aid,sortBy);
+	@GetMapping("answer/{aid}/comment")
+	public List<Comment> getAllComments(@PathVariable int aid) {
+		return comDAO.getAllComments(aid);
 	}
 
 	@DeleteMapping("comment/{cid}")
 	public String deleteComment(@PathVariable int cid) {
 		try {
-			comDAO.checkID(cid);
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";
-		}
+			permissionDAO.isIDPresent(cid,"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
 
 		return comDAO.deleteComment(cid) ? "Deleted" : "Not Deleted";
 	}
@@ -57,13 +59,11 @@ public class CommentController {
 	@PutMapping("answer/{aid}/comment/{cid}")
 	public String updateComment(@RequestBody Comment comment) {
 		try {
-			comDAO.checkID(comment.getCommentID());
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";// redirect in future
-		}
-		String res;
-		res = comDAO.updateComment(comment) ? "Updated" : "Not Updated";
-		return res;
+			permissionDAO.isIDPresent(comment.getCommentID(),"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
+		return comDAO.updateComment(comment) ? "Updated" : "Not Updated";
 	}
 }

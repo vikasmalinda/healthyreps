@@ -1,5 +1,4 @@
 package com.sapient.healthyreps.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.healthyreps.dao.CategoryDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Category;
 import com.sapient.healthyreps.exception.InvalidID;
 
@@ -20,54 +20,49 @@ public class CategoryController {
 
 	@Autowired
 	CategoryDAO cat;
+	PermissionDAO permissionDAO;
 
-	@GetMapping("category/{id}")
-	public String getCategoryFromID(@PathVariable int id) {
+	@GetMapping("category/{cid}")
+	public String getCategoryFromID(@PathVariable int cid) {
 		try {
-			cat.checkID(id);
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";
-		}
-		return cat.getCategoryById(id).getCategoryName();
+			permissionDAO.isIDPresent(cid,"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
+		return cat.getCategoryById(cid).getCategoryName();
 	}
 
 	@GetMapping("category")
 	public List<Category> getAllCategories() {
-		List<Category> list = cat.getAllCategory();
-		return list;
+		return cat.getAllCategory();
 	}
 
 	@PostMapping("category")
 	public String insertCategory(@RequestBody Category Cat) {
-		String res = "";
-		res = cat.insertCategory(Cat) ? "Inserted" : "Not Inserted";
-		return res;
+		return cat.insertCategory(Cat) ? "Inserted" : "Not Inserted";
 	}
 
-	@DeleteMapping("category/{id}")
-	public String deleteCategory(@PathVariable int id) {
+	@DeleteMapping("category/{cid}")
+	public String deleteCategory(@PathVariable int cid) {
 		try {
-			cat.checkID(id);
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";
-		}
-		String res;
-		res = cat.removeCategory(id) ? "Removed" : "Not Removed";
-		return res;
+			permissionDAO.isIDPresent(cid,"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
+		return cat.removeCategory(cid) ? "Removed" : "Not Removed";
 	}
 
 	@PutMapping("category")
 	public String updateCategory(@RequestBody Category category) {
 		try {
-			cat.checkID(category.getCategoryID());
-		} catch (InvalidID e) {
-			e.printStackTrace();
-			return "Invalid Cat ID";// redirect in future
-		}
-		String res;
-		res = cat.updateCategory(category) ? "Updated" : "Not Updated";
-		return res;
+			permissionDAO.isIDPresent(category.getCategoryID(),"category");
+		} catch (InvalidID e1) {
+			e1.printStackTrace();
+			return null;
+		} 
+
+		return cat.updateCategory(category) ? "Updated" : "Not Updated";
 	}
 }
