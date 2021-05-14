@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sapient.healthyreps.entity.Answer;
-import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.IAnswerDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -171,26 +170,4 @@ public class AnswerDAO implements IAnswerDAO {
 		return false;
 
 	}
-
-	@Override
-	public int getLatestAnswerID() {
-
-		String sql = "SELECT AnswerID from answer ORDER BY AnswerID DESC LIMIT 1";
-
-		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-
-			rs.next();
-
-			return rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return -1;
-
-	}
-
-	
-
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.sapient.healthyreps.dao.PermissionDAO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,29 +14,30 @@ import com.sapient.healthyreps.entity.Answer;
 
 class AnswerDAOTest {
 
-	AnswerDAO answerDao;
+	AnswerDAO answerDAO;
+	PermissionDAO permissionDAO;
 
 	@BeforeEach
 	void initialize() {
-		this.answerDao = new AnswerDAO();
+		this.answerDAO = new AnswerDAO();
 	}
 
 	@Test
 	void CRUDTestPass() {
 		// given
-		Answer answer = new Answer(14, "Test Answer", 4, "2020-01-01 10:10:10", 2, 1, 10);
+		Answer answer = new Answer(1, "Test Answer", 4, "2020-01-01 10:10:10", 2, 1, 10);
 
 		// Create Test
 
-		boolean inserted = answerDao.insertAnswer(answer);
+		boolean inserted = answerDAO.insertAnswer(answer);
 
 		assertTrue(inserted);
 
 		// Read Test
 
-		int id = answerDao.getLatestAnswerID();
+		int id = permissionDAO.getLastID("answer");
 
-		Answer ans = answerDao.getAnswerByAnswerID(id);
+		Answer ans = answerDAO.getAnswerByAnswerID(14);
 
 		assertEquals(ans.getDescription(), "Test Answer");
 
@@ -43,11 +45,11 @@ class AnswerDAOTest {
 
 		ans.setDescription("Updated Test answer");
 
-		assertTrue(answerDao.updateAnswerByAnswerID(ans));
+		assertTrue(answerDAO.updateAnswerByAnswerID(ans));
 
 		// Delete test
 
-		assertTrue(answerDao.deleteAnswer(id));
+		assertTrue(answerDAO.deleteAnswer(id));
 
 	}
 
@@ -55,14 +57,14 @@ class AnswerDAOTest {
 	void CreateFail() {
 
 		Answer answer = new Answer(14, "Test Answer", 4, "ahaha", 2, 1, 10);
-		assertFalse(answerDao.insertAnswer(answer));
+		assertFalse(answerDAO.insertAnswer(answer));
 
 	}
 
 	@Test
 	void ReadFail() {
 
-		assertNull(answerDao.getAnswerByAnswerID(150));
+		assertNull(answerDAO.getAnswerByAnswerID(150));
 
 	}
 
@@ -70,15 +72,14 @@ class AnswerDAOTest {
 	void UpdateFail() {
 
 		Answer answer = new Answer(155, "Test Answer", 4, "2020-01-01 10:10:10", 2, 1, 10);
-		assertFalse(answerDao.updateAnswerByAnswerID(answer));
+		assertFalse(answerDAO.updateAnswerByAnswerID(answer));
 
 	}
 
 	@Test
 	void DeleteFail() {
 
-		// Answer answer= new Answer(155,"Test Answer",4,"2020-01-01 10:10:10",2,1,10);
-		assertFalse(answerDao.deleteAnswer(155));
+		assertFalse(answerDAO.deleteAnswer(155));
 
 	}
 
