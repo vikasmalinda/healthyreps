@@ -23,3 +23,11 @@ Category by CatId - category/{cid}
 All Category - category
 Comment by commentId - answer/{aid}/comment{cid}
 Comment by answerId  - answer/{aid}/comment
+
+## Cloud Database
+phpmyadmin.co
+
+Credentials - 
+Server - sql6.freesqldatabase.com
+userName=sql6411086
+password=KnKEkV2hvJ
