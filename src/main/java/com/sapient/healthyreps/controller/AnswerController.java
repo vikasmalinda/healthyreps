@@ -24,6 +24,8 @@ public class AnswerController {
 
 	@Autowired
 	AnswerDAO answerDAO;
+	
+	@Autowired
 	PermissionDAO permissionDAO;
 
 	@PostMapping("question/{qid}/answer")
@@ -39,7 +41,7 @@ public class AnswerController {
 	}
 
 	@GetMapping("question/{qid}/answer/{aid}")
-	public Answer getAnswerbyID(HttpServlet response, @PathVariable int aid) {
+	public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
 			permissionDAO.isIDPresent(aid, "answer");

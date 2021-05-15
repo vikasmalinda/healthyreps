@@ -19,7 +19,8 @@ import com.sapient.healthyreps.exception.InvalidID;
 public class CategoryController {
 
 	@Autowired
-	CategoryDAO cat;
+	CategoryDAO categoryDAO;
+	@Autowired
 	PermissionDAO permissionDAO;
 
 	@GetMapping("category/{cid}")
@@ -30,17 +31,17 @@ public class CategoryController {
 			e1.printStackTrace();
 			return null;
 		} 
-		return cat.getCategoryById(cid).getCategoryName();
+		return categoryDAO.getCategoryById(cid).getCategoryName();
 	}
 
 	@GetMapping("category")
 	public List<Category> getAllCategories() {
-		return cat.getAllCategory();
+		return categoryDAO.getAllCategory();
 	}
 
 	@PostMapping("category")
 	public String insertCategory(@RequestBody Category Cat) {
-		return cat.insertCategory(Cat) ? "Inserted" : "Not Inserted";
+		return categoryDAO.insertCategory(Cat) ? "Inserted" : "Not Inserted";
 	}
 
 	@DeleteMapping("category/{cid}")
@@ -51,7 +52,7 @@ public class CategoryController {
 			e1.printStackTrace();
 			return null;
 		} 
-		return cat.removeCategory(cid) ? "Removed" : "Not Removed";
+		return categoryDAO.removeCategory(cid) ? "Removed" : "Not Removed";
 	}
 
 	@PutMapping("category")
@@ -63,6 +64,6 @@ public class CategoryController {
 			return null;
 		} 
 
-		return cat.updateCategory(category) ? "Updated" : "Not Updated";
+		return categoryDAO.updateCategory(category) ? "Updated" : "Not Updated";
 	}
 }
