@@ -1,17 +1,19 @@
 package com.sapient.healthyreps.dao;
 
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+//import java.sql.*;
+//import java.util.*;
 
 import com.sapient.healthyreps.entity.Tags;
 import com.sapient.healthyreps.interfaces.ITagsDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
-import java.sql.*;
-import java.util.*;
+
 
 
 
@@ -117,7 +119,28 @@ public class TagsDAO implements ITagsDAO{
 		}
 		return false;
 	}
-
+	
+	
+	@Override
+	public boolean insertTag(int id, int pid, String content) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO Tags_post(TID,PID, content) values (?,?,?)";
+		
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, pid);
+			ps.setString(3, content);
+			
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	@Override
 	public boolean insertTag(int pid, String content) {
 		// TODO Auto-generated method stub
@@ -137,5 +160,6 @@ public class TagsDAO implements ITagsDAO{
 		
 		return false;
 	}
+	
 
 }

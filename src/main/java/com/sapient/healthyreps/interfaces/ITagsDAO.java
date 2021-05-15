@@ -6,9 +6,9 @@ import com.sapient.healthyreps.entity.Tags;
 
 public interface ITagsDAO {
 
-	
+	public boolean insertTag(int id, int pid, String content);
 	public boolean insertTag(int pid, String content);
-	
+		
 	public List<Tags> getAllTagsByPostId(int pid);
 	
 	public List<Tags> getAllTags();
