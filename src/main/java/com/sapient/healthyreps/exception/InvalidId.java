@@ -1,12 +1,7 @@
 package com.sapient.healthyreps.exception;
 
-
 public class InvalidId extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String id;
 
 	public InvalidId() {
