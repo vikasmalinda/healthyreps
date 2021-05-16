@@ -17,7 +17,7 @@ ITagsDAO TagsDAO = new TagsDAO();
 	
 	@GetMapping
 	public String generalPage() {
-		return "Welcome to Posts";
+		return "Welcome to Tags";
 	}
 	
 	@GetMapping("/all")
@@ -38,27 +38,27 @@ ITagsDAO TagsDAO = new TagsDAO();
 	
 	/////here
 	
-	@DeleteMapping("/new_post/{uid}/{pid}/{tid}")
+	@DeleteMapping("/delete_tag/{uid}/{pid}/{tid}")
 	public String deleteTag(@PathVariable int tid) {
 		return TagsDAO.deleteTagbyId(tid)
 				?"Deleted":"Not Deleted";
 	}
 	
-//	@PutMapping("/Tags/{tid}")
-//	public boolean updateTagContent(@PathVariable int tid,String newContent) {
-//		return TagsDAO.updateTag(tid,newContent);
-//	}
+	@PutMapping("/update_tag/{tid}")
+	public String updateTagContent(@RequestBody Tags tag,@PathVariable int tid) {
+		return TagsDAO.updateTag(tag)?"Updated":"Not updated";
+	}
 	
-	@DeleteMapping("/new_post/{uid}/{pid}")
+	@DeleteMapping("/delete_all_tags_of_post/{uid}/{pid}")
 	public String deleteAllPostTags(@PathVariable int pid) {
 		return TagsDAO.deleteAllTagsByPostId(pid)
 				?"Deleted":"Not Deleted";
 	}
 	
-//	@PostMapping("/new_post/{uid}/{pid}/{tid}")
-//	public String insertTag(@RequestBody Tags tag, @PathVariable int uid,@PathVariable int pid,@PathVariable int tid) {
-//		return TagsDAO.insertTag(tag)
-//				?"Inserted":"Not Inserted";
-//	}	
+	@PostMapping("/new_tag/{uid}/{pid}/{tid}")
+	public String insertTag(@RequestBody Tags tag, @PathVariable int uid,@PathVariable int pid,@PathVariable int tid) {
+		return TagsDAO.insertTag(tag)
+				?"Inserted":"Not Inserted";
+	}	
 	
 }
