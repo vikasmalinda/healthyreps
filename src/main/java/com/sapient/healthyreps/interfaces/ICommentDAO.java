@@ -5,9 +5,10 @@ import java.util.List;
 import com.sapient.healthyreps.entity.Comment;
 
 public interface ICommentDAO {
+
 	public boolean insertComment(Comment comment);
 
-	public List<Comment> getAllComment(int AnswerID);
+	public List<Comment> getAllComments(int AnswerID);
 
 	public boolean deleteComment(int CommentID);
 
@@ -15,7 +16,7 @@ public interface ICommentDAO {
 
 	public boolean updateCommentByCommentID(Comment comment);
 
-	Comment getCommentByCommentID(int CommentID);
+	public Comment getCommentByCommentID(int CommentID);
 
-	int getLatestCommentID();
+	public boolean updateComment(Comment comment);
 }
