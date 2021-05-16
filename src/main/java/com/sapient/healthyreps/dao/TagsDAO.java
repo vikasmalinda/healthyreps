@@ -6,12 +6,14 @@ package com.sapient.healthyreps.dao;
 //import java.util.ArrayList;
 //import java.util.List;
 
+import java.sql.*;
+import java.util.*;
+
 import com.sapient.healthyreps.entity.Tags;
 import com.sapient.healthyreps.interfaces.ITagsDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
-import java.sql.*;
-import java.util.*;
+
 
 
 
@@ -50,9 +52,9 @@ public class TagsDAO implements ITagsDAO{
 		List<Tags> tags = new ArrayList<>();
 		String sql = "select TID, PID, content from Tags_post";
 		
-		PreparedStatement ps;
+		
 		try {
-			ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -117,7 +119,44 @@ public class TagsDAO implements ITagsDAO{
 		}
 		return false;
 	}
+	@Override
+	public boolean updateTag(Tags tag) {
+		String sql = "UPDATE Tags_post SET content=? WHERE TID=?";
+		
+		try{
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				
+				ps.setString(1, tag.getContent());
+				ps.setInt(2, tag.getId());
 
+				return ps.executeUpdate() > 0;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean insertTag(int id, int pid, String content) {
+		// TODO Auto-generated method stub
+		
+		String sql = "INSERT INTO Tags_post(TID,PID, content) values (?,?,?)";
+		
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, pid);
+			ps.setString(3, content);
+			
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 	@Override
 	public boolean insertTag(int pid, String content) {
 		// TODO Auto-generated method stub
@@ -137,5 +176,25 @@ public class TagsDAO implements ITagsDAO{
 		
 		return false;
 	}
+	
+	@Override
+	public boolean insertTag(Tags tag) {
+		String sql = "INSERT INTO Tags_post(ID, PID, CONTENT) VALUES(?,?,?)";
+		
+		try{
+				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+				
+				ps.setInt(1, tag.getId());
+				ps.setInt(2, tag.getPid());
+				ps.setString(3, tag.getContent());
+				
+				return ps.executeUpdate() > 0;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 
 }
