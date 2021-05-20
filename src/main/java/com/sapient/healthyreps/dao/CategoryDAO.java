@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sapient.healthyreps.entity.Category;
-import com.sapient.healthyreps.exception.InvalidID;
 import com.sapient.healthyreps.interfaces.ICategoryDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -102,21 +101,6 @@ public class CategoryDAO implements ICategoryDAO {
 		}
 
 		return false;
-	}
-
-	@Override
-	public void checkID(int ID) throws InvalidID {
-		String sqlForException = "SELECT categoryID FROM category WHERE categoryID=?";
-		try {
-			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-			psException.setInt(1, ID);
-			ResultSet rs = psException.executeQuery();
-			if (!rs.next()) {
-				throw new InvalidID("Category");
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
 	}
 
 }

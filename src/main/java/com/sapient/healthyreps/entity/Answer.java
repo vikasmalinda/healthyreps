@@ -11,7 +11,6 @@ public class Answer {
 	private int reliability;
 	public Answer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Answer(int answerID, String description, int votes, String modifiedAt, int questionID, int userID,
 			int reliability) {
