@@ -1,6 +1,6 @@
 package com.sapient.healthyreps.entity;
 import java.sql.Timestamp;
-public class Comments_post {
+public class CommentsPost{
 
 	
 	private int comid;
@@ -11,9 +11,9 @@ public class Comments_post {
 	private Timestamp timestamp;
 	int reported;
 	
-	public Comments_post() {}	
+	public CommentsPost() {}	
 	
-	public Comments_post(int comid, int votes, String content, int pid, int uid, Timestamp timestamp, int reported) {
+	public CommentsPost(int comid, int votes, String content, int pid, int uid, Timestamp timestamp, int reported) {
 		super();
 		this.comid = comid;
 		this.votes = votes;
@@ -27,7 +27,7 @@ public class Comments_post {
 
 	@Override
 	public String toString() {
-		return "Comments_post [comid=" + comid + ", votes=" + votes + ", content=" + content + ", pid=" + pid
+		return "CommentsPost [comid=" + comid + ", votes=" + votes + ", content=" + content + ", pid=" + pid
 				+ ", uid=" + uid + ", timestamp=" + timestamp+  ", reported=" + reported + "]";
 	}
 	
