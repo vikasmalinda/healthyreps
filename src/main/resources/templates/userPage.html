@@ -7,77 +7,109 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
     <style>
+        {
+            box-sizing: border-box;
+        }
         body {
-            font-family: Helvetica, serif;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
         }
 
-        menu {
-            background: darkgrey;
-            padding: 0.25rem;
-            overflow-y: scroll;
-            white-space: nowrap;
+        #main {
+            display: flex;
+            flex: 1;
         }
 
-        span {
-            background: gray;
-            color: #ffffff;
-            display: inline-block;
-            margin: 0.25rem;
-            padding: 0.5rem;
+        #main > article {
+            flex: 1;
+        }
+
+        #main > nav,
+        #main > aside {
+            flex: 0 0 20vw;
+            background: beige;
+        }
+
+        #main > nav {
+            order: -1;
+        }
+
+        header, footer {
+            background: yellowgreen;
+            height: 20vh;
+        }
+
+        header, footer, article, nav, aside {
+            padding: 1em;
+        }
+
+        @media screen and (max-width: 575px) {
+            #main {
+                display: block;
+            }
         }
     </style>
 
 </head>
 
 <body>
-<h1>User profile Page</h1>
+<header><h1>User profile Page</h1></header>
 
-<menu>
-    <span>
-        Name:
-        <span th:text="${User.name}">placeholder name</span>
-    </span>
-    <span>
-        Height:
-        <span th:text="${User.height}">placeholder height</span>
-    </span>
-    <span>
-        Weight:
-        <span th:text="${User.weight}">placeholder weight</span>
-    </span>
-    <span>
-        DOB:
-        <span th:text="${User.dob}">placeholder date</span>
-    </span>
-    <span>
-        Stars:
-        <span th:text="${User.stars}">placeholder stars</span>
-    </span>
-    <span>
-        Gender:
-        <span th:text="${User.gender}">placeholder gender</span>
-    </span>
-    <span>
-        Contact Number:
-        <span th:text="${User.contactNo}">placeholder contact number</span>
-    </span>
-    <span>
-        Facebook:
-        <span th:text="${User.facebook}">placeholder facebook</span>
-    </span>
-    <span>
-        Instagram:
-        <span th:text="${User.instagram}">placeholder instagram</span>
-    </span>
-    <span>
-        Twitter:
-        <span th:text="${User.twitter}">placeholder twitter</span>
-    </span>
-    <span>
-        Email:
-        <span th:text="${User.gender}">placeholder email</span>
-    </span>
-</menu>
+<div id="main">
+    <article>
+        <span>
+            Name:
+            <span th:text="${User.name}">placeholder name</span>
+        </span>
+        <span>
+            Height:
+            <span th:text="${User.height}">placeholder height</span>
+        </span>
+        <span>
+            Weight:
+            <span th:text="${User.weight}">placeholder weight</span>
+        </span>
+        <span>
+            DOB:
+            <span th:text="${User.dob}">placeholder date</span>
+        </span>
+        <span>
+            Stars:
+            <span th:text="${User.stars}">placeholder stars</span>
+        </span>
+        <span>
+            Gender:
+            <span th:text="${User.gender}">placeholder gender</span>
+        </span>
+        <span>
+            Contact Number:
+            <span th:text="${User.contactNo}">placeholder contact number</span>
+        </span>
+    </article>
+    <nav>
+        <span>
+            Facebook:
+            <span th:text="${User.facebook}">placeholder facebook</span>
+        </span>
+        <span>
+            Instagram:
+            <span th:text="${User.instagram}">placeholder instagram</span>
+        </span>
+    </nav>
+    <aside>
+        <span>
+            Twitter:
+            <span th:text="${User.twitter}">placeholder twitter</span>
+        </span>
+        <span>
+            Email:
+            <span th:text="${User.gender}">placeholder email</span>
+        </span>
+    </aside>
+</div>
+<footer>Thankyou for visiting!</footer>
 
 </body>
 </html>
