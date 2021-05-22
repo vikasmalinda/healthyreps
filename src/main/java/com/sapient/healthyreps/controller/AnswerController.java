@@ -2,7 +2,7 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +24,7 @@ public class AnswerController {
 
 	@Autowired
 	AnswerDAO answerDAO;
+	@Autowired
 	PermissionDAO permissionDAO;
 
 	@PostMapping("question/{qid}/answers")
@@ -39,7 +40,7 @@ public class AnswerController {
 	}
 
 	@GetMapping("question/{qid}/answer/{aid}")
-	public Answer getAnswerbyID(HttpServlet response, @PathVariable int aid) {
+	public Answer getAnswerbyID(@PathVariable int qid, @PathVariable int aid) {
 
 		try {
 			permissionDAO.isIDPresent(aid, "answer");

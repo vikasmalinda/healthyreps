@@ -20,6 +20,7 @@ public class CategoryController {
 
 	@Autowired
 	CategoryDAO cat;
+	@Autowired
 	PermissionDAO permissionDAO;
 
 	@GetMapping("category/{cid}")
