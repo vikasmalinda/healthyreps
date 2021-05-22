@@ -2,12 +2,12 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
-import com.sapient.healthyreps.dao.Comments_postDAO;
+import com.sapient.healthyreps.dao.CommentsPostDAO;
 
-import com.sapient.healthyreps.entity.Comments_post;
+import com.sapient.healthyreps.entity.CommentsPost;
 
 import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.interfaces.IComments_postDAO;
+import com.sapient.healthyreps.interfaces.ICommentsPostDAO;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,42 +19,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Comments_post")
+@RequestMapping("/CommentsPost")
 public class Comments_postController {
 
 	
-	IComments_postDAO Comments_postDAO = new Comments_postDAO();
+	ICommentsPostDAO Comments_postDAO = new CommentsPostDAO();
 	
 	@GetMapping
 	public String generalPage() {
-		return "Welcome to Comments under the Blog posts";
+		return "Welcome to Comments under the Blog post";
 	}
 	
 	@GetMapping("/all")
-	public List<Comments_post> getAllComments(){
+	public List<CommentsPost> getAllComments(){
 		
-		List<Comments_post> allComments = Comments_postDAO.getAllComments();
+		List<CommentsPost> allComments = CommentsPostDAO.getAllComments();
 		
 		return allComments;
 		
 	}
 	
-	@GetMapping("/user/{uid}")
-	public List<Comments_post> getAllCommentsByPostId(@PathVariable int pid) {
+	@GetMapping("/post/{pid}")
+	public List<CommentsPost> getAllCommentsByPostId(@PathVariable int pid) {
 		
-		List<Comments_post> allCommentsOfAPost= Comments_postDAO.getAllCommentsByPostId(pid);
+		List<CommentsPost> allCommentsOfAPost= CommentsPostDAO.getAllCommentsByPostId(pid);
 		return allCommentsOfAPost;
 	}
 	
 	@GetMapping("post/{pid}/comment{comid}")
 	public String getCommentbyCommentId(@PathVariable int comid) {
 		try {
-			Comments_postDAO.checkCommentId(comid);
+			CommentsPostDAO.checkCommentId(comid);
 		} catch (InvalidId e) {
 			e.printStackTrace();
 			return "Invalid Comment ID";
 		}
-		return Comments_postDAO.getCommentByCommentId(comid).toString();
+		return CommentsPostDAO.getCommentByCommentId(comid).toString();
 	}
 	
 }
