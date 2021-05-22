@@ -21,6 +21,7 @@ public class CommentController {
 
     @Autowired
 	CommentDAO comDAO;
+    @Autowired
 	PermissionDAO permissionDAO;
 
 	@PostMapping("answer/{aid}/comment")

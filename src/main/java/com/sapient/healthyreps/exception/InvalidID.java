@@ -5,7 +5,6 @@ public class InvalidID extends Exception {
 	private String tableName;
 
 	public InvalidID() {
-
 	}
 
 	public InvalidID(String tableName) {

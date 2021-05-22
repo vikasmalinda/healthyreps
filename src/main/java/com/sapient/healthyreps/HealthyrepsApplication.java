@@ -15,8 +15,4 @@ public class HealthyrepsApplication {
 		SpringApplication.run(HealthyrepsApplication.class, args);
 
 	}
-  
-	
-	
-	
 }
