@@ -1,4 +1,4 @@
-package com.project.sapient.dao;
+package com.sapient.healthyreps.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.sapient.Exceptions.InvalidId;
-import com.project.sapient.entity.SocialLinks;
-import com.project.sapient.interfaces.ISocialLinksDAO;
-import com.project.sapient.utils.DbConnect;
+import com.sapient.healthyreps.exception.InvalidId;
+import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.SocialLinks;
+import com.sapient.healthyreps.interfaces.ISocialLinksDAO;
 
-public class SocialLinksDOO implements ISocialLinksDAO {
+public class SocialLinksDAO implements ISocialLinksDAO {
 
 	@Override
 	public boolean insertUrls(SocialLinks link) {
 		// TODO Auto-generated method stub
 		try {
-			UserRegisterDOO.checkIdOfUser(link.getUserId());
+			UserRegisterDAO.checkIdOfUser(link.getUserId());
 		} catch (InvalidId e) {
 			e.printStackTrace();
 			return false;

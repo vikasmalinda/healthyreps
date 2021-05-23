@@ -1,8 +1,8 @@
-package com.project.sapient.interfaces;
+package com.sapient.healthyreps.interfaces;
 
 import java.util.List;
 
-import com.project.sapient.entity.SocialLinks;
+import com.sapient.healthyreps.entity.SocialLinks;
 
 public interface ISocialLinksDAO {
 

@@ -1,9 +1,9 @@
-package com.project.sapient.interfaces;
+package com.sapient.healthyreps.interfaces;
 
 import java.util.List;
 
-import com.project.sapient.dao.UserCredential;
-import com.project.sapient.entity.UserRegister;
+import com.sapient.healthyreps.dao.UserCredential;
+import com.sapient.healthyreps.entity.UserRegister;
 
 public interface IUserRegisterDAO {
 

@@ -1,4 +1,4 @@
-package com.project.sapient.dao;
+package com.sapient.healthyreps.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,15 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.sapient.Exceptions.DuplicateEmail;
-import com.project.sapient.Exceptions.InvalidId;
-import com.project.sapient.Exceptions.PasswordIsWeak;
-import com.project.sapient.Exceptions.PasswordTooSmall;
-import com.project.sapient.entity.UserRegister;
-import com.project.sapient.interfaces.IUserRegisterDAO;
-import com.project.sapient.utils.DbConnect;
+import com.sapient.healthyreps.exception.InvalidId;
+import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.UserRegister;
+import com.sapient.healthyreps.exception.DuplicateEmail;
+import com.sapient.healthyreps.exception.PasswordIsWeak;
+import com.sapient.healthyreps.exception.PasswordTooSmall;
+import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
-public class UserRegisterDOO implements IUserRegisterDAO {
+public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public boolean insertUser(UserCredential user) {
@@ -79,6 +79,7 @@ public class UserRegisterDOO implements IUserRegisterDAO {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public List<UserRegister> getAllUserRegisterInfo() {
 		String sql = "select UserId,UserName,EmailId,password from UserRegister";
@@ -138,6 +139,7 @@ public class UserRegisterDOO implements IUserRegisterDAO {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public List<UserRegister> getUserByEmailAndPwd(String email, String Pwd) {
 		String sql = "select UserId,UserName,EmailId,password from UserRegister where EmailId = ? And password= ?";

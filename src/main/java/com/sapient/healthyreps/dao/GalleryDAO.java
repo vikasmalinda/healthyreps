@@ -1,4 +1,4 @@
-package com.project.sapient.dao;
+package com.sapient.healthyreps.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,19 +6,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.sapient.Exceptions.ImageAlreadyPresent;
-import com.project.sapient.Exceptions.InvalidId;
-import com.project.sapient.entity.Gallery;
-import com.project.sapient.interfaces.IGalleryDao;
-import com.project.sapient.utils.DbConnect;
+import com.sapient.healthyreps.exception.InvalidId;
+import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.Gallery;
+import com.sapient.healthyreps.exception.ImageAlreadyPresent;
+import com.sapient.healthyreps.interfaces.IGalleryDao;
 
-public class GalleryDOO implements IGalleryDao {
+public class GalleryDAO implements IGalleryDao {
 
 	@Override
 	public boolean insertNewImage(Gallery images) {
 		// TODO Auto-generated method stub
 		try {
-			UserRegisterDOO.checkIdOfUser(images.getUserId());
+			UserRegisterDAO.checkIdOfUser(images.getUserId());
 			checkUrlOfImage(images.getImageUrl(), images.getUserId());
 		} catch (InvalidId e) {
 			e.printStackTrace();

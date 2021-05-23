@@ -1,4 +1,4 @@
-package com.project.sapient.dao;
+package com.sapient.healthyreps.dao;
 
 public class UserCredential {
 	private String userName;

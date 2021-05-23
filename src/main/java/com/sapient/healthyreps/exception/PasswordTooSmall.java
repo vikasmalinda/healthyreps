@@ -1,4 +1,4 @@
-package com.project.sapient.Exceptions;
+package com.sapient.healthyreps.exception;
 
 public class PasswordTooSmall extends Exception {
 	String password;

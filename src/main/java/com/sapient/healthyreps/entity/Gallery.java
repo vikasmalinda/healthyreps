@@ -1,4 +1,4 @@
-package com.project.sapient.entity;
+package com.sapient.healthyreps.entity;
 
 public class Gallery {
 	private int imageId;

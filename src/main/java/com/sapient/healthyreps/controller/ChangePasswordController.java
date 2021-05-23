@@ -1,15 +1,15 @@
-package com.project.sapient.controller;
+package com.sapient.healthyreps.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.sapient.Exceptions.PasswordIsWeak;
-import com.project.sapient.Exceptions.PasswordTooSmall;
-import com.project.sapient.dao.RequirementForChangePassword;
-import com.project.sapient.dao.UserRegisterDOO;
-import com.project.sapient.entity.UserRegister;
-import com.project.sapient.interfaces.IUserRegisterDAO;
+import com.sapient.healthyreps.dao.RequirementForChangePassword;
+import com.sapient.healthyreps.dao.UserRegisterDAO;
+import com.sapient.healthyreps.entity.UserRegister;
+import com.sapient.healthyreps.exception.PasswordIsWeak;
+import com.sapient.healthyreps.exception.PasswordTooSmall;
+import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
 /*public class RequirementForChangePassword{
 	private String email;
@@ -18,12 +18,12 @@ import com.project.sapient.interfaces.IUserRegisterDAO;
 
 @RestController
 public class ChangePasswordController {
-	IUserRegisterDAO dao = new UserRegisterDOO();
+	IUserRegisterDAO dao = new UserRegisterDAO();
 
 	@PostMapping("/changePassword")
 	public Boolean userPasswordReset(@RequestBody RequirementForChangePassword passwordChangeRequest) {
 		try {
-			UserRegisterDOO.passwordCheck(passwordChangeRequest.getNewPassword());
+			UserRegisterDAO.passwordCheck(passwordChangeRequest.getNewPassword());
 		} catch (PasswordTooSmall e) {
 			e.printStackTrace();
 			return false;
@@ -31,7 +31,7 @@ public class ChangePasswordController {
 			e.printStackTrace();
 			return false;
 		}
-		return dao.updatePassword(passwordChangeRequest.getEmail(),passwordChangeRequest.getNewPassword());
+		return dao.updatePassword(passwordChangeRequest.getEmail(), passwordChangeRequest.getNewPassword());
 	}
 
 }

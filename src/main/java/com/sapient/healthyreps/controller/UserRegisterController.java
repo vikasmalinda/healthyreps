@@ -1,4 +1,4 @@
-package com.project.sapient.controller;
+package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
@@ -8,21 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.sapient.Exceptions.InvalidId;
-import com.project.sapient.dao.UserCredential;
-import com.project.sapient.dao.UserRegisterDOO;
-import com.project.sapient.entity.UserRegister;
-import com.project.sapient.interfaces.IUserRegisterDAO;
+import com.sapient.healthyreps.exception.InvalidId;
+import com.sapient.healthyreps.dao.UserCredential;
+import com.sapient.healthyreps.dao.UserRegisterDAO;
+import com.sapient.healthyreps.entity.UserRegister;
+import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
 @RestController
 public class UserRegisterController {
 
-	IUserRegisterDAO dao = new UserRegisterDOO();
-
-	@GetMapping
-	public String Health() {
-		return "Service is Up";
-	}
+	IUserRegisterDAO dao = new UserRegisterDAO();
 
 	@GetMapping("/AllRegisteredUsers")
 	public List<UserRegister> getAllUser() {
@@ -37,7 +32,7 @@ public class UserRegisterController {
 	@GetMapping("/register/{uId}")
 	public UserRegister getUser(@PathVariable("uId") int uid) {
 		try {
-			UserRegisterDOO.checkIdOfUser(uid);
+			UserRegisterDAO.checkIdOfUser(uid);
 		} catch (InvalidId e) {
 			e.printStackTrace();
 			return null;

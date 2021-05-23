@@ -1,4 +1,4 @@
-package com.project.sapient.Exceptions;
+package com.sapient.healthyreps.exception;
 
 public class ImageAlreadyPresent extends Exception {
 	String url;
