@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import com.sapient.healthyreps.dao.PostDAO;
-import com.sapient.healthyreps.entity.post;
+import com.sapient.healthyreps.entity.Post;
 import com.sapient.healthyreps.interfaces.IPostDAO;
 
 @RestController
@@ -37,13 +37,13 @@ public class PostController {
 	
 	@GetMapping("{pid}")
 	public post getPostbyId(@PathVariable int pid) {
-//<<<<<<< HEAD
+
 		return postDAO.getPostbyId(pid);
-//=======
+
 		//Post np=postDAO.getPostbyId(pid);
 		//System.out.println(np);
 		//return np;
-//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
+
 	}
 
 	@PostMapping("/new_post/{uid}/{pid}")
