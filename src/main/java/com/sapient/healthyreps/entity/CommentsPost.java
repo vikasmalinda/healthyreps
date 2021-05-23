@@ -9,7 +9,7 @@ public class CommentsPost{
 	private int pid;
 	private int uid;
 	private Timestamp timestamp;
-	int reported;
+	private int reported;
 	
 	public CommentsPost() {}	
 	
