@@ -1,13 +1,13 @@
 package com.sapient.healthyreps.exception;
 
-public class InvalidID extends Exception {
+public class InvalidId extends Exception {
 
 	private String tableName;
 
-	public InvalidID() {
+	public InvalidId() {
 	}
 
-	public InvalidID(String tableName) {
+	public InvalidId(String tableName) {
 		this.tableName = tableName;
 	}
 
