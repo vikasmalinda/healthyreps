@@ -23,9 +23,8 @@ public class PostController {
 	@GetMapping("/all")
 	public List<Post> getAllPosts(){
 		
-		List<Post> allPosts = postDAO.getAllPosts();
-		
-		return allPosts;
+//		List<Post> allPosts = postDAO.getAllPosts();
+		return postDAO.getAllPosts();
 		
 	}
 	
@@ -38,7 +37,13 @@ public class PostController {
 	
 	@GetMapping("{pid}")
 	public Post getPostbyId(@PathVariable int pid) {
+//<<<<<<< HEAD
 		return postDAO.getPostbyId(pid);
+//=======
+		//Post np=postDAO.getPostbyId(pid);
+		//System.out.println(np);
+		//return np;
+//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
 	}
 
 	@PostMapping("/new_post/{uid}/{pid}")
@@ -46,8 +51,9 @@ public class PostController {
 		return postDAO.insertPost(post)
 				?"Inserted":"Not Inserted";
 	}
-	
-	@DeleteMapping("/new_post/{uid}/{pid}")
+
+	@DeleteMapping("/delete_post/{uid}/{pid}")
+//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
 		public String deletePost(@PathVariable int pid) {
 			return postDAO.deletePostbyId(pid)
 					?"Deleted":"Not Deleted";
@@ -74,8 +80,10 @@ public class PostController {
 		return postDAO.getAllDraftPosts(uid);
 	}
 	
-	@PutMapping("/postStatus/{pid}")
-	public boolean updateStatusofPost(@PathVariable int pid,int newstatus) {
+
+	@PutMapping("/updateStatus/{pid}/{newstatus}")
+	public boolean updateStatusofPost(@PathVariable int pid,@PathVariable int newstatus) {
+//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
 		return postDAO.updateStatusofPost(pid,newstatus);
 	}
 }

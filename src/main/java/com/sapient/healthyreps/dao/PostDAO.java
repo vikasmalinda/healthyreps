@@ -89,22 +89,22 @@ public class PostDAO implements IPostDAO{
 	public List<Post> getAllPosts() {
 		
 		List<Post> posts = new ArrayList<>();
-		String sql = "select PID, UID, title, category_id, content, votes, time_stamp, reported from Post";
+		String sql = "select * from Post";
 		
 		try (
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 				)
 				{	
-					while(rs.next()) {		
+					while(rs.next()) {
 						Post post = new Post(rs.getInt(1),
-								rs.getInt(2),
-								rs.getString(3),
-								rs.getInt(4),
-								rs.getString(5),
-								rs.getInt(6),
-								rs.getTimestamp(7),
-								rs.getInt(8)); 
+							rs.getInt(2),
+							rs.getString(3),
+							rs.getInt(4),
+							rs.getString(5),
+							rs.getInt(6),
+							rs.getTimestamp(7),
+							rs.getInt(8)); 
 						
 						posts.add(post); 
 					}
@@ -356,7 +356,7 @@ public class PostDAO implements IPostDAO{
 	@Override
 	public List<Post> getAllReportedPosts() {
 		List<Post> posts = new ArrayList<>();
-		String statement = "select * from Post where reported <= 0 and reported != -100";
+		String statement = "select * from Post where reported < 0 and reported != -100";
 		try (
 				PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
 				ResultSet rs = ps.executeQuery();
