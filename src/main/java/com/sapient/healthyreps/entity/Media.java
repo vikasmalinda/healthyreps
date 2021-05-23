@@ -32,12 +32,12 @@ public class Media {
 	}
 
 
-	public int getPid() {
+	public int getPostId() {
 		return postId;
 	}
 
 
-	public void setPid(int postId) {
+	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 
