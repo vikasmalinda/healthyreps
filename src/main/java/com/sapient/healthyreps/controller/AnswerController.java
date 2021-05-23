@@ -2,7 +2,7 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

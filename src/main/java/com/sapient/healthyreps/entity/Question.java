@@ -2,39 +2,49 @@ package com.sapient.healthyreps.entity;
 
 
 public class Question {
-	private int questionID; 
+	private int questionId;
 	private String title; 
 	private String description; 
-	private int vote; 
+	private int votes;
 	private String modifiedAt;
 	private int categoryID;
-	private int userID;
-	private String imageLink; 
+	private int userId;
+	private String imageLink;
 	private int reliability;
 	
 	public Question() {
+		// throw exception here as there are no parameters for constructors passed for
+		// the Question class.
 	}
 
-	public Question(int questionID, String title, String description, int vote, String modifiedAt, int categoryID,
-			int userID, String imageLink, int reliability) {
+	public Question(int questionId, String title, String description, int votes, String modifiedAt, int categoryID,
+			int userId, String imageLink, int reliability) {
 		super();
-		this.questionID = questionID;
+		this.questionId = questionId;
 		this.title = title;
 		this.description = description;
-		this.vote = vote;
+		this.votes = votes;
 		this.modifiedAt = modifiedAt;
 		this.categoryID = categoryID;
-		this.userID = userID;
+		this.userId = userId;
 		this.imageLink = imageLink;
 		this.reliability = reliability;
 	}
-	
-	public int getQuestionID() {
-		return questionID;
+
+	public int getquestionId() {
+		return questionId;
 	}
 
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
+	public void setquestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public int getVotes() {
+		return votes;
+	}
+
+	public void setVotes(int votes) {
+		this.votes = votes;
 	}
 
 	public String getModifiedAt() {
@@ -53,12 +63,12 @@ public class Question {
 		this.categoryID = categoryID;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getImageLink() {
@@ -77,6 +87,7 @@ public class Question {
 		this.reliability = reliability;
 	}
 
+
 	public String getTitle() {
 		return title;
 	}
@@ -93,18 +104,13 @@ public class Question {
 		this.description = description;
 	}
 
-	public int getVote() {
-		return vote;
-	}
 
-	public void setVote(int vote) {
-		this.vote = vote;
-	}
 
 	@Override
 	public String toString() {
-		return "Question [questionID=" + questionID + ", title=" + title + ", description=" + description + ", vote="
-				+ vote + ", modifiedAt=" + modifiedAt + ", categoryID=" + categoryID + ", userID=" + userID
+		return "Question [questionId=" + questionId + ", title=" + title + ", description=" + description + ", votes="
+				+ votes + ", modifiedAt=" + modifiedAt + ", categoryID=" + categoryID + ", userId="
+				+ userId
 				+ ", imageLink=" + imageLink + ", reliability=" + reliability + "]";
 	}
 	
