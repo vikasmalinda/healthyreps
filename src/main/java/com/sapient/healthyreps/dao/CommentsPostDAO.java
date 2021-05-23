@@ -14,7 +14,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	@Override
 	public boolean insertComment(CommentsPost comment)
 	{
-		String sql = "insert into CommentsPost (votes, content , postId, userId, timeStamp, reported) values(?,?,?,?,?,?)";
+		String sql = "insert into commentsPost (votes, content , postId, userId, timeStamp, reported) values(?,?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -35,7 +35,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	@Override
 	public boolean insertComment(int commentId, int votes, String content, int postId, int userId, Timestamp timestamp, int reported)
 	{
-		String sql = "insert into CommentsPost (commentId, votes, content , postId, userId, timeStamp, reported) values(?,?,?,?,?,?,?)";
+		String sql = "insert into commentsPost (commentId, votes, content , postId, userId, timeStamp, reported) values(?,?,?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -59,7 +59,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	@Override 
 	public boolean updateComment(int commentId, int votes, String content, int postId, int userId, Timestamp timestamp, int reported)
 	{
-		String sql= "UPDATE CommentsPost SET votes=?, content= ?, postId= ?, userId = ?, timeStamp= ?, reported= ? WHERE commentId=?";
+		String sql= "UPDATE commentsPost SET votes=?, content= ?, postId= ?, userId = ?, timeStamp= ?, reported= ? WHERE commentId=?";
 		
 		try {
 			PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(sql);
@@ -86,7 +86,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	 public boolean updateComment(CommentsPost comment)
 	 {
 		 
-		 String sql = "UPDATE CommentsPost SET votes=?, content=?, postId=?, userId=?, timeStamp=?, reported= ? WHERE commentId = ?";
+		 String sql = "UPDATE commentsPost SET votes=?, content=?, postId=?, userId=?, timeStamp=?, reported= ? WHERE commentId = ?";
 
 			try {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -110,7 +110,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	 public List<CommentsPost> getAllComments()
 	 {
 		 List<CommentsPost> commentsPost = new ArrayList<>();
-			String statement = "select * from CommentsPost";
+			String statement = "select * from commentsPost";
 			try {
 					PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
 					ResultSet rs = ps.executeQuery();
@@ -143,7 +143,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 				return null;
 			}
 
-			String sql = "select commentId, votes, content, postId, userId, timeStamp,reported from CommentsPost where commentId=?";
+			String sql = "select commentId, votes, content, postId, userId, timeStamp,reported from commentsPost where commentId=?";
 			try {
 
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -173,7 +173,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	 @Override
 	 public List<CommentsPost> getAllCommentsByPostId(int postId) {
 			List<CommentsPost> commentsPost = new ArrayList<>();
-			String statement = "select commentId, votes, content, postId, userId, timeStamp, reported from CommentsPost where postId = ?";
+			String statement = "select commentId, votes, content, postId, userId, timeStamp, reported from commentsPost where postId = ?";
 			try {
 					PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
 					ps.setInt(1,postId);
@@ -207,7 +207,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 				return false;
 			}
 			
-			String sql = "DELETE FROM CommentsPost WHERE commentId = ?";
+			String sql = "DELETE FROM commentsPost WHERE commentId = ?";
 			try {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 				ps.setInt(1, commentId);
@@ -226,7 +226,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 		public boolean updateVotebyCommentId(int commentId, int votes) {
 			
 			
-			String sql = "UPDATE CommentsPost SET votes=? WHERE commentId=?";
+			String sql = "UPDATE commentsPost SET votes=? WHERE commentId=?";
 			
 			try {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -247,7 +247,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 		public boolean updateStatusofComment(int commentId,int newstatus) {
 			
 			
-			String sql= "UPDATE CommentsPost SET reported = ? where commentId = ?";
+			String sql= "UPDATE commentsPost SET reported = ? where commentId = ?";
 			
 			try {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -265,7 +265,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	 @Override
 	 public CommentsPost getMostVotedComment(int postId) {
 		
-		 String sql="SELECT * from CommentsPost where postId=? order by votes desc limit 1;";
+		 String sql="SELECT * from commentsPost where postId=? order by votes desc limit 1;";
 
 		 CommentsPost mostVotedComment= new CommentsPost();
 
@@ -298,7 +298,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 	 public void checkCommentId(int commentId) throws InvalidId {
 			// TODO Auto-generated method stub
 
-			String sqlForException = "SELECT * FROM CommentsPost WHERE commentId = ?";
+			String sqlForException = "SELECT * FROM commentsPost WHERE commentId = ?";
 			try {
 				PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
 				psException.setInt(1, commentId);

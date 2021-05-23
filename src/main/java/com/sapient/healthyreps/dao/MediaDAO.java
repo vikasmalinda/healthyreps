@@ -11,7 +11,7 @@ public class MediaDAO implements IMediaDAO{
 
 	@Override
 	public boolean createMedia(int postId, String link) {
-		String sql = "INSERT INTO mediaPost(link, postId) VALUES (?,?)";
+		String sql = "INSERT INTO Media_post(link, postId) VALUES (?,?)";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			
@@ -29,7 +29,7 @@ public class MediaDAO implements IMediaDAO{
 	@Override
 	public String getMediaByPostId(int postId) {
 		String post_media="";
-		String sql = "Select link From mediaPost where postId=?";
+		String sql = "Select link From Media_post where postId=?";
 		try {
 				PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 				ps.setInt(1, postId);
@@ -48,7 +48,7 @@ public class MediaDAO implements IMediaDAO{
 	@Override
 	public boolean deleteMediaByPostId(int postId)
 	{
-		String sql = "DELETE FROM mediaPost WHERE postId = ?";
+		String sql = "DELETE FROM Media_post WHERE postId = ?";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, postId);
@@ -64,7 +64,7 @@ public class MediaDAO implements IMediaDAO{
 	@Override
 	public boolean updateMediaByPostId(int postId, String link) {
 		
-		String sql = "UPDATE mediaPost SET link=? WHERE postId=?";
+		String sql = "UPDATE Media_post SET link=? WHERE postId=?";
 		
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
