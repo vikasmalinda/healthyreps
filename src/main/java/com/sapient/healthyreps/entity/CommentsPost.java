@@ -3,40 +3,40 @@ import java.sql.Timestamp;
 public class CommentsPost{
 
 	
-	private int comid;
+	private int commentId;
 	private int votes;
 	private String content;
-	private int pid;
-	private int uid;
-	private Timestamp timestamp;
+	private int postId;
+	private int userId;
+	private Timestamp timeStamp;
 	private int reported;
 	
 	public CommentsPost() {}	
 	
-	public CommentsPost(int comid, int votes, String content, int pid, int uid, Timestamp timestamp, int reported) {
+	public CommentsPost(int commentId, int votes, String content, int postId, int userId, Timestamp timeStamp, int reported) {
 		super();
-		this.comid = comid;
+		this.commentId = commentId;
 		this.votes = votes;
 		this.content = content;
-		this.pid = pid;
-		this.uid = uid;
-		this.timestamp= timestamp;
+		this.postId = postId;
+		this.userId = userId;
+		this.timeStamp= timeStamp;
 		this.reported= reported;
 	}
 
 
 	@Override
 	public String toString() {
-		return "CommentsPost [comid=" + comid + ", votes=" + votes + ", content=" + content + ", pid=" + pid
-				+ ", uid=" + uid + ", timestamp=" + timestamp+  ", reported=" + reported + "]";
+		return "CommentsPost [commentId=" + commentId + ", votes=" + votes + ", content=" + content + ", postId=" + postId
+				+ ", userId=" + userId + ", timeStamp=" + timeStamp+  ", reported=" + reported + "]";
 	}
 	
 	
 	public int getId() {
-		return comid;
+		return commentId;
 	}
-	public void setId(int comid) {
-		this.comid = comid;
+	public void setId(int commentId) {
+		this.commentId = commentId;
 	}
 
 	public int getVotes() {
@@ -51,27 +51,27 @@ public class CommentsPost{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getPid() {
-		return pid;
+	public int getPostId() {
+		return postId;
 	}
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
-	public int getUid() {
-		return uid;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	public Timestamp getTimestamp()
 	{
-		return timestamp;
+		return timeStamp;
 	}
 	
-	public void setTimestamp(Timestamp timestamp)
+	public void setTimestamp(Timestamp timeStamp)
 	{
-		this.timestamp=timestamp;
+		this.timeStamp=timeStamp;
 	}
 	
 	public int getReported()
