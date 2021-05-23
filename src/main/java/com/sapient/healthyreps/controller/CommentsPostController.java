@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/CommentsPost")
-public class CommentsPostController{
+public class CommentsPostController {
 
 	
 	ICommentsPostDAO CommentsPostDAO = new CommentsPostDAO();
@@ -39,23 +39,22 @@ public class CommentsPostController{
 		
 	}
 	
-	@GetMapping("/post/{pid}")
-	public List<CommentsPost> getAllCommentsByPostId(@PathVariable int pid) {
+	@GetMapping("/post/{postId}")
+	public List<CommentsPost> getAllCommentsByPostId(@PathVariable int postId) {
 		
-		List<CommentsPost> allCommentsOfAPost= CommentsPostDAO.getAllCommentsByPostId(pid);
+		List<CommentsPost> allCommentsOfAPost= CommentsPostDAO.getAllCommentsByPostId(postId);
 		return allCommentsOfAPost;
 	}
 	
-	@GetMapping("post/{pid}/comment{comid}")
-	public String getCommentbyCommentId(@PathVariable int comid) {
+	@GetMapping("post/{postId}/comment{commentId}")
+	public String getCommentbyCommentId(@PathVariable int commentId) {
 		try {
-			CommentsPostDAO.checkCommentId(comid);
-
+			CommentsPostDAO.checkCommentId(commentId);
 		} catch (InvalidId e) {
 			e.printStackTrace();
 			return "Invalid Comment ID";
 		}
-		return CommentsPostDAO.getCommentByCommentId(comid).toString();
+		return CommentsPostDAO.getCommentByCommentId(commentId).toString();
 	}
 	
 }
