@@ -11,7 +11,7 @@ public class MediaDAO implements IMediaDAO{
 
 	@Override
 	public boolean createMedia(int postId, String link) {
-		String sql = "INSERT INTO Media_post(link, postId) VALUES (?,?)";
+		String sql = "INSERT INTO Media_post(link, postId) VALUES (?,?)";  //this needs to be mediaPost
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			
