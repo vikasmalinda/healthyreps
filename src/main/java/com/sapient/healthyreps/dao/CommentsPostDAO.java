@@ -179,7 +179,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 					ps.setInt(1,pid);
 					ResultSet rs = ps.executeQuery();
 					while(rs.next()) {
-						Comments_post commentPost = new Comments_post(rs.getInt(1),
+						CommentsPost commentPost = new CommentsPost(rs.getInt(1),
 								rs.getInt(2),
 								rs.getString(3),
 								rs.getInt(4),
@@ -267,7 +267,7 @@ public class CommentsPostDAO implements ICommentsPostDAO{
 		
 		 String sql="SELECT * from CommentsPost where pid=? order by votes desc limit 1;";
 
-		 CommentsPost mostVotedComment= new Comments_post();
+		 CommentsPost mostVotedComment= new CommentsPost();
 
 
 		 //=new Comments_post();
