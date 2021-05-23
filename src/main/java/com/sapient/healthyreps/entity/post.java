@@ -2,7 +2,7 @@ package com.sapient.healthyreps.entity;
 
 import java.sql.Timestamp;
 
-public class post {
+public class Post {
 
 	
 	private int postId;
@@ -15,10 +15,10 @@ public class post {
 	private int reported;
 	
 	
-	public post() {}
+	public Post() {}
 	
 	
-	public post(int pid, int uid, String title, int categoryId, String content,int votes, Timestamp timeStamp,
+	public Post(int pid, int uid, String title, int categoryId, String content,int votes, Timestamp timeStamp,
 			int reported) {
 		super();
 		this.postId = pid;
