@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sapient.healthyreps.dao.CategoryDAO;
 import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Category;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 
 @RestController
 public class CategoryController {
@@ -27,7 +27,7 @@ public class CategoryController {
 	public String getCategoryFromID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid,"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 
@@ -48,7 +48,7 @@ public class CategoryController {
 	public String deleteCategory(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid,"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 
@@ -59,7 +59,7 @@ public class CategoryController {
 	public String updateCategory(@RequestBody Category category) {
 		try {
 			permissionDAO.isIDPresent(category.getCategoryID(),"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sapient.healthyreps.dao.AnswerDAO;
 import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Answer;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 
 @RestController
 
@@ -32,7 +32,7 @@ public class AnswerController {
 	public boolean insertAnswer(@RequestBody Answer answer, @PathVariable int qid) {
 		try {
 			permissionDAO.isIDPresent(qid, "question");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;
 		}
@@ -45,7 +45,7 @@ public class AnswerController {
 
 		try {
 			permissionDAO.isIDPresent(aid, "answer");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -59,7 +59,7 @@ public class AnswerController {
 
 		try {
 			permissionDAO.isIDPresent(qid, "question");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -73,7 +73,7 @@ public class AnswerController {
 
 		try {
 			permissionDAO.isIDPresent(aid, "answer");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;
 		}
@@ -86,7 +86,7 @@ public class AnswerController {
 	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
 		try {
 			permissionDAO.isIDPresent(aid, "answer");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;
 		}
