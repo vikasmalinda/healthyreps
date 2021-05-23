@@ -9,7 +9,7 @@ import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.CommentsPost;
 
 
-public class Comments_postDAO implements ICommentsPostDAO{
+public class CommentsPostDAO implements ICommentsPostDAO{
 	
 	@Override
 	public boolean insertComment(CommentsPost comment)
@@ -107,7 +107,7 @@ public class Comments_postDAO implements ICommentsPostDAO{
 			return false;
 	 }
 	 @Override
-	 public List<CommentsPostt> getAllComments()
+	 public List<CommentsPost> getAllComments()
 	 {
 		 List<CommentsPost> commentsPost = new ArrayList<>();
 			String statement = "select * from CommentsPost";
@@ -263,7 +263,7 @@ public class Comments_postDAO implements ICommentsPostDAO{
 		}
 	 
 	 @Override
-	 public Comments_post getMostVotedComment(int pid) {
+	 public CommentsPost getMostVotedComment(int pid) {
 		
 		 String sql="SELECT * from CommentsPost where pid=? order by votes desc limit 1;";
 
