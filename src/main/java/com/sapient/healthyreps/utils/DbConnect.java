@@ -1,10 +1,9 @@
 package com.sapient.healthyreps.utils;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class DbConnect {
 
@@ -17,15 +16,14 @@ public class DbConnect {
 	}
 
 	private static Connection getMySQLConnFactory() {
-		
-		try {
-			Properties prop = new Properties();
-			prop.load(new FileInputStream("src/main/resources/db.properties"));
 
-			String driver = prop.getProperty("driver");
-			String url = prop.getProperty("url");
-			String userName = prop.getProperty("userName");
-			String password = prop.getProperty("password");
+		try {
+			ResourceBundle rb = ResourceBundle.getBundle("db");
+
+			String driver = rb.getString("driver");
+			String url = rb.getString("url");
+			String userName = rb.getString("userName");
+			String password = rb.getString("password");
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
@@ -36,7 +34,7 @@ public class DbConnect {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			
+
 		}
 
 		return null;
