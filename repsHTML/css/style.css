@@ -86,7 +86,6 @@
   color: black;
 }
 
-
 .home-articles {
   /* height: 455px; */
   background-color: rgb(238, 212, 212);
@@ -105,11 +104,13 @@
 
 .home-article {
   display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
   margin: 25px;
 }
 
 .home-article-content {
-  align-self: center;
+  /* align-self: center; */
   padding: 25px;
 }
 

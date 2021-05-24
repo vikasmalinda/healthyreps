@@ -66,7 +66,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public List<Comment> getAllComments(int AnswerID) {
 
-		String sql="select commentID, description, modifiedAt, answerID, userID, reliability from comment where AnswerID= ?";
+		String sql="select comment_id, description, modified_at, answerID, userID, reliability from comment where AnswerID= ?";
 
 		List<Comment> list=new ArrayList<Comment>();
 		try {

@@ -57,7 +57,7 @@
   text-align: left;
 }
 .comment-button:hover {
-  display: none;
+  /* display: none; */
 }
 .comment-box input{
    width: 80%;
