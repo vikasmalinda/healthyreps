@@ -5,13 +5,13 @@ import java.sql.Timestamp;
 public class Post {
 
 	
-	private int pid;
-	private int uid;
+	private int postId;
+	private int userId;
 	private String title;
 	private String content;
 	private int categoryId;
 	private int votes;
-	private Timestamp timestamp;
+	private Timestamp timeStamp;
 	private int reported;
 	
 	
@@ -21,29 +21,29 @@ public class Post {
 	public Post(int pid, int uid, String title, int categoryId, String content,int votes, Timestamp timeStamp,
 			int reported) {
 		super();
-		this.pid = pid;
-		this.uid = uid;
+		this.postId = pid;
+		this.userId = uid;
 		this.title = title;
 		this.content = content;
 		this.categoryId = categoryId;
 		this.votes = votes;
-		this.timestamp = timeStamp;
+		this.timeStamp = timeStamp;
 		this.reported = reported;
 	}
 
 
 
 	public int getPid() {
-		return pid;
+		return postId;
 	}
 	public void setPid(int pid) {
-		this.pid = pid;
+		this.postId = pid;
 	}
 	public int getUid() {
-		return uid;
+		return userId;
 	}
 	public void setUid(int uid) {
-		this.uid = uid;
+		this.userId = uid;
 	}
 	public String getTitle() {
 		return title;
@@ -80,17 +80,17 @@ public class Post {
 	}
 
 	public Timestamp getTimeStamp() {
-		return timestamp;
+		return timeStamp;
 	}
 
 	public void setTimeStamp(Timestamp timeStamp) {
-		this.timestamp = timeStamp;
+		this.timeStamp = timeStamp;
 	}
 
 	@Override
 	public String toString() {
-		return "Post [pid=" + pid + ", uid=" + uid + ", title=" + title + ", content=" + content + ", categoryId="
-				+ categoryId + ", votes=" + votes + ", timeStamp=" + timestamp + ", reported=" + reported + "]";
+		return "Post [postId=" + postId + ", userId=" + userId + ", title=" + title + ", content=" + content + ", categoryId="
+				+ categoryId + ", votes=" + votes + ", timeStamp=" + timeStamp + ", reported=" + reported + "]";
 	}
 	
 	

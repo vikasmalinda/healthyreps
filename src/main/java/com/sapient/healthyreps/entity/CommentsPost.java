@@ -27,7 +27,7 @@ public class CommentsPost{
 
 	@Override
 	public String toString() {
-		return "CommentsPost [commentId=" + commentId + ", votes=" + votes + ", content=" + content + ", postId=" + postId
+		return "commentsPost [commentId=" + commentId + ", votes=" + votes + ", content=" + content + ", postId=" + postId
 				+ ", userId=" + userId + ", timeStamp=" + timeStamp+  ", reported=" + reported + "]";
 	}
 	
