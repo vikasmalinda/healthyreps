@@ -2,75 +2,68 @@ package com.sapient.healthyreps.entity;
 
 
 public class Answer {
-	private int AnswerID;
-	private String Description;
-	private int Votes;
-	private String ModifiedAt;
-	private int QuestionID;
-	private int UserID;
-	private int Reliability;
+	private int answerID;
+	private String description;
+	private int votes;
+	private String modifiedAt;
+	private int questionID;
+	private int userID;
+	private int reliability;
 	public Answer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Answer(int answerID, String description, int votes, String modifiedAt, int questionID, int userID,
 			int reliability) {
 		super();
-		AnswerID = answerID;
-		Description = description;
-		Votes = votes;
-		ModifiedAt = modifiedAt;
-		QuestionID = questionID;
-		UserID = userID;
-		Reliability = reliability;
+		this.answerID = answerID;
+		this.description = description;
+		this.votes = votes;
+		this.modifiedAt = modifiedAt;
+		this.questionID = questionID;
+		this.userID = userID;
+		this.reliability = reliability;
 	}
 	public int getAnswerID() {
-		return AnswerID;
+		return answerID;
 	}
 	public void setAnswerID(int answerID) {
-		AnswerID = answerID;
+		this.answerID = answerID;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 	public int getVotes() {
-		return Votes;
+		return votes;
 	}
 	public void setVotes(int votes) {
-		Votes = votes;
+		this.votes = votes;
 	}
 	public String getModifiedAt() {
-		return ModifiedAt;
+		return modifiedAt;
 	}
 	public void setModifiedAt(String modifiedAt) {
-		ModifiedAt = modifiedAt;
+		this.modifiedAt = modifiedAt;
 	}
 	public int getQuestionID() {
-		return QuestionID;
+		return questionID;
 	}
 	public void setQuestionID(int questionID) {
-		QuestionID = questionID;
+		this.questionID = questionID;
 	}
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 	public int getReliability() {
-		return Reliability;
+		return reliability;
 	}
 	public void setReliability(int reliability) {
-		Reliability = reliability;
-	}
-	@Override
-	public String toString() {
-		return "Answer [AnswerID=" + AnswerID + ", Description=" + Description + ", Votes=" + Votes + ", ModifiedAt="
-				+ ModifiedAt + ", QuestionID=" + QuestionID + ", UserID=" + UserID + ", Reliability=" + Reliability
-				+ "]";
+		this.reliability = reliability;
 	}
 	
 	

@@ -1,12 +1,22 @@
 package com.sapient.healthyreps.controller;
 
+import java.util.List;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.healthyreps.dao.AnswerDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Answer;
+import com.sapient.healthyreps.exception.InvalidId;
 
 @RestController
 
@@ -14,16 +24,72 @@ public class AnswerController {
 
 	@Autowired
 	AnswerDAO answerDAO;
+	
+	@Autowired
+	PermissionDAO permissionDAO;
 
-	@GetMapping
-	public String health() {
-		return "Welcome to healthyreps blog and QnA Homepage!";
+	@PostMapping("question/{qid}/answer")
+	public boolean insertAnswer(@RequestBody Answer answer, @PathVariable int qid) {
+		try {
+			permissionDAO.isIDPresent(qid, "question");
+		} catch (InvalidId e1) {
+			e1.printStackTrace();
+			return false;
+		}
+
+		return answerDAO.insertAnswer(answer);
 	}
 
-	@GetMapping("/answers/{id}")
-	public Answer getAnswerbyID(@PathVariable int id) {
+	@GetMapping("question/{qid}/answer/{aid}")
+	public Answer getAnswerbyID(@PathVariable int aid) {
 
-		return answerDAO.getAnswerByAnswerID(id);
+		try {
+			permissionDAO.isIDPresent(aid, "answer");
+		} catch (InvalidId e1) {
+			e1.printStackTrace();
+			return null;
+		}
 
+		return answerDAO.getAnswerByAnswerID(aid);
+
+	}
+
+	@GetMapping("question/{qid}/answer/order/{ord}")
+	public List<Answer> getAllAnswersByQuestionID(@PathVariable int qid, @PathVariable String ord) {
+
+		try {
+			permissionDAO.isIDPresent(qid, "question");
+		} catch (InvalidId e1) {
+			e1.printStackTrace();
+			return null;
+		}
+
+		return answerDAO.getAllAnswersByQuestionID(qid, ord);
+
+	}
+
+	@PutMapping("question/{qid}/answer/{aid}")
+	public boolean updateAnswer(@RequestBody Answer answer, @PathVariable int aid) {
+
+		try {
+			permissionDAO.isIDPresent(aid, "answer");
+		} catch (InvalidId e1) {
+			e1.printStackTrace();
+			return false;
+		}
+
+		return answerDAO.updateAnswerByAnswerID(answer);
+
+	}
+
+	@DeleteMapping("question/{qid}/answer/{aid}")
+	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
+		try {
+			permissionDAO.isIDPresent(aid, "answer");
+		} catch (InvalidId e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		return answerDAO.deleteAnswer(aid);
 	}
 }

@@ -1,84 +1,54 @@
 package com.sapient.healthyreps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sapient.healthyreps.dao.CategoryDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Category;
-import com.sapient.healthyreps.interfaces.ICategoryDAO;
 
-class CategoryDAOTest {
+public class CategoryDAOTest {
+	CategoryDAO categoryDAO;
+	PermissionDAO permissionDAO;
 
-	@Test
-	void test() {
-//		fail("Not yet implemented");
-	}
-
-	void CRUDCheckingWhenCorrectInput() {
-
-		Category cat = new Category();
-		String catName = "Sample Test Value";
-		cat.setCategoryName(catName);
-		ICategoryDAO dao = new CategoryDAO();
-
-		// CRUD operation
-		// insert
-		dao.insertCategory(cat);
-		int catid = dao.getCategoryIDByCategoryName(catName);
-		String resString = dao.getCategoryById(catid).toString();
-		String expected = "Category [categoryID=" + catid + ", category=" + catName + "]";
-
-		assertEquals(resString, expected);
-
-		// update
-		String catName2 = "Sample Test Value 2";
-		cat.setCategoryName(catName2);
-		cat.setCategoryID(catid);
-
-		dao.updateCategory(cat);
-		resString = dao.getCategoryById(catid).toString();
-		expected = "Category [categoryID=" + catid + ", category=" + catName2 + "]";
-
-		assertEquals(resString, expected);
-
+	@BeforeEach
+	void initialize() {
+		this.categoryDAO = new CategoryDAO();
+		this.permissionDAO = new PermissionDAO();
 	}
 
 	@Test
-	void removeCategoryWhenInvalidCategoryID() {
-		ICategoryDAO dao = new CategoryDAO();
-		assertFalse(dao.removeCategory(1100));
-	}
+	void CRUDTestPass() {
+		// given
+		Category category = new Category();
+		category.setCategoryName("Sample test value");
 
-	@Test
-	void updateCategoryWhenInvalidCategoryID() {
-		ICategoryDAO dao = new CategoryDAO();
-		Category cat = new Category();
-		cat.setCategoryID(100);
-		cat.setCategoryName("something random");
-		assertFalse(dao.updateCategory(cat));
-	}
+		// Create Test
 
-	@Test
-	void insertCategoryWhenInvalidCategoryName() {
-		ICategoryDAO dao = new CategoryDAO();
-		Category cat = new Category();
-		cat.setCategoryName("diet");
-		assertFalse(dao.insertCategory(cat));
-	}
+		boolean inserted = categoryDAO.insertCategory(category);
 
-	@Test
-	void getCategoryByIDWhenInvalidCategoryID() {
-		ICategoryDAO dao = new CategoryDAO();
-		assertNull(dao.getCategoryById(100));
-	}
+		assertTrue(inserted);
 
-	@Test
-	void getCategoryIDByCategoryNameWhenInvalidCategoryName() {
-		ICategoryDAO dao = new CategoryDAO();
-		assertEquals(-1, dao.getCategoryIDByCategoryName("alpha"));
-	}
+		// Read Test
 
+		int id = permissionDAO.getLastID("category");
+		System.out.println("id of the inserted : " + id);
+		category = categoryDAO.getCategoryById(id);
+
+		assertEquals(category.getCategoryName(), "Sample test value");
+
+		// Update test
+
+		category.setCategoryName("Updated test value");
+
+		assertTrue(categoryDAO.updateCategory(category));
+
+		// Delete test
+
+		assertTrue(categoryDAO.removeCategory(id));
+
+	}
 }
