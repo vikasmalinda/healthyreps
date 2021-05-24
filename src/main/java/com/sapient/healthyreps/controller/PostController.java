@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import com.sapient.healthyreps.dao.PostDAO;
-import com.sapient.healthyreps.entity.Post;
+import com.sapient.healthyreps.entity.post;
 import com.sapient.healthyreps.interfaces.IPostDAO;
 
 @RestController
@@ -53,7 +53,7 @@ public class PostController {
 	}
 
 	@DeleteMapping("/delete_post/{pid}")
-//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
+
 		public String deletePost(@PathVariable int pid) {
 			return postDAO.deletePostbyId(pid)
 					?"Deleted":"Not Deleted";
@@ -83,7 +83,7 @@ public class PostController {
 
 	@PutMapping("/updateStatus/{pid}/{newstatus}")
 	public boolean updateStatusofPost(@PathVariable int pid,@PathVariable int newstatus) {
-//>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
+
 		return postDAO.updateStatusofPost(pid,newstatus);
 	}
 }
