@@ -46,20 +46,20 @@ public class PostController {
 
 	}
 
-	@PostMapping("/new_post/{uid}/{pid}")
-	public String postPost(@RequestBody post post, @PathVariable int uid,@PathVariable int pid) {
+	@PostMapping("/new_post/{uid}")
+	public String postPost(@RequestBody post post, @PathVariable int uid) {
 		return postDAO.insertPost(post)
 				?"Inserted":"Not Inserted";
 	}
 
-	@DeleteMapping("/delete_post/{uid}/{pid}")
+	@DeleteMapping("/delete_post/{pid}")
 //>>>>>>> ee017a641ff9d8377b592e370349fcb9bfc24572
 		public String deletePost(@PathVariable int pid) {
 			return postDAO.deletePostbyId(pid)
 					?"Deleted":"Not Deleted";
 		}
 	
-	@PutMapping("/new_post/{uid}/{pid}")
+	@PutMapping("/new_post/{pid}")
 	public String updatePost(@RequestBody post post) {
 		return postDAO.updatePost(post)
 				?"Updated":"Not Updated";
