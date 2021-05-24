@@ -70,6 +70,11 @@ img{
     display: flex;
 }
 
+.commentImg{
+    text-align: center;
+    align-items: center;
+}
+
 .commentImg img{
     width: 50px;
     height: 50px;
@@ -110,7 +115,10 @@ img{
 }
 
 .commentRight{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 100%;
 }
 
 .actionbuttons{
@@ -132,4 +140,16 @@ img{
     padding: 10px;
     font-size: 1.1em;
     margin-top: 10px;
+}
+
+#timestamp{
+    margin-top: 5px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+
+#rating{
+    margin-bottom: 5px;
+    text-align: center;
 }
