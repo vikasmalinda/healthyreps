@@ -3,7 +3,7 @@ package com.sapient.healthyreps.dao;
 import java.sql.*;
 import java.util.*;
 
-import com.sapient.healthyreps.entity.post;
+import com.sapient.healthyreps.entity.Post;
 import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IPostDAO;
 import com.sapient.healthyreps.utils.DbConnect;
@@ -63,7 +63,7 @@ public class PostDAO implements IPostDAO{
 	}
 	
 	//Added today
-	public boolean insertPost(post post) {
+	public boolean insertPost(Post post) {
 		String sql = "INSERT INTO post(userId, title, categoryId, content, votes, timeStamp, reported) VALUES(?,?,?,?,?,?,?)";
 		
 		try{
@@ -86,9 +86,9 @@ public class PostDAO implements IPostDAO{
 	}
 
 	@Override
-	public List<post> getAllPosts() {
+	public List<Post> getAllPosts() {
 		
-		List<post> posts = new ArrayList<>();
+		List<Post> posts = new ArrayList<>();
 		String sql = "select * from post";
 		
 		try (
@@ -97,7 +97,7 @@ public class PostDAO implements IPostDAO{
 				)
 				{	
 					while(rs.next()) {
-						post post = new post(rs.getInt(1),
+						Post post = new Post(rs.getInt(1),
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
@@ -117,7 +117,7 @@ public class PostDAO implements IPostDAO{
 	}
 	
 	@Override
-	public post getPostbyId(int postId) {
+	public Post getPostbyId(int postId) {
 		try {
 			checkPostId(postId);
 		} catch(InvalidId e) {
@@ -133,7 +133,7 @@ public class PostDAO implements IPostDAO{
 			ps.setInt(1, postId);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {		
-				post post = new post(rs.getInt(1),
+				Post post = new Post(rs.getInt(1),
 						rs.getInt(2),
 						rs.getString(3),
 						rs.getInt(4),
@@ -199,7 +199,7 @@ public class PostDAO implements IPostDAO{
 		return false;
 	}
 
-	public boolean updatePost(post post) {
+	public boolean updatePost(Post post) {
 		String sql = "UPDATE post SET title=?, content=?, categoryId=?, votes=?, timeStamp=?, reported=? WHERE postId=?";
 		
 		try{
@@ -246,15 +246,15 @@ public class PostDAO implements IPostDAO{
 	}
 
 	@Override
-	public List<post> getAllPostbyUserId(int userId) {
-		List<post> posts = new ArrayList<>();
+	public List<Post> getAllPostbyUserId(int userId) {
+		List<Post> posts = new ArrayList<>();
 		String statement = "select * from post where userId = ?";
 		try {
 				PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
 				ps.setInt(1,userId);
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
-					post post = new post(rs.getInt(1),
+					Post post = new Post(rs.getInt(1),
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
@@ -273,8 +273,8 @@ public class PostDAO implements IPostDAO{
 	}
 
 	@Override
-	public List<post> getAllVisiblePosts() {
-		List<post> posts = new ArrayList<>();
+	public List<Post> getAllVisiblePosts() {
+		List<Post> posts = new ArrayList<>();
 		String statement = "select * from post where reported >= 100";
 		try (
 				PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
@@ -282,7 +282,7 @@ public class PostDAO implements IPostDAO{
 				)
 				{	
 					while(rs.next()) {
-						post post = new post(rs.getInt(1),
+						Post post = new Post(rs.getInt(1),
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
@@ -326,8 +326,8 @@ public class PostDAO implements IPostDAO{
 	}
 
 	@Override
-	public List<post> getAllDraftPosts(int userId) {
-		List<post> posts = new ArrayList<>();
+	public List<Post> getAllDraftPosts(int userId) {
+		List<Post> posts = new ArrayList<>();
 		String statement = "select * from post where userId = ? and reported = -100";
 		try {
 				PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
@@ -335,7 +335,7 @@ public class PostDAO implements IPostDAO{
 				ResultSet rs = ps.executeQuery();
 					
 				while(rs.next()) {
-					post post = new post(rs.getInt(1),
+					Post post = new Post(rs.getInt(1),
 						rs.getInt(2),
 						rs.getString(3),
 						rs.getInt(4),
@@ -354,8 +354,8 @@ public class PostDAO implements IPostDAO{
 	}
 
 	@Override
-	public List<post> getAllReportedPosts() {
-		List<post> posts = new ArrayList<>();
+	public List<Post> getAllReportedPosts() {
+		List<Post> posts = new ArrayList<>();
 		String statement = "select * from post where reported < 0 and reported != -100";
 		try (
 				PreparedStatement ps= DbConnect.getMySQLConn().prepareStatement(statement);
@@ -363,7 +363,7 @@ public class PostDAO implements IPostDAO{
 				)
 				{	
 					while(rs.next()) {
-						post post = new post(rs.getInt(1),
+						Post post = new Post(rs.getInt(1),
 							rs.getInt(2),
 							rs.getString(3),
 							rs.getInt(4),
@@ -383,9 +383,9 @@ public class PostDAO implements IPostDAO{
 
     
 	@Override
-	public List<post> getAllPostsByCategoryId(int categoryId)
+	public List<Post> getAllPostsByCategoryId(int categoryId)
 	{
-		List<post> posts = new ArrayList<>();
+		List<Post> posts = new ArrayList<>();
 		String sql = "select postId, userId, title, categoryId, content, votes, timeStamp, reported from post where categoryId= ?";
 		
 		try {
@@ -393,7 +393,7 @@ public class PostDAO implements IPostDAO{
 			ps.setInt(1, categoryId);
 			ResultSet rs = ps.executeQuery();	
 					while(rs.next()) {		
-						post post = new post(rs.getInt(1),
+						Post post = new Post(rs.getInt(1),
 								rs.getInt(2),
 								rs.getString(3),
 								rs.getInt(4),

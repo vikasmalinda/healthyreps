@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import com.sapient.healthyreps.dao.PostDAO;
-import com.sapient.healthyreps.entity.post;
+import com.sapient.healthyreps.entity.Post;
 import com.sapient.healthyreps.interfaces.IPostDAO;
 
 @RestController
@@ -21,7 +21,7 @@ public class PostController {
 	}
 	
 	@GetMapping("/all")
-	public List<post> getAllPosts(){
+	public List<Post> getAllPosts(){
 		
 //		List<Post> allPosts = postDAO.getAllPosts();
 		return postDAO.getAllPosts();
@@ -29,14 +29,14 @@ public class PostController {
 	}
 	
 	@GetMapping("/user/{uid}")
-	public List<post> getAllPostsbyUserId(@PathVariable int uid) {
+	public List<Post> getAllPostsbyUserId(@PathVariable int uid) {
 		
 		return postDAO.getAllPostbyUserId(uid);
 	}
 	
 	
 	@GetMapping("{pid}")
-	public post getPostbyId(@PathVariable int pid) {
+	public Post getPostbyId(@PathVariable int pid) {
 
 		return postDAO.getPostbyId(pid);
 
@@ -47,7 +47,7 @@ public class PostController {
 	}
 
 	@PostMapping("/new_post/{uid}")
-	public String postPost(@RequestBody post post, @PathVariable int uid) {
+	public String postPost(@RequestBody Post post, @PathVariable int uid) {
 		return postDAO.insertPost(post)
 				?"Inserted":"Not Inserted";
 	}
@@ -60,23 +60,23 @@ public class PostController {
 		}
 	
 	@PutMapping("/new_post/{pid}")
-	public String updatePost(@RequestBody post post) {
+	public String updatePost(@RequestBody Post post) {
 		return postDAO.updatePost(post)
 				?"Updated":"Not Updated";
 	}
 	
 	@GetMapping("all/{uid}")
-	public List<post> getAllPostbyUserId(@PathVariable int uid){
+	public List<Post> getAllPostbyUserId(@PathVariable int uid){
 		return postDAO.getAllPostbyUserId(uid);
 	}
 
 	@GetMapping("/reported")
-	public List<post> getAllReportedPosts(){
+	public List<Post> getAllReportedPosts(){
 		return postDAO.getAllReportedPosts();
 	}
 	
 	@GetMapping("/draft/{uid}")
-	public List<post> getAllDraftPosts(@PathVariable int uid){
+	public List<Post> getAllDraftPosts(@PathVariable int uid){
 		return postDAO.getAllDraftPosts(uid);
 	}
 	
