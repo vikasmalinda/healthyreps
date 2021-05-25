@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/mobile.css">
     <link rel="stylesheet" href="../css/post.css">
+    <script src="../js/post.js" async></script>
     <title>Post</title>
   </head>
   <body>
@@ -75,7 +76,7 @@
             <div class="commentImg">
               <img src="../img/avatar.png" alt="Avatar">
             </div>
-            <div class="commentContent">
+            <div class="commentForm">
               <form action="" method="post">
                 <input type="text" placeholder="Add a Comment">
                 <input type="button" value="Comment" id="submit">
@@ -98,19 +99,23 @@
               User Name
             </div>
             <div class="commentContent">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
+              <p class="commentText">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dicta sint nesciunt impedit reiciendis dolores perferendis tenetur alias ullam recusandae inventore voluptates magni, atque sed dignissimos? Adipisci doloremque voluptas pariatur.
               </p>
             </div>
 
             <div class="commentRight">
+              <div id="hidable">
+                <button id="deleteBtn">Delete</button>
+                <button id="editBtn">Edit</button>
+              </div>
               <div id="rating">
-                Rating: 10
+                Rating: <span id="score">10</span>
               </div>
               <div class="actionbuttons">
-                <button>Upvote</button>
-                <button>Downvote</button>
-                <button>Report</button>
+                <button id="upvoteBtn">Upvote</button>
+                <button id="downvoteBtn">Downvote</button>
+                <button id="reportBtn">Report</button>
               </div>
               <div id="timestamp">
                 18:03 Jan 25, 2021
@@ -127,18 +132,22 @@
               User Name
             </div>
             <div class="commentContent">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
+              <p class="commentText">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dicta sint nesciunt impedit reiciendis dolores perferendis tenetur alias ullam recusandae inventore voluptates magni, atque sed dignissimos? Adipisci doloremque voluptas pariatur.
               </p>
             </div>
             <div class="commentRight">
+              <div id="hidable">
+                <button id="deleteBtn">Delete</button>
+                <button id="editBtn">Edit</button>
+              </div>
               <div id="rating">
-                Rating: 10
+                Rating: <span id="score">10</span>
               </div>
               <div class="actionbuttons">
-                <button>Upvote</button>
-                <button>Downvote</button>
-                <button>Report</button>
+                <button id="upvoteBtn">Upvote</button>
+                <button id="downvoteBtn">Downvote</button>
+                <button id="reportBtn">Report</button>
               </div>
               <div id="timestamp">
                 18:03 Jan 25, 2021

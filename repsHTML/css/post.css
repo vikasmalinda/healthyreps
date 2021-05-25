@@ -87,7 +87,13 @@ img{
     align-items: center;
 }
 
-.commentContent input{
+.commentForm{
+    text-align: center;
+    flex-grow: 2;
+    align-items: center;
+}
+
+.commentForm input{
     width: 80%;
     height: 90%;
     margin-left: 20px;
@@ -100,7 +106,7 @@ img{
     padding: 10px;
     margin:2px;
 }
-.commentContent form{
+.commentForm form{
     display: flex;
 }
 
@@ -151,5 +157,9 @@ img{
 
 #rating{
     margin-bottom: 5px;
+    text-align: center;
+}
+
+#hidable{
     text-align: center;
 }
