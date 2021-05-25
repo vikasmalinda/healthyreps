@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IPermissionDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
@@ -14,18 +14,19 @@ import org.springframework.stereotype.Service;
 public class PermissionDAO implements IPermissionDAO {
 
     @Override
-    public boolean isIDPresent(int id, String tableName) throws InvalidID  {
+    public boolean isIDPresent(int id, String tableName) throws InvalidId  {
 
-            String sqlForException = "SELECT "+tableName+"ID FROM "+tableName+" WHERE "+tableName+"ID=?";
+		String sqlForException = "SELECT " + tableName + "ID FROM " + tableName + " WHERE " + tableName
+				+ "ID=?";
             try {
                 PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
                 psException.setInt(1, id);
                 ResultSet rs = psException.executeQuery();
                 if (!rs.next()) {
-                    throw new InvalidID(tableName);
+                    throw new InvalidId(tableName);
                 }
             } catch (SQLException e1) {
-                
+				System.out.println("error traced");
                 e1.printStackTrace();
             }
             	

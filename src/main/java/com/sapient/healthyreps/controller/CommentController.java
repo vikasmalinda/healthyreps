@@ -5,7 +5,7 @@ import java.util.List;
 import com.sapient.healthyreps.dao.CommentDAO;
 import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Comment;
-import com.sapient.healthyreps.exception.InvalidID;
+import com.sapient.healthyreps.exception.InvalidId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +33,7 @@ public class CommentController {
 	public String getCommentbyID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid,"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 
@@ -49,7 +49,7 @@ public class CommentController {
 	public String deleteComment(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid,"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 
@@ -61,7 +61,7 @@ public class CommentController {
 	public String updateComment(@RequestBody Comment comment) {
 		try {
 			permissionDAO.isIDPresent(comment.getCommentID(),"category");
-		} catch (InvalidID e1) {
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		} 
