@@ -1,4 +1,9 @@
 package com.sapient.healthyreps;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import java.sql.Timestamp;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,10 +12,9 @@ import com.sapient.healthyreps.dao.PermissionDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sapient.healthyreps.dao.CommentDAO;
-import com.sapient.healthyreps.entity.Comment;
+import com.sapient.healthyreps.dao.Comments_postDAO;
+import com.sapient.healthyreps.entity.Comments_post;
 
-class CommentDAOTest {
 
 	CommentDAO commentDAO;
 	PermissionDAO permissionDAO;
@@ -23,8 +27,9 @@ class CommentDAOTest {
 
 	@Test
 	void CRUDTestPass() {
+		Date date= new Date(0);
 		// given
-		Comment comment = new Comment(14, "Test Comment", "2020-01-01 10:10:10", 2, 1, 10);
+		//Comments_post comment = new Comments_post (2, 3,  "Test Comment", 2, 1, new Timestamp(date.getTime()), 1);
 
 		// Create Test
 
@@ -50,7 +55,7 @@ class CommentDAOTest {
 
 		assertTrue(commentDAO.deleteComment(id));
 
-	}
+	} */
 
 	
 }
