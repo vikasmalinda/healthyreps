@@ -1,11 +1,11 @@
-package com.sapient.healthyreps.dao;
+package com.sapient.healthyreps;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
+import com.sapient.healthyreps.dao.UserCredential;
 import com.sapient.healthyreps.dao.UserRegisterDAO;
-import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
 class UserRegisterDAOTest {
@@ -13,7 +13,7 @@ class UserRegisterDAOTest {
 	@Test
 	void testForInsertingUserWithSameEmail() {
 		// given
-		UserRegister user = new UserRegister(11, "Jatin", "Jat@gmail.com", "123456789");
+		UserCredential user = new UserCredential("Jatin", "Jat@gmail.com", "123456789");
 		IUserRegisterDAO dao = new UserRegisterDAO();
 		// when
 		Boolean value = dao.insertUser(user);
@@ -24,7 +24,7 @@ class UserRegisterDAOTest {
 	@Test
 	void testForSmallInvalidPassword() {
 		// given
-		UserRegister user = new UserRegister(11, "Jatin", "Jat@gmail.com", "123456");
+		UserCredential user = new UserCredential("Jatin", "Jat@gmail.com", "123456789");
 		IUserRegisterDAO dao = new UserRegisterDAO();
 		// when
 		Boolean value = dao.insertUser(user);
@@ -35,12 +35,11 @@ class UserRegisterDAOTest {
 	@Test
 	void testForWeakPassword() {
 		// given
-		UserRegister user = new UserRegister(11, "Jatin", "Jat@gmail.com", "1234565848734");
+		UserCredential user = new UserCredential("Jatin", "Jat@gmail.com", "123456789");
 		IUserRegisterDAO dao = new UserRegisterDAO();
 		// when
 		Boolean value = dao.insertUser(user);
 		// then
 		assertFalse(value);
 	}
-
 }

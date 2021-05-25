@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.exception.DuplicateEmail;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.exception.PasswordIsWeak;
 import com.sapient.healthyreps.exception.PasswordTooSmall;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
+import com.sapient.healthyreps.utils.DbConnect;
 
 public class UserRegisterDAO implements IUserRegisterDAO {
 
@@ -32,13 +32,13 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 			return false;
 		}
 
-		String sql = "insert into UserRegister (userName,emailId,password) values(?,?,?)";
+		String sql = "insert into UserRegister (userName,emailId,password,isAdmin) values(?,?,?,?)";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, user.getUserName());
 			ps.setString(2, user.getUserEmail());
 			ps.setString(3, user.getPassword());
-
+			ps.setBoolean(4, false);
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 			e1.printStackTrace();
 			return userList;
 		}
-		String sql = "select UserId,UserName,EmailId,password from UserRegister where userId=?";
+		String sql = "select UserId,UserName,EmailId,password,isAdmin from UserRegister where userId=?";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, uid);
@@ -116,6 +116,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 				user.setUserName(rs.getString(2));
 				user.setEmailId(rs.getString(3));
 				user.setPassword(rs.getString(4));
+				user.setIsAdmin(rs.getBoolean(5));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -156,6 +157,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 				user.setUserName(rs.getString(2));
 				user.setEmailId(rs.getString(3));
 				user.setPassword(rs.getString(4));
+				user.setIsAdmin(rs.getBoolean(5));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
