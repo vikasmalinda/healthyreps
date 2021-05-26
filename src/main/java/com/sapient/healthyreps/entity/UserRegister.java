@@ -5,17 +5,24 @@ public class UserRegister {
 	private String userName;
 	private String emailId;
 	private String password;
+	private Boolean isAdmin;
 
 	public UserRegister() {
 
 	}
+
 	public UserRegister(int Uid, String UserName, String UserEmail, String Password) {
 		this.userId = Uid;
 		this.userName = UserName;
 		this.emailId = UserEmail;
 		this.password = Password;
 	}
-
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public int getUserId() {
 		return userId;
 	}
