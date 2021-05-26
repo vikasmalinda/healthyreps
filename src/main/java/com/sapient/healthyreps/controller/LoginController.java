@@ -15,7 +15,7 @@ import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 public class LoginController {
 	IUserRegisterDAO dao = new UserRegisterDAO();
 
-	@PostMapping("api/api/login")
+	@PostMapping("api/login")
 	public Boolean userLogin(@RequestBody UserRegister user) {
 		try {
 			UserRegisterDAO.checkIdOfUser(user.getUserId());
