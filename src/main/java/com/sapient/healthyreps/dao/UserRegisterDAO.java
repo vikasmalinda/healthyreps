@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.exception.DuplicateEmail;
@@ -15,6 +13,7 @@ import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.exception.PasswordIsWeak;
 import com.sapient.healthyreps.exception.PasswordTooSmall;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
+import com.sapient.healthyreps.utils.DbConnect;
 
 public class UserRegisterDAO implements IUserRegisterDAO {
 
@@ -51,7 +50,11 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 	public static void passwordCheck(String password) throws PasswordTooSmall, PasswordIsWeak {
 		if (password.length() < 8)
 			throw new PasswordTooSmall("PasswordTooSmall");
-		List<Boolean> distinctValueIndicator = new ArrayList<>(List.of(false, false, false, false));
+		List<Boolean> distinctValueIndicator = new ArrayList<>();
+		distinctValueIndicator.add(false);
+		distinctValueIndicator.add(false);
+		distinctValueIndicator.add(false);
+		distinctValueIndicator.add(false);
 		for (int i = 0; i < password.length(); i++) {
 			if (password.charAt(i) >= '0' && password.charAt(i) <= '9')
 				distinctValueIndicator.set(0, true);
