@@ -39,7 +39,7 @@ public class AnswerController {
 			return false;
 		}
 
-		return answerDAO.insertAnswer(answer);
+		return answerDAO.insertAnswer(answer,qid);
 	}
 
 	@GetMapping("question/{qid}/answer/{aid}")
@@ -80,7 +80,7 @@ public class AnswerController {
 			return false;
 		}
 
-		return answerDAO.updateAnswerByAnswerID(answer);
+		return answerDAO.updateAnswerByAnswerID(answer,aid);
 
 	}
 

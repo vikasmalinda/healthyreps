@@ -37,7 +37,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public Comment getCommentByCommentID(int CommentID) {
 
-		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment where CommentID=?";
+		String sql = "select comment_id, description, modified_at, answer_id, user_id, reliability from comment where comment_id=?";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -66,7 +66,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public List<Comment> getAllComments(int AnswerID) {
 
-		String sql="select comment_id, description, modified_at, answerID, userID, reliability from comment where AnswerID= ?";
+		String sql="select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
 
 		List<Comment> list=new ArrayList<Comment>();
 		try {
@@ -131,7 +131,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public boolean updateCommentByCommentID(Comment comment) {
 		
-		String sql = "UPDATE comment SET Description=?,ModifiedAt=?,AnswerID=?,UserID=?,Reliability=? WHERE CommentID=?";
+		String sql = "UPDATE comment SET description=?,modified_at=?,answer_id=?,user_id=?,reliability=? WHERE comment_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -156,7 +156,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public boolean updateComment(Comment comment) {
 
-		String sql = "UPDATE comment SET Description=?, ModifiedAt=?, AnswerID=?, UserID=?, Reliability=? WHERE commentID = ?";
+		String sql = "update comment set description=?, modified_at=?, answer_id=?, user_id=?, reliability=? where comment_id = ?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);

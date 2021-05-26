@@ -39,7 +39,7 @@ public class QuestionDAO implements IQuestionDAO {
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentTime = sdf.format(dt);
-		String sql = "insert into question(Title,Description,Votes,Modifiedat,categoryid,userid,imagelink,reliability) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into question(title,description,votes,modified_at,category_id,user_id,image_link,reliability) values(?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 //			ps.setInt(1, question.getquestionId());
@@ -62,7 +62,7 @@ public class QuestionDAO implements IQuestionDAO {
 
 	@Override
 	public List<Question> getAllQuestion() {
-		String sql = "select questionid,title,description,votes, modifiedat,categoryid,userid,imagelink,reliability from question order by modifiedat DESC";
+		String sql = "select question_id,title,description,votes, modified_at,category_id,user_id,image_link,reliability from question order by modified_at DESC";
 
 		List<Question> list;
 		list = new ArrayList<Question>();
@@ -94,7 +94,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public Question getquestionfromquestionId(int questionidsearch) {
 		// TODO Auto-generated method stub
-		String sql = "select * from question where questionid=" + questionidsearch;
+		String sql = "select * from question where question_id=" + questionidsearch;
 		Question question = new Question();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -365,7 +365,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public boolean deletequestionsfromquestionid(int questioniddel) {
 		// TODO Auto-generated method stub
-		String sql = "Delete from question where questionid=?";
+		String sql = "Delete from question where question_id=?";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, questioniddel);
@@ -384,7 +384,7 @@ public class QuestionDAO implements IQuestionDAO {
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentTime = sdf.format(dt);
-		String sql = "UPDATE question SET title = ?, description = ?, modifiedat=?, categoryid=?, imagelink=? WHERE questionid=?";
+		String sql = "UPDATE question SET title = ?, description = ?, modified_at=?, category_id=?, image_link=? WHERE question_id=?";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, question.getTitle());

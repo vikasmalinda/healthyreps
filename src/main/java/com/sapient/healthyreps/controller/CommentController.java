@@ -30,15 +30,15 @@ public class CommentController {
 		return comDAO.insertComment(comment);
 	}
 
-	@GetMapping("answer/{aid}/comment{cid}")
-	public String getCommentbyID(@PathVariable int cid) {
+	@GetMapping("answer/{aid}/comment/{cid}")
+	public Comment getCommentbyID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid,"category");
 		} catch (InvalidID e1) {
 			e1.printStackTrace();
 			return null;
 		} 
-		return comDAO.getCommentByCommentID(cid).toString();
+		return comDAO.getCommentByCommentID(cid);
 	}
 
 	@GetMapping("answer/{aid}/comment")
@@ -58,6 +58,7 @@ public class CommentController {
 		return comDAO.deleteComment(cid) ? "Deleted" : "Not Deleted";
 	}
 
+	
 	@PutMapping("answer/{aid}/comment/{cid}")
 	public String updateComment(@RequestBody Comment comment) {
 		try {

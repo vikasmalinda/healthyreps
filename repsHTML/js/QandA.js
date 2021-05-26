@@ -12,7 +12,10 @@ let answersContainer = document.querySelector(".home-article");
 const qid = localStorage.getItem("questionId");
 
 async function loadQuestionAndData() {
-  console.log(qid);
+  questionContainer.innerHTML = "";
+  answersContainer.innerHTML = "";
+
+  // console.log(qid);
   let question = await fetch("http://localhost:8080/question/" + qid);
   question = await question.json();
   let answers = await fetch(
@@ -38,16 +41,7 @@ async function renderData(q, answers) {
        <div>${q.modifiedAt}</div>
      </div>
      <div class="social">
-       <svg width="29" height="29" class="jw">
-         <path
-           d="M22.05 7.54a4.47 4.47 0 0 0-3.3-1.46 4.53 4.53 0 0 0-4.53 4.53c0 .35.04.7.08 1.05A12.9 12.9 0 0 1 5 6.89a5.1 5.1 0 0 0-.65 2.26c.03 1.6.83 2.99 2.02 3.79a4.3 4.3 0 0 1-2.02-.57v.08a4.55 4.55 0 0 0 3.63 4.44c-.4.08-.8.13-1.21.16l-.81-.08a4.54 4.54 0 0 0 4.2 3.15 9.56 9.56 0 0 1-5.66 1.94l-1.05-.08c2 1.27 4.38 2.02 6.94 2.02 8.3 0 12.86-6.9 12.84-12.85.02-.24 0-.43 0-.65a8.68 8.68 0 0 0 2.26-2.34c-.82.38-1.7.62-2.6.72a4.37 4.37 0 0 0 1.95-2.51c-.84.53-1.81.9-2.83 1.13z"
-         ></path>
-       </svg>
-       <svg width="29" height="29" class="jw">
-         <path
-           d="M23.2 5H5.8a.8.8 0 0 0-.8.8V23.2c0 .44.35.8.8.8h9.3v-7.13h-2.38V13.9h2.38v-2.38c0-2.45 1.55-3.66 3.74-3.66 1.05 0 1.95.08 2.2.11v2.57h-1.5c-1.2 0-1.48.57-1.48 1.4v1.96h2.97l-.6 2.97h-2.37l.05 7.12h5.1a.8.8 0 0 0 .79-.8V5.8a.8.8 0 0 0-.8-.79"
-         ></path>
-       </svg>
+     <button class="btn delete-question" id="update-question">UPDATE</button>
      </div>
    </div>`;
   questionContainer.innerHTML += question;
@@ -59,6 +53,93 @@ async function renderData(q, answers) {
 
   // console.log(renderedAnswers);
   answersContainer.innerHTML += renderedAnswers;
+
+  let upButtons = document.querySelectorAll(".up");
+  let downButtons = document.querySelectorAll(".down");
+
+  for (let i = 0; i < upButtons.length; i++) {
+    upButtons[i].addEventListener("click", increaseVotes);
+    downButtons[i].addEventListener("click", decreaseVotes);
+  }
+
+  let updateQuestionButton = document.querySelector("#update-question");
+  console.log(updateQuestionButton);
+  updateQuestionButton.addEventListener("click", updateQuestion);
+
+  let addAnswerButton = document.querySelector(".add-answer-button");
+  addAnswerButton.addEventListener("click", addAnswer);
+
+  let deleteAnswerButtons = document.querySelectorAll(".delete-answer");
+  let updateAnswerButtons = document.querySelectorAll(".update-answer");
+
+  for (let i = 0; i < deleteAnswerButtons.length; i++) {
+    deleteAnswerButtons[i].addEventListener("click", deleteAnswer);
+    updateAnswerButtons[i].addEventListener("click", updateAnswer);
+  }
+}
+
+async function deleteAnswer(e) {
+  // console.log(e.target.parentElement.parentElement.id);
+  let aid = e.target.parentElement.parentElement.id;
+  let url = `http://localhost:8080/question/${qid}/answer/${aid}`;
+
+  await await fetch(url, {
+    method: "DELETE",
+  });
+
+  loadQuestionAndData();
+}
+
+function updateAnswer(e) {
+  // console.log(e.target.parentElement.parentElement.id);
+  let aid = e.target.parentElement.parentElement.id;
+  localStorage.setItem("answerOperation", "update");
+  localStorage.setItem("answerId", aid);
+
+  window.location.href = "/repsHTML/html/newAnswer.html";
+}
+function addAnswer(e) {
+  window.location.href = "/repsHTML/html/newAnswer.html";
+}
+
+async function increaseVotes(e) {
+  let cid = e.target.parentElement.parentElement.parentElement.id;
+  let comment = await fetch("http://localhost:8080/answer/1/comment/" + cid);
+  comment = await comment.json();
+
+  comment.reliability += 1;
+
+  console.log(comment);
+
+  await fetch(`http://localhost:8080/answer/1/comment/${cid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+
+  location.reload();
+}
+
+async function decreaseVotes(e) {
+  let cid = e.target.parentElement.parentElement.parentElement.id;
+  let comment = await fetch("http://localhost:8080/answer/1/comment/" + cid);
+  comment = await comment.json();
+
+  comment.reliability -= 1;
+
+  console.log(comment);
+
+  await fetch(`http://localhost:8080/answer/1/comment/${cid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+
+  location.reload();
 }
 
 async function getAnswers(answers) {
@@ -69,10 +150,18 @@ async function getAnswers(answers) {
     let arr = await renderComments(ans.answerID);
     // console.log(arr);
     //  let arr= await test1();
-    renderedAnswers += ` <div class="home-article-content font1">
+    renderedAnswers += ` <div class="home-article-content font1" id="${
+      ans.answerID
+    }">
+       
        <h3>${ans.description}</h3>
        <span>${getUser(ans.userId)} |</span>
        <span>${ans.modifiedAt}</span>
+       <div class="answer-buttons">
+          <button class="btn update-answer">Update Answer</button>
+          <button class="btn delete-answer">Delete Answer</button>
+       </div>
+       
        <div class="comment">
         
           ${arr}
@@ -91,14 +180,11 @@ async function renderComments(aid) {
 
   console.log(comments);
 
-  let rendComments = "";
+  let rendComments = '<button class="btn">Add Comment</button>';
 
   comments.forEach((el) => {
-    rendComments += `<div class="comment-box">
-         <input type="text " placeholder="Add a comment... " />
-         <button class="btn">Add Comment</button>
-       </div>
-       <div class="comment-content">
+    rendComments += `
+       <div class="comment-content" id="${el.commentID}">
          <hr />
          <span> ${el.commentID} |</span>
          <span>${el.modifiedAt}</span>
@@ -106,9 +192,16 @@ async function renderComments(aid) {
           ${el.description}
          </p>
          <div class="vote">
-           <span class="count">${el.reliability}</span>
-           <button>up</button>
-           <button>down</button>
+           <div >
+               <span class="count">${el.reliability}</span>
+               <button class="up">up</button>
+               <button class="down">down</button>
+           </div>
+          
+           <div>
+              <button class="btn">Update Comment</button>
+              <button class="btn">Delete Comment</button>
+           </div>
          </div>
         
          

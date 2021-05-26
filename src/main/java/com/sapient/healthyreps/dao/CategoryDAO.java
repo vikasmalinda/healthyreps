@@ -34,7 +34,7 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public List<Category> getAllCategory() {
-		String sql = "select categoryid, categoryname from category";
+		String sql = "select category_id, category_name from category";
 
 		List<Category> list = new ArrayList<>();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);) {
