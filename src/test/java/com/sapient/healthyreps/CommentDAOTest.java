@@ -1,4 +1,5 @@
-package com.sapient.healthyreps;
+/*package com.sapient.healthyreps;
+
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -55,7 +56,6 @@ import com.sapient.healthyreps.entity.Comments_post;
 
 		assertTrue(commentDAO.deleteComment(id));
 
-	} */
+	} 
 
-	
-}
+*/
