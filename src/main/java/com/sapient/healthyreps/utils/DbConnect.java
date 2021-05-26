@@ -29,11 +29,7 @@ public class DbConnect {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
 			return con;
-<<<<<<< HEAD
-=======
-
->>>>>>> POD1
-
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
