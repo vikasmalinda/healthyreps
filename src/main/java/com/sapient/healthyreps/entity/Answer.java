@@ -2,32 +2,32 @@ package com.sapient.healthyreps.entity;
 
 
 public class Answer {
-	private int answerID;
+	private int answerId;
 	private String description;
 	private int votes;
 	private String modifiedAt;
-	private int questionID;
-	private int userID;
+	private int questionId;
+	private int userId;
 	private int reliability;
 	public Answer() {
 		super();
 	}
-	public Answer(int answerID, String description, int votes, String modifiedAt, int questionID, int userID,
+	public Answer(int answerId, String description, int votes, String modifiedAt, int questionId, int userId,
 			int reliability) {
 		super();
-		this.answerID = answerID;
+		this.answerId = answerId;
 		this.description = description;
 		this.votes = votes;
 		this.modifiedAt = modifiedAt;
-		this.questionID = questionID;
-		this.userID = userID;
+		this.questionId = questionId;
+		this.userId = userId;
 		this.reliability = reliability;
 	}
 	public int getAnswerID() {
-		return answerID;
+		return answerId;
 	}
-	public void setAnswerID(int answerID) {
-		this.answerID = answerID;
+	public void setAnswerID(int answerId) {
+		this.answerId = answerId;
 	}
 	public String getDescription() {
 		return description;
@@ -48,16 +48,16 @@ public class Answer {
 		this.modifiedAt = modifiedAt;
 	}
 	public int getQuestionID() {
-		return questionID;
+		return questionId;
 	}
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
+	public void setQuestionID(int questionId) {
+		this.questionId = questionId;
 	}
 	public int getUserID() {
-		return userID;
+		return userId;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserID(int userId) {
+		this.userId = userId;
 	}
 	public int getReliability() {
 		return reliability;

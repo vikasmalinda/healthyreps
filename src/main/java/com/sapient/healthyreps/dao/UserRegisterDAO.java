@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.exception.DuplicateEmail;
 import com.sapient.healthyreps.exception.PasswordIsWeak;
@@ -82,7 +83,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public List<UserRegister> getAllUserRegisterInfo() {
-		String sql = "select UserId,UserName,EmailId,password from UserRegister";
+		String sql = "select user_id,UserName,EmailId,password from UserRegister";
 		List<UserRegister> allUserInfo = new ArrayList<UserRegister>();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
 			while (rs.next()) {
@@ -104,7 +105,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 			e1.printStackTrace();
 			return userList;
 		}
-		String sql = "select UserId,UserName,EmailId,password from UserRegister where userId=?";
+		String sql = "select user_id,UserName,EmailId,password from UserRegister where user_id=?";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, uid);
@@ -125,7 +126,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 	}
 
 	public static void checkIdOfUser(int uid) throws InvalidId {
-		String sql = "Select * from UserRegister where userId=?";
+		String sql = "Select * from UserRegister where user_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -142,7 +143,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public List<UserRegister> getUserByEmailAndPwd(String email, String Pwd) {
-		String sql = "select UserId,UserName,EmailId,password from UserRegister where EmailId = ? And password= ?";
+		String sql = "select user_id,UserName,EmailId,password from UserRegister where EmailId = ? And password= ?";
 		List<UserRegister> userList = new ArrayList<>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -166,7 +167,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public Boolean updatePassword(String email, String newPassword) {
-		String sql = "UPDATE UserRegister SET password = ?  WHERE emailId = ? ";
+		String sql = "update UserRegister set password = ?  where emailId = ? ";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, newPassword);

@@ -1,4 +1,4 @@
-package com.sapient.healthyreps.dao;
+package com.sapient.healthyreps.entity;
 
 public class RequirementForChangePassword {
 	private String email;

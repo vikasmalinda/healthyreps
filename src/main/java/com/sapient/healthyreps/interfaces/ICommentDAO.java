@@ -8,15 +8,15 @@ public interface ICommentDAO {
 
 	public boolean insertComment(Comment comment);
 
-	public List<Comment> getAllComments(int AnswerID);
+	public List<Comment> getAllComments(int answer_id);
 
-	public boolean deleteComment(int CommentID);
+	public boolean deleteComment(int comment_id);
 
-	public boolean deleteCommentsByAnswerID(int AnswerID);
+	public boolean deleteCommentsByAnswerID(int answer_id);
 
 	public boolean updateCommentByCommentID(Comment comment);
 
-	public Comment getCommentByCommentID(int CommentID);
+	public Comment getCommentByCommentID(int comment_id);
 
 	public boolean updateComment(Comment comment);
 }

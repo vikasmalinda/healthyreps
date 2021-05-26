@@ -7,7 +7,7 @@ public class Question {
 	private String description; 
 	private int votes;
 	private String modifiedAt;
-	private int categoryID;
+	private int categoryId;
 	private int userId;
 	private String imageLink;
 	private int reliability;
@@ -17,7 +17,7 @@ public class Question {
 		// the Question class.
 	}
 
-	public Question(int questionId, String title, String description, int votes, String modifiedAt, int categoryID,
+	public Question(int questionId, String title, String description, int votes, String modifiedAt, int categoryId,
 			int userId, String imageLink, int reliability) {
 		super();
 		this.questionId = questionId;
@@ -25,7 +25,7 @@ public class Question {
 		this.description = description;
 		this.votes = votes;
 		this.modifiedAt = modifiedAt;
-		this.categoryID = categoryID;
+		this.categoryId = categoryId;
 		this.userId = userId;
 		this.imageLink = imageLink;
 		this.reliability = reliability;
@@ -56,11 +56,11 @@ public class Question {
 	}
 
 	public int getCategoryID() {
-		return categoryID;
+		return categoryId;
 	}
 
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+	public void setCategoryID(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public int getUserId() {
@@ -109,7 +109,7 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", title=" + title + ", description=" + description + ", votes="
-				+ votes + ", modifiedAt=" + modifiedAt + ", categoryID=" + categoryID + ", userId="
+				+ votes + ", modifiedAt=" + modifiedAt + ", categoryId=" + categoryId + ", userId="
 				+ userId
 				+ ", imageLink=" + imageLink + ", reliability=" + reliability + "]";
 	}

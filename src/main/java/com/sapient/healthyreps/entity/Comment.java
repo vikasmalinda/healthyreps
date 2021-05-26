@@ -1,33 +1,33 @@
 package com.sapient.healthyreps.entity;
 
 public class Comment {
-	private int commentID;
+	private int commentId;
 	private String description;
 	private String modifiedAt;
-	private int answerID;
-	private int userID;
+	private int answerId;
+	private int userId;
 	private int reliability;
 
 	public Comment() {
 
 	}
 
-	public Comment(int commentID, String description, String modifiedAt, int answerID, int userID, int reliability) {
+	public Comment(int commentId, String description, String modifiedAt, int answerId, int userId, int reliability) {
 		super();
-		this.commentID = commentID;
+		this.commentId = commentId;
 		this.description = description;
 		this.modifiedAt = modifiedAt;
-		this.answerID = answerID;
-		this.userID = userID;
+		this.answerId = answerId;
+		this.userId = userId;
 		this.reliability = reliability;
 	}
 
 	public int getCommentID() {
-		return commentID;
+		return commentId;
 	}
 
-	public void setCommentID(int commentID) {
-		this.commentID = commentID;
+	public void setCommentID(int commentId) {
+		this.commentId = commentId;
 	}
 
 	public String getDescription() {
@@ -47,19 +47,19 @@ public class Comment {
 	}
 
 	public int getAnswerID() {
-		return answerID;
+		return answerId;
 	}
 
-	public void setAnswerID(int answerID) {
-		this.answerID = answerID;
+	public void setAnswerID(int answerId) {
+		this.answerId = answerId;
 	}
 
 	public int getUserID() {
-		return userID;
+		return userId;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserID(int userId) {
+		this.userId = userId;
 	}
 
 	public int getReliability() {
@@ -72,8 +72,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentID=" + commentID + ", description=" + description + ", modifiedAt=" + modifiedAt
-				+ ", answerID=" + answerID + ", userID=" + userID + ", reliability=" + reliability + "]";
+		return "Comment [commentId=" + commentId + ", description=" + description + ", modifiedAt=" + modifiedAt
+				+ ", answerId=" + answerId + ", userId=" + userId + ", reliability=" + reliability + "]";
 	}
 
 }

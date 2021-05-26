@@ -18,7 +18,7 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public boolean insertAnswer(Answer answer) {
 
-		String sql = "insert into answer (Description,Votes,ModifiedAt,QuestionID,UserID,Reliability) values(?,?,?,?,?,?)";
+		String sql = "insert into answer (description,votes,modified_at,question_id,user_id,reliability) values(?,?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -38,15 +38,15 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public Answer getAnswerByAnswerID(int AnswerID) {
+	public Answer getAnswerByAnswerID(int answer_id) {
 
 
 
-		String sql = "select AnswerID,Description,Votes,ModifiedAt,QuestionID,UserID,Reliability from answer where AnswerID=?";
+		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where answer_id=?";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 			ResultSet rs = ps.executeQuery();
 
 			rs.next();
@@ -70,17 +70,17 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersByQuestionID(int QuestionID,String order) {
+	public List<Answer> getAllAnswersByQuestionID(int question_id,String order) {
 		
 
 
-		String sql = "select AnswerID,Description,Votes,ModifiedAt,QuestionID,UserID,Reliability from answer where QuestionID= ? order by Votes "+order;
+		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "+order;
 
 		List<Answer> list;
 		list = new ArrayList<Answer>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
+			ps.setInt(1, question_id);
 //			ps.setString(2, order);
 			ResultSet rs = ps.executeQuery();
 
@@ -108,12 +108,12 @@ public class AnswerDAO implements IAnswerDAO {
 	
 
 	@Override
-	public boolean deleteAnswer(int AnswerID) {
+	public boolean deleteAnswer(int answer_id) {
 	
 		try {
-			String sql = "DELETE from answer where AnswerID= ? ";
+			String sql = "delete from answer where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 
 			return ps.executeUpdate() > 0;
 
@@ -126,13 +126,13 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public boolean deleteAnswersByQuestionID(int QuestionID) {
+	public boolean deleteAnswersByQuestionID(int question_id) {
 		
 
 		try {
-			String sql = "DELETE from answer where QuestionID= ? ";
+			String sql = "delete from answer where question_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
+			ps.setInt(1, question_id);
 
 			return ps.executeUpdate() > 0;
 
@@ -149,7 +149,7 @@ public class AnswerDAO implements IAnswerDAO {
 
 		
 
-		String sql = "UPDATE answer SET Description=?,Votes=?,ModifiedAt=?,QuestionID=?,UserID=?,Reliability=? WHERE AnswerID=?";
+		String sql = "update answer set description=?,votes=?,modified_at=?,question_id=?,user_id=?,reliability=? where answer_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
