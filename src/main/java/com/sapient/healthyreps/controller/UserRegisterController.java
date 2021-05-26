@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.dao.UserCredential;
 import com.sapient.healthyreps.dao.UserRegisterDAO;
+import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 @CrossOrigin

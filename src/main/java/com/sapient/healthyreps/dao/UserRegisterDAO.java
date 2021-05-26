@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.utils.DbConnect;
+import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.exception.DuplicateEmail;
 import com.sapient.healthyreps.exception.PasswordIsWeak;
