@@ -1,33 +1,33 @@
 package com.sapient.healthyreps.entity;
 
 public class Comment {
-	private int commentID;
+	private int comment_id;
 	private String description;
-	private String modifiedAt;
-	private int answerID;
-	private int userID;
+	private String modified_at;
+	private int answer_id;
+	private int user_id;
 	private int reliability;
 
 	public Comment() {
 
 	}
 
-	public Comment(int commentID, String description, String modifiedAt, int answerID, int userID, int reliability) {
+	public Comment(int comment_id, String description, String modified_at, int answer_id, int user_id, int reliability) {
 		super();
-		this.commentID = commentID;
+		this.comment_id = comment_id;
 		this.description = description;
-		this.modifiedAt = modifiedAt;
-		this.answerID = answerID;
-		this.userID = userID;
+		this.modified_at = modified_at;
+		this.answer_id = answer_id;
+		this.user_id = user_id;
 		this.reliability = reliability;
 	}
 
 	public int getCommentID() {
-		return commentID;
+		return comment_id;
 	}
 
-	public void setCommentID(int commentID) {
-		this.commentID = commentID;
+	public void setCommentID(int comment_id) {
+		this.comment_id = comment_id;
 	}
 
 	public String getDescription() {
@@ -39,27 +39,27 @@ public class Comment {
 	}
 
 	public String getModifiedAt() {
-		return modifiedAt;
+		return modified_at;
 	}
 
-	public void setModifiedAt(String modifiedAt) {
-		this.modifiedAt = modifiedAt;
+	public void setModifiedAt(String modified_at) {
+		this.modified_at = modified_at;
 	}
 
 	public int getAnswerID() {
-		return answerID;
+		return answer_id;
 	}
 
-	public void setAnswerID(int answerID) {
-		this.answerID = answerID;
+	public void setAnswerID(int answer_id) {
+		this.answer_id = answer_id;
 	}
 
 	public int getUserID() {
-		return userID;
+		return user_id;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserID(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public int getReliability() {
@@ -72,8 +72,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentID=" + commentID + ", description=" + description + ", modifiedAt=" + modifiedAt
-				+ ", answerID=" + answerID + ", userID=" + userID + ", reliability=" + reliability + "]";
+		return "Comment [comment_id=" + comment_id + ", description=" + description + ", modified_at=" + modified_at
+				+ ", answer_id=" + answer_id + ", user_id=" + user_id + ", reliability=" + reliability + "]";
 	}
 
 }

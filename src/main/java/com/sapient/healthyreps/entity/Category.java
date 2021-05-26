@@ -1,38 +1,38 @@
 package com.sapient.healthyreps.entity;
 
 public class Category {
-	private int categoryID;
-	private String categoryName;
+	private int category_id;
+	private String category_name;
 	
 	public Category() {
 		
 	}
 
-	public Category(int categoryID, String category) {
+	public Category(int category_id, String category_name) {
 		super();
-		this.categoryID = categoryID;
-		this.categoryName = category;
+		this.category_id = category_id;
+		this.category_name = category_name;
 	}
 
 
 	public int getCategoryID() {
-		return categoryID;
+		return category_id;
 	}
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+	public void setCategoryID(int category_id) {
+		this.category_id = category_id;
 	}
 	
 	public String getCategoryName() {
-		return categoryName;
+		return category_name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryName(String category_name) {
+		this.category_name = category_name;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [categoryID=" + categoryID + ", category=" + categoryName + "]";
+		return "Category [category_id=" + category_id + ", category=" + category_name + "]";
 	}
 	
 }

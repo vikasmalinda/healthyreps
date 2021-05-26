@@ -44,12 +44,12 @@ public class GalleryDAO implements IGalleryDao {
 		return false;
 	}
 
-	private void checkUrlOfImage(String imageUrl, int uid) throws ImageAlreadyPresent {
-		String sql = "Select * from Gallery where imageUrl=? and userId=?";
+	private void checkUrlOfImage(String image_url, int uid) throws ImageAlreadyPresent {
+		String sql = "Select * from Gallery where image_url=? and user_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setString(1, imageUrl);
+			ps.setString(1, image_url);
 			ps.setInt(2, uid);
 
 			ResultSet rs = ps.executeQuery();
@@ -63,7 +63,7 @@ public class GalleryDAO implements IGalleryDao {
 
 	@Override
 	public List<Gallery> getAllImages() {
-		String sql = "Select imageId,imageUrl,userId from Gallery";
+		String sql = "Select image_id,image_url,user_id from Gallery";
 		List<Gallery> images = new ArrayList<>();
 
 		try {

@@ -1,50 +1,50 @@
 package com.sapient.healthyreps.entity;
 
 public class SocialLinks {
-	private int linkId; // links id
-	private String facebookUrl;
-	private String instagramUrl;
-	private String twitterUrl;
-	private int userId;
+	private int link_id; // links id
+	private String facebook_url;
+	private String instagram_url;
+	private String twitter_Url;
+	private int user_id;
 
 	public int getLinkId() {
-		return linkId;
+		return link_id;
 	}
 
 	public void setLinkId(int lid) {
-		this.linkId = lid;
+		this.link_id = lid;
 	}
 
 	public String getFacebookUrl() {
-		return facebookUrl;
+		return facebook_url;
 	}
 
-	public void setFacebookUrl(String facebookUrl) {
-		this.facebookUrl = facebookUrl;
+	public void setFacebookUrl(String facebook_url) {
+		this.facebook_url = facebook_url;
 	}
 
 	public String getInstagramUrl() {
-		return instagramUrl;
+		return instagram_url;
 	}
 
-	public void setInstagramUrl(String instagramUrl) {
-		this.instagramUrl = instagramUrl;
+	public void setInstagramUrl(String instagram_url) {
+		this.instagram_url = instagram_url;
 	}
 
 	public String getTwitterUrl() {
-		return twitterUrl;
+		return twitter_Url;
 	}
 
-	public void setTwitterUrl(String twitterUrl) {
-		this.twitterUrl = twitterUrl;
+	public void setTwitterUrl(String twitter_Url) {
+		this.twitter_Url = twitter_Url;
 	}
 
 	public int getUserId() {
-		return userId;
+		return user_id;
 	}
 
 	public void setUserId(int uid) {
-		userId = uid;
+		user_id = uid;
 	}
 
 }

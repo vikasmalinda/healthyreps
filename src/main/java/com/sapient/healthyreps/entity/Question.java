@@ -2,14 +2,14 @@ package com.sapient.healthyreps.entity;
 
 
 public class Question {
-	private int questionId;
+	private int question_id;
 	private String title; 
 	private String description; 
 	private int votes;
-	private String modifiedAt;
-	private int categoryID;
-	private int userId;
-	private String imageLink;
+	private String modified_at;
+	private int category_id;
+	private int user_id;
+	private String image_link;
 	private int reliability;
 	
 	public Question() {
@@ -17,26 +17,26 @@ public class Question {
 		// the Question class.
 	}
 
-	public Question(int questionId, String title, String description, int votes, String modifiedAt, int categoryID,
-			int userId, String imageLink, int reliability) {
+	public Question(int question_id, String title, String description, int votes, String modified_at, int category_id,
+			int user_id, String image_link, int reliability) {
 		super();
-		this.questionId = questionId;
+		this.question_id = question_id;
 		this.title = title;
 		this.description = description;
 		this.votes = votes;
-		this.modifiedAt = modifiedAt;
-		this.categoryID = categoryID;
-		this.userId = userId;
-		this.imageLink = imageLink;
+		this.modified_at = modified_at;
+		this.category_id = category_id;
+		this.user_id = user_id;
+		this.image_link = image_link;
 		this.reliability = reliability;
 	}
 
 	public int getquestionId() {
-		return questionId;
+		return question_id;
 	}
 
-	public void setquestionId(int questionId) {
-		this.questionId = questionId;
+	public void setquestionId(int question_id) {
+		this.question_id = question_id;
 	}
 
 	public int getVotes() {
@@ -48,35 +48,35 @@ public class Question {
 	}
 
 	public String getModifiedAt() {
-		return modifiedAt;
+		return modified_at;
 	}
 
-	public void setModifiedAt(String modifiedAt) {
-		this.modifiedAt = modifiedAt;
+	public void setModifiedAt(String modified_at) {
+		this.modified_at = modified_at;
 	}
 
 	public int getCategoryID() {
-		return categoryID;
+		return category_id;
 	}
 
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+	public void setCategoryID(int category_id) {
+		this.category_id = category_id;
 	}
 
 	public int getUserId() {
-		return userId;
+		return user_id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getImageLink() {
-		return imageLink;
+		return image_link;
 	}
 
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
+	public void setImageLink(String image_link) {
+		this.image_link = image_link;
 	}
 
 	public int getReliability() {
@@ -108,10 +108,10 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", title=" + title + ", description=" + description + ", votes="
-				+ votes + ", modifiedAt=" + modifiedAt + ", categoryID=" + categoryID + ", userId="
-				+ userId
-				+ ", imageLink=" + imageLink + ", reliability=" + reliability + "]";
+		return "Question [question_id=" + question_id + ", title=" + title + ", description=" + description + ", votes="
+				+ votes + ", modified_at=" + modified_at + ", category_id=" + category_id + ", user_id="
+				+ user_id
+				+ ", image_link=" + image_link + ", reliability=" + reliability + "]";
 	}
 	
 	

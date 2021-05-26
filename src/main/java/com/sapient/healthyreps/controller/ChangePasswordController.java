@@ -1,5 +1,6 @@
 package com.sapient.healthyreps.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 	private String email;
 	private String 
 }*/
-
+@CrossOrigin
 @RestController
 public class ChangePasswordController {
 	IUserRegisterDAO dao = new UserRegisterDAO();

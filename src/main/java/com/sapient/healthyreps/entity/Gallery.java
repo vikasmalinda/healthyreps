@@ -1,31 +1,31 @@
 package com.sapient.healthyreps.entity;
 
 public class Gallery {
-	private int imageId;
-	private String imageUrl;
-	private int userId;
+	private int image_id;
+	private String image_url;
+	private int user_id;
 
 	public int getImageId() {
-		return imageId;
+		return image_id;
 	}
 
 	public void setImageId(int iid) {
-		imageId = iid;
+		image_id = iid;
 	}
 
 	public String getImageUrl() {
-		return imageUrl;
+		return image_url;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImageUrl(String image_url) {
+		this.image_url = image_url;
 	}
 
 	public int getUserId() {
-		return userId;
+		return user_id;
 	}
 
 	public void setUserId(int uid) {
-		userId = uid;
+		user_id = uid;
 	}
 }

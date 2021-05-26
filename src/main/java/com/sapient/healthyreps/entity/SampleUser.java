@@ -1,7 +1,7 @@
 package com.sapient.healthyreps.entity;
 
 public class SampleUser {
-	private int userID;
+	private int user_id;
 	private String userName;
 	private int reputation;
 
@@ -9,18 +9,18 @@ public class SampleUser {
 
 	}
 
-	public SampleUser(int userID, String userName, int reputation) {
+	public SampleUser(int user_id, String userName, int reputation) {
 		super();
-		this.userID = userID;
+		this.user_id = user_id;
 		this.userName = userName;
 		this.reputation = reputation;
 	}
 
 	public int getUserID() {
-		return userID;
+		return user_id;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserID(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUserName() {
@@ -41,7 +41,7 @@ public class SampleUser {
 
 	@Override
 	public String toString() {
-		return "SampleUser [userID=" + userID + ", userName=" + userName + ", reputation=" + reputation + "]";
+		return "SampleUser [user_id=" + user_id + ", userName=" + userName + ", reputation=" + reputation + "]";
 	}
 
 }

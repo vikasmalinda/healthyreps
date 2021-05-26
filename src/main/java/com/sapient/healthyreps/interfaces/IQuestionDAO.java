@@ -41,5 +41,5 @@ public interface IQuestionDAO {
 
 	public boolean deletequestionsfromquestionid(int questioniddel);
 
-	public boolean updatequestionfromquestionid(Question question, int questionid);
+	public boolean updatequestionfromquestionid(Question question, int question_id);
 }

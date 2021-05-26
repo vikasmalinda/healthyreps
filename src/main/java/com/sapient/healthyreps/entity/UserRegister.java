@@ -1,7 +1,7 @@
 package com.sapient.healthyreps.entity;
 
 public class UserRegister {
-	private int userId;
+	private int user_id;
 	private String userName;
 	private String emailId;
 	private String password;
@@ -10,18 +10,18 @@ public class UserRegister {
 
 	}
 	public UserRegister(int Uid, String UserName, String UserEmail, String Password) {
-		this.userId = Uid;
+		this.user_id = Uid;
 		this.userName = UserName;
 		this.emailId = UserEmail;
 		this.password = Password;
 	}
 
 	public int getUserId() {
-		return userId;
+		return user_id;
 	}
 
 	public void setUserId(int uid) {
-		userId = uid;
+		user_id = uid;
 	}
 
 	public String getUserName() {
@@ -38,7 +38,7 @@ public class UserRegister {
 
 	@Override
 	public String toString() {
-		return "UserRegister [Uid=" + userId + ", UserName=" + userName + "]";
+		return "UserRegister [Uid=" + user_id + ", UserName=" + userName + "]";
 	}
 
 	public void setEmailId(String userEmail) {

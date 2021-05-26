@@ -2,6 +2,7 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import com.sapient.healthyreps.dao.UserCredential;
 import com.sapient.healthyreps.dao.UserRegisterDAO;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
-
+@CrossOrigin
 @RestController
 public class UserRegisterController {
 
