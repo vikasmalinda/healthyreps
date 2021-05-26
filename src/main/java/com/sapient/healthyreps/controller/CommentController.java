@@ -16,56 +16,57 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 @CrossOrigin
 @RestController
 public class CommentController {
 
-    @Autowired
+	@Autowired
 	CommentDAO comDAO;
-    @Autowired
+	@Autowired
 	PermissionDAO permissionDAO;
 
-	@PostMapping("answer/{aid}/comment")
+	@PostMapping("api/answer/{aid}/comment")
 	public boolean insertComment(@RequestBody Comment comment) {
 		return comDAO.insertComment(comment);
 	}
 
-	@GetMapping("answer/{aid}/comment{cid}")
+	@GetMapping("api/answer/{aid}/comment{cid}")
 	public String getCommentbyID(@PathVariable int cid) {
 		try {
-			permissionDAO.isIDPresent(cid,"category");
+			permissionDAO.isIDPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
-		} 
+		}
 		return comDAO.getCommentByCommentID(cid).toString();
 	}
 
-	@GetMapping("answer/{aid}/comment")
+	@GetMapping("api/answer/{aid}/comment")
 	public List<Comment> getAllComments(@PathVariable int aid) {
 		return comDAO.getAllComments(aid);
 	}
 
-	@DeleteMapping("comment/{cid}")
+	@DeleteMapping("api/comment/{cid}")
 	public String deleteComment(@PathVariable int cid) {
 		try {
-			permissionDAO.isIDPresent(cid,"category");
+			permissionDAO.isIDPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
-		} 
+		}
 
 		return comDAO.deleteComment(cid) ? "Deleted" : "Not Deleted";
 	}
 
-	@PutMapping("answer/{aid}/comment/{cid}")
+	@PutMapping("api/answer/{aid}/comment/{cid}")
 	public String updateComment(@RequestBody Comment comment) {
 		try {
-			permissionDAO.isIDPresent(comment.getCommentID(),"category");
+			permissionDAO.isIDPresent(comment.getCommentID(), "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
-		} 
+		}
 		return comDAO.updateComment(comment) ? "Updated" : "Not Updated";
 	}
 }

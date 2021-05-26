@@ -19,12 +19,12 @@ public class WorkoutController {
 	@Autowired
 	WorkoutDAO workoutdao;
 
-	@PostMapping("/workout")
+	@PostMapping("api/api/workout")
 	public boolean insertWork(@RequestBody Workout workout) {
 		return workoutdao.insertWork(workout);
 	}
 
-	@DeleteMapping("/workout/{user_id}")
+	@DeleteMapping("api/api/workout/{user_id}")
 	public boolean deleteWork(@PathVariable int user_id) {
 		return workoutdao.deleteWork(user_id);
 	}
@@ -35,7 +35,7 @@ public class WorkoutController {
 
 	}
 
-	@PutMapping("/workout/{user_id}")
+	@PutMapping("api/api/workout/{user_id}")
 	public boolean updateWork(@RequestBody Workout workout, @PathVariable int user_id) {
 		return workoutdao.updateWork(workout, user_id);
 	}

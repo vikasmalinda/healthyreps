@@ -14,23 +14,24 @@ import com.sapient.healthyreps.dao.UserRegisterDAO;
 import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
+
 @CrossOrigin
 @RestController
 public class UserRegisterController {
 
 	IUserRegisterDAO dao = new UserRegisterDAO();
 
-	@GetMapping("/AllRegisteredUsers")
+	@GetMapping("api/api/AllRegisteredUsers")
 	public List<UserRegister> getAllUser() {
 		return dao.getAllUserRegisterInfo();
 	}
 
-	@PostMapping("/register")
+	@PostMapping("api/api/register")
 	public String insertUser(@RequestBody UserCredential user) {
 		return dao.insertUser(user) ? "Inserted" : "Not-Inserted";
 	}
 
-	@GetMapping("/register/{uId}")
+	@GetMapping("api/api/register/{uId}")
 	public UserRegister getUser(@PathVariable("uId") int uid) {
 		try {
 			UserRegisterDAO.checkIdOfUser(uid);

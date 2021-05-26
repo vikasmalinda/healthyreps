@@ -16,21 +16,20 @@ public class UserBioController {
 	@Autowired
 	UserBioDAO userBioDao;
 
-
-	@PostMapping("/userBio")
+	@PostMapping("api/api/userBio")
 	public boolean insertUser(@RequestBody UserBio u) {
 		return userBioDao.insertuserToDB(u);
 	}
 
-	@DeleteMapping("/userBio/{user_id}")
+	@DeleteMapping("api/api/userBio/{user_id}")
 	public boolean deleteUser(@PathVariable int user_id) {
 		return userBioDao.deleteuserToDB(user_id);
 	}
-	
-	@GetMapping("/userBio/{user_id}")
+
+	@GetMapping("api/api/userBio/{user_id}")
 	public UserBio getHtandWt(@PathVariable int user_id) {
 		return userBioDao.getHtandWt(user_id);
 
 	}
-    
+
 }

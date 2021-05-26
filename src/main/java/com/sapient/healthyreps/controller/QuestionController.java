@@ -16,6 +16,7 @@ import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.dao.QuestionDAO;
 import com.sapient.healthyreps.entity.Question;
 import com.sapient.healthyreps.exception.InvalidId;
+
 @CrossOrigin
 @RestController
 
@@ -26,18 +27,18 @@ public class QuestionController {
 	@Autowired
 	PermissionDAO permissionDAO;
 
-	@GetMapping("allquestions")
+	@GetMapping("api/allquestions")
 	public List<Question> getAllQuestions() {
 		return questionDAO.getAllQuestion();
 	}
-	
-	@GetMapping("questionidlastrow")
+
+	@GetMapping("api/questionidlastrow")
 	public int getQuestionIDOfLastRow() {
 		int a = questionDAO.getquestionidoflastRow();
 		return a;
 	}
-	
-	@GetMapping("question/{qid}")
+
+	@GetMapping("api/question/{qid}")
 	public Question getQuestionFromQuestionID(@PathVariable int qid) {
 		try {
 			permissionDAO.isIDPresent(qid, "question");
@@ -48,7 +49,7 @@ public class QuestionController {
 		return questionDAO.getquestionfromquestionId(qid);
 	}
 
-	@GetMapping("user/{uid}/questions")
+	@GetMapping("api/user/{uid}/questions")
 	public List<Question> getAllQuestionFromUserID(@PathVariable int uid) {
 		try {
 			permissionDAO.isIDPresent(uid, "User");
@@ -59,7 +60,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromuserId(uid);
 	}
 
-	@GetMapping("user/{uid}/questions/order-votes/{ord}")
+	@GetMapping("api/user/{uid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromUserIDOrderByVotes(@PathVariable int uid, @PathVariable String ord) {
 		try {
 			permissionDAO.isIDPresent(uid, "User");
@@ -70,7 +71,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromuseridbyvotesASC(uid, ord);
 	}
 
-	@GetMapping("category/{cid}/questions")
+	@GetMapping("api/category/{cid}/questions")
 	public List<Question> getAllQuestionFromCategoryID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -81,7 +82,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryId(cid);
 	}
 
-	@GetMapping("category/{cid}/questions/order-votes/{ord}")
+	@GetMapping("api/category/{cid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromCategoryIDOrderByVotes(@PathVariable int cid, @PathVariable String ord) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -92,8 +93,9 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryidorderbyvotesASC(cid, ord);
 	}
 
-	@GetMapping("category/{cid}/questions/order-reputation/{ord}")
-	public List<Question> getAllQuestionFromCategoryIDOrderByReputation(@PathVariable int cid,@PathVariable String ord) {
+	@GetMapping("api/category/{cid}/questions/order-reputation/{ord}")
+	public List<Question> getAllQuestionFromCategoryIDOrderByReputation(@PathVariable int cid,
+			@PathVariable String ord) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
 		} catch (InvalidId e1) {
@@ -103,7 +105,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryidorderbyreputationASC(cid, ord);
 	}
 
-	@PostMapping("user/{uid}/question-post")
+	@PostMapping("api/user/{uid}/question-post")
 	public String insertAnswer(@RequestBody Question question, @PathVariable int uid) {
 		int flag = 0;
 		try {
@@ -115,12 +117,11 @@ public class QuestionController {
 		if (flag == 1) {
 			return "Not Updated due to invalid id";
 		} else {
-		return questionDAO.insertQuestion(question) ? "Inserted" : "Not Inserted";
+			return questionDAO.insertQuestion(question) ? "Inserted" : "Not Inserted";
 		}
 	}
 
-
-	@PutMapping("user/{uid}/question-update/{qid}")
+	@PutMapping("api/user/{uid}/question-update/{qid}")
 	public String updateQuestion(@RequestBody Question question, @PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
@@ -138,7 +139,7 @@ public class QuestionController {
 
 	}
 
-	@DeleteMapping("user/{uid}/question-delete(allanswers)/{qid}")
+	@DeleteMapping("api/user/{uid}/question-delete(allanswers)/{qid}")
 	public String deleteAnswerByAnswerId(@PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
@@ -157,4 +158,3 @@ public class QuestionController {
 	}
 
 }
-
