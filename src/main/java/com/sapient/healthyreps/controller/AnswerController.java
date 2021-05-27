@@ -26,7 +26,7 @@ public class AnswerController {
 	@Autowired
 	PermissionDAO permissionDAO;
 
-	@PostMapping("api/question/{qid}/answer")
+	@PostMapping("/api/question/{qid}/answer")
 	public boolean insertAnswer(@RequestBody Answer answer, @PathVariable int qid) {
 		try {
 
@@ -39,7 +39,7 @@ public class AnswerController {
 		return answerDAO.insertAnswer(answer);
 	}
 
-	@GetMapping("api/question/{qid}/answer/{aid}")
+	@GetMapping("/api/question/{qid}/answer/{aid}")
 	public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
@@ -53,7 +53,7 @@ public class AnswerController {
 
 	}
 
-	@GetMapping("api/question/{qid}/answer/order/{ord}")
+	@GetMapping("/api/question/{qid}/answer/order/{ord}")
 	public List<Answer> getAllAnswersByQuestionID(@PathVariable int qid, @PathVariable String ord) {
 
 		try {
@@ -67,7 +67,7 @@ public class AnswerController {
 
 	}
 
-	@PutMapping("api/question/{qid}/answer/{aid}")
+	@PutMapping("/api/question/{qid}/answer/{aid}")
 	public boolean updateAnswer(@RequestBody Answer answer, @PathVariable int aid) {
 
 		try {
@@ -81,7 +81,7 @@ public class AnswerController {
 
 	}
 
-	@DeleteMapping("api/question/{qid}/answer/{aid}")
+	@DeleteMapping("/api/question/{qid}/answer/{aid}")
 	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
 		try {
 			permissionDAO.isIDPresent(aid, "answer");

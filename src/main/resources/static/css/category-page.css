@@ -8,15 +8,6 @@ a {
   color: inherit;
 }
 
-.navigation {
-  font-family: var(--font1);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #b4cded;
-  padding: 0 1rem;
-}
-
 img {
   width: 8rem;
   height: 8rem;
@@ -50,7 +41,7 @@ img {
   padding: 0.5rem;
 }
 
-.category-element:hover > span {
+.category-element:hover> span {
   color: var(--main-bg-color);
   font-weight: bolder;
 }
@@ -59,30 +50,7 @@ img {
   background-color: #b4cded;
 }
 
-@media screen and (max-width: 1024px) {
-  .navigation {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 23px;
-    padding: 0;
-  }
-  .navigation ul {
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 1rem;
-  }
-  .navigation ul li {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 0.5rem;
-  }
-  .navigation ul li:hover > a {
-    color: var(--main-bg-color);
-    font-weight: bolder;
-  }
+@media screen and (max-width: 900px) {
   .category-content {
     grid-template-columns: repeat(1, 1fr);
   }

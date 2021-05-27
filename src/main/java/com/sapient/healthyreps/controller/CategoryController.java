@@ -3,6 +3,7 @@ package com.sapient.healthyreps.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Category;
 import com.sapient.healthyreps.exception.InvalidId;
 
+@CrossOrigin
 @RestController
 public class CategoryController {
 
@@ -24,7 +26,7 @@ public class CategoryController {
 	@Autowired
 	PermissionDAO permissionDAO;
 
-	@GetMapping("api/category/{cid}")
+	@GetMapping("/api/category/{cid}")
 	public String getCategoryFromID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -35,17 +37,17 @@ public class CategoryController {
 		return categoryDAO.getCategoryById(cid).getCategoryName();
 	}
 
-	@GetMapping("api/category")
+	@GetMapping("/api/category")
 	public List<Category> getAllCategories() {
 		return categoryDAO.getAllCategory();
 	}
 
-	@PostMapping("api/category")
+	@PostMapping("/api/category")
 	public String insertCategory(@RequestBody Category Cat) {
 		return categoryDAO.insertCategory(Cat) ? "Inserted" : "Not Inserted";
 	}
 
-	@DeleteMapping("api/category/{cid}")
+	@DeleteMapping("/api/category/{cid}")
 	public String deleteCategory(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -56,7 +58,7 @@ public class CategoryController {
 		return categoryDAO.removeCategory(cid) ? "Removed" : "Not Removed";
 	}
 
-	@PutMapping("api/category")
+	@PutMapping("/api/category")
 	public String updateCategory(@RequestBody Category category) {
 		try {
 			permissionDAO.isIDPresent(category.getCategoryID(), "category");

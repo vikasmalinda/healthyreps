@@ -25,18 +25,18 @@ public class QuestionController {
 	@Autowired
 	PermissionDAO permissionDAO;
 
-	@GetMapping("api/allquestions")
+	@GetMapping("/api/allquestions")
 	public List<Question> getAllQuestions() {
 		return questionDAO.getAllQuestion();
 	}
 
-	@GetMapping("api/questionidlastrow")
+	@GetMapping("/api/questionidlastrow")
 	public int getQuestionIDOfLastRow() {
 		int a = questionDAO.getquestionidoflastRow();
 		return a;
 	}
 
-	@GetMapping("api/question/{qid}")
+	@GetMapping("/api/question/{qid}")
 	public Question getQuestionFromQuestionID(@PathVariable int qid) {
 		try {
 			permissionDAO.isIDPresent(qid, "question");
@@ -47,7 +47,7 @@ public class QuestionController {
 		return questionDAO.getquestionfromquestionId(qid);
 	}
 
-	@GetMapping("api/user/{uid}/questions")
+	@GetMapping("/api/user/{uid}/questions")
 	public List<Question> getAllQuestionFromUserID(@PathVariable int uid) {
 		try {
 			permissionDAO.isIDPresent(uid, "User");
@@ -58,7 +58,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromuserId(uid);
 	}
 
-	@GetMapping("api/user/{uid}/questions/order-votes/{ord}")
+	@GetMapping("/api/user/{uid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromUserIDOrderByVotes(@PathVariable int uid, @PathVariable String ord) {
 		try {
 			permissionDAO.isIDPresent(uid, "User");
@@ -69,7 +69,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromuseridbyvotesASC(uid, ord);
 	}
 
-	@GetMapping("api/category/{cid}/questions")
+	@GetMapping("/api/category/{cid}/questions")
 	public List<Question> getAllQuestionFromCategoryID(@PathVariable int cid) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -80,7 +80,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryId(cid);
 	}
 
-	@GetMapping("api/category/{cid}/questions/order-votes/{ord}")
+	@GetMapping("/api/category/{cid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromCategoryIDOrderByVotes(@PathVariable int cid, @PathVariable String ord) {
 		try {
 			permissionDAO.isIDPresent(cid, "category");
@@ -91,7 +91,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryidorderbyvotesASC(cid, ord);
 	}
 
-	@GetMapping("api/category/{cid}/questions/order-reputation/{ord}")
+	@GetMapping("/api/category/{cid}/questions/order-reputation/{ord}")
 	public List<Question> getAllQuestionFromCategoryIDOrderByReputation(@PathVariable int cid,
 			@PathVariable String ord) {
 		try {
@@ -103,7 +103,7 @@ public class QuestionController {
 		return questionDAO.getallquestionsfromcategoryidorderbyreputationASC(cid, ord);
 	}
 
-	@PostMapping("api/user/{uid}/question-post")
+	@PostMapping("/api/user/{uid}/question-post")
 	public String insertAnswer(@RequestBody Question question, @PathVariable int uid) {
 		int flag = 0;
 		try {
@@ -119,7 +119,7 @@ public class QuestionController {
 		}
 	}
 
-	@PutMapping("api/user/{uid}/question-update/{qid}")
+	@PutMapping("/api/user/{uid}/question-update/{qid}")
 	public String updateQuestion(@RequestBody Question question, @PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
@@ -137,7 +137,7 @@ public class QuestionController {
 
 	}
 
-	@DeleteMapping("api/user/{uid}/question-delete(allanswers)/{qid}")
+	@DeleteMapping("/api/user/{uid}/question-delete(allanswers)/{qid}")
 	public String deleteAnswerByAnswerId(@PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {

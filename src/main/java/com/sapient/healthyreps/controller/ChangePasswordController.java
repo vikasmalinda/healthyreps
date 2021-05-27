@@ -19,7 +19,7 @@ import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 public class ChangePasswordController {
 	IUserRegisterDAO dao = new UserRegisterDAO();
 
-	@PostMapping("api/changePassword")
+	@PostMapping("/api/changePassword")
 	public Boolean userPasswordReset(@RequestBody RequirementForChangePassword passwordChangeRequest) {
 		try {
 			UserRegisterDAO.passwordCheck(passwordChangeRequest.getNewPassword());
