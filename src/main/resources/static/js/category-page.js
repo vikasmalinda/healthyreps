@@ -9,6 +9,7 @@ console.log("index.js connected!! by shivam");
 async function getAllCategory() {
   let categories = await fetch("http://healthyreps.herokuapp.com/api/category");
   let container = document.querySelector(".category-content");
+  container.innerHTML = "";
   let arr = await categories.json();
   console.log(arr);
   renderCategory(arr, container);
