@@ -66,7 +66,7 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public List<Comment> getAllComments(int answer_id) {
 
-		String sql = "select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
+		String sql="select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
 
 		List<Comment> list = new ArrayList<Comment>();
 		try {
@@ -129,8 +129,8 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean updateCommentByCommentID(Comment comment) {
-
-		String sql = "update comment set description=?,modified_at=?,answer_id=?,user_id=?,reliability=? where comment_id=?";
+		
+		String sql = "UPDATE comment SET description=?,modified_at=?,answer_id=?,user_id=?,reliability=? WHERE comment_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);

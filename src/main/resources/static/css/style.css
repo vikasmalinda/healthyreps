@@ -108,11 +108,13 @@
 
 .home-article {
   display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
   margin: 25px;
 }
 
 .home-article-content {
-  align-self: center;
+  /* align-self: center; */
   padding: 25px;
 }
 
@@ -127,11 +129,21 @@
 
 .home-article-img {
   height: fit-content;
-  align-self: center;
+  /* align-self: flex-start; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
   text-decoration: none;
   color: black;
   font-size: 40px;
+}
+
+.delete-question {
+  /* align-self: flex-end; */
+  height: 50px;
+  align-self: center;
+  width: 100px;
+  z-index: 1;
 }

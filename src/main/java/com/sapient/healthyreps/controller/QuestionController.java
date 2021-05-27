@@ -3,6 +3,7 @@ package com.sapient.healthyreps.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.sapient.healthyreps.dao.QuestionDAO;
 import com.sapient.healthyreps.entity.Question;
 import com.sapient.healthyreps.exception.InvalidId;
 
+@CrossOrigin("*")
 @RestController
 
 public class QuestionController {
@@ -50,8 +52,8 @@ public class QuestionController {
 	@GetMapping("/api/user/{uid}/questions")
 	public List<Question> getAllQuestionFromUserID(@PathVariable int uid) {
 		try {
-			permissionDAO.isIDPresent(uid, "User");
-		} catch (InvalidId e1) {
+			permissionDAO.isIDPresent(uid, "user");
+		} catch (InvalidID e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -61,8 +63,8 @@ public class QuestionController {
 	@GetMapping("/api/user/{uid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromUserIDOrderByVotes(@PathVariable int uid, @PathVariable String ord) {
 		try {
-			permissionDAO.isIDPresent(uid, "User");
-		} catch (InvalidId e1) {
+			permissionDAO.isIDPresent(uid, "user");
+		} catch (InvalidID e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -107,8 +109,8 @@ public class QuestionController {
 	public String insertAnswer(@RequestBody Question question, @PathVariable int uid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "User");
-		} catch (InvalidId e1) {
+			permissionDAO.isIDPresent(uid, "user");
+		} catch (InvalidID e1) {
 			e1.printStackTrace();
 			flag = 1;
 		}
@@ -123,7 +125,7 @@ public class QuestionController {
 	public String updateQuestion(@RequestBody Question question, @PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "User");
+			permissionDAO.isIDPresent(uid, "user");
 			permissionDAO.isIDPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
@@ -141,7 +143,7 @@ public class QuestionController {
 	public String deleteAnswerByAnswerId(@PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "User");
+			permissionDAO.isIDPresent(uid, "user");
 			permissionDAO.isIDPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
