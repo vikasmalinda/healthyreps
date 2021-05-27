@@ -2,16 +2,15 @@ package com.sapient.healthyreps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import com.sapient.healthyreps.dao.PermissionDAO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sapient.healthyreps.dao.CommentDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Comment;
 
-class CommentDAOTest {
-
+public class CommentDAOTest {
 	CommentDAO commentDAO;
 	PermissionDAO permissionDAO;
 
@@ -23,13 +22,11 @@ class CommentDAOTest {
 
 	@Test
 	void CRUDTestPass() {
-		// given
-		Comment comment = new Comment(14, "Test Comment", "2020-01-01 10:10:10", 2, 1, 10);
 
 		// Create Test
 
+		Comment comment = new Comment();
 		boolean inserted = commentDAO.insertComment(comment);
-
 		assertTrue(inserted);
 
 		// Read Test
@@ -51,6 +48,4 @@ class CommentDAOTest {
 		assertTrue(commentDAO.deleteComment(id));
 
 	}
-
-	
 }

@@ -23,7 +23,8 @@ public class QuestionDAO implements IQuestionDAO {
 		String sql = "select * from question";
 		int question_id = 0;
 		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs = ps.executeQuery();
 			rs.last();
 			question_id = rs.getInt(1);
@@ -150,7 +151,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromuseridbyvotesASC(int useridsearchasc, String ord) {
 		// TODO Auto-generated method stub
-		String sql = "select * from question where user_id=? order by votes " +ord+ ", modified_at DESC";
+		String sql = "select * from question where user_id=? order by votes " + ord + ", modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -178,7 +179,6 @@ public class QuestionDAO implements IQuestionDAO {
 		return list;
 
 	}
-
 
 //	@Override
 //	public List<Question> getallquestionsfromuseridbyvotesDEC(int useridsearchdec) {
@@ -213,8 +213,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromcategoryId(int categoryidsearch) {
 		// TODO Auto-generated method stub
-		String sql = "select * from sql6411086.question where sql6411086.question.category_id="
-				+ categoryidsearch
+		String sql = "select * from sql6411086.question where sql6411086.question.category_id=" + categoryidsearch
 				+ " order by modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();

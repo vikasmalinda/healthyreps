@@ -7,14 +7,15 @@
 console.log("index.js connected!! by shivam");
 
 async function getAllCategory() {
-  let categories = await fetch("http://localhost:8080/category");
+  let categories = await fetch("http://healthyreps.herokuapp.com/api/category");
   let container = document.querySelector(".category-content");
+  container.innerHTML = "";
   let arr = await categories.json();
   console.log(arr);
-  renderCategory(arr,container);
+  renderCategory(arr, container);
 }
 
-function renderCategory(categories,container) {
+function renderCategory(categories, container) {
   categories.forEach((cat) => {
     let category = `<div class="category-element" >
             <span class="text font1" class="text"> 
@@ -24,7 +25,7 @@ function renderCategory(categories,container) {
         </div>`;
     container.innerHTML += category;
   });
-  container.childNodes.forEach((category)=>{
+  container.childNodes.forEach((category) => {
     category.addEventListener("click", goToCategoryQuestions);
   });
 }

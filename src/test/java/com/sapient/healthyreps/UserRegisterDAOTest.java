@@ -1,25 +1,20 @@
-package com.project.sapient.dao;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
+package com.sapient.healthyreps;
 
 import org.junit.jupiter.api.Test;
 
-import com.sapient.healthyreps.dao.UserRegisterDAO;
-import com.sapient.healthyreps.entity.UserRegister;
-import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
-
 class UserRegisterDAOTest {
 
-	@Test
-	void testForInsertingUserWithSameEmail() {
-		// given
-//		UserRegister user = new UserRegister(11, "Jatin", "Jat@gmail.com", "123456789");
-//		IUserRegisterDAO dao = new UserRegisterDAO();
-//		// when
-//		Boolean value = dao.insertUser(user);
-//		// then
-//		assertFalse(value);
-	}
+	// @Test
+	// void testForInsertingUserWithSameEmail() {
+	// //given
+	// UserRegister user = new UserRegister(11, "Jatin", "Jat@gmail.com",
+	// "123456789");
+	// IUserRegisterDAO dao = new UserRegisterDAO();
+	// // when
+	// Boolean value = dao.insertUser(user);
+	// // then
+	// assertFalse(value);
+	// }
 
 	@Test
 	void testForSmallInvalidPassword() {
@@ -42,5 +37,4 @@ class UserRegisterDAOTest {
 //		// then
 //		assertFalse(value);
 	}
-
 }

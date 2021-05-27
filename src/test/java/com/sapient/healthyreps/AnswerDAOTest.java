@@ -2,12 +2,12 @@ package com.sapient.healthyreps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import com.sapient.healthyreps.dao.PermissionDAO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sapient.healthyreps.dao.AnswerDAO;
+import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Answer;
 
 class AnswerDAOTest {

@@ -1,27 +1,37 @@
 package com.sapient.healthyreps.entity;
 
 public class UserRegister {
-	private int user_id;
+	private int userId;
 	private String userName;
 	private String emailId;
 	private String password;
+	private Boolean isAdmin;
 
 	public UserRegister() {
 
 	}
+
 	public UserRegister(int Uid, String UserName, String UserEmail, String Password) {
-		this.user_id = Uid;
+		this.userId = Uid;
 		this.userName = UserName;
 		this.emailId = UserEmail;
 		this.password = Password;
 	}
 
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public int getUserId() {
-		return user_id;
+		return userId;
 	}
 
 	public void setUserId(int uid) {
-		user_id = uid;
+		userId = uid;
 	}
 
 	public String getUserName() {
@@ -38,7 +48,7 @@ public class UserRegister {
 
 	@Override
 	public String toString() {
-		return "UserRegister [Uid=" + user_id + ", UserName=" + userName + "]";
+		return "UserRegister [Uid=" + userId + ", UserName=" + userName + "]";
 	}
 
 	public void setEmailId(String userEmail) {

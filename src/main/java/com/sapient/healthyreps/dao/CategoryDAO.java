@@ -17,7 +17,7 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public boolean insertCategory(Category category) {
-		
+
 		String sql = "insert into category (category_name) values (?)	";
 		try {
 

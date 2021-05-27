@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.Gallery;
 import com.sapient.healthyreps.exception.ImageAlreadyPresent;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IGalleryDao;
+import com.sapient.healthyreps.utils.DbConnect;
 
 public class GalleryDAO implements IGalleryDao {
 

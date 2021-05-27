@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.SocialLinks;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.ISocialLinksDAO;
+import com.sapient.healthyreps.utils.DbConnect;
 
 public class SocialLinksDAO implements ISocialLinksDAO {
 

@@ -40,8 +40,6 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public Answer getAnswerByAnswerID(int answer_id) {
 
-
-
 		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where answer_id=?";
 		try {
 
@@ -70,11 +68,10 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersByQuestionID(int question_id,String order) {
-		
+	public List<Answer> getAllAnswersByQuestionID(int question_id, String order) {
 
-
-		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "+order;
+		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "
+				+ order;
 
 		List<Answer> list;
 		list = new ArrayList<Answer>();
@@ -105,11 +102,9 @@ public class AnswerDAO implements IAnswerDAO {
 
 	}
 
-	
-
 	@Override
 	public boolean deleteAnswer(int answer_id) {
-	
+
 		try {
 			String sql = "delete from answer where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -127,7 +122,6 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public boolean deleteAnswersByQuestionID(int question_id) {
-		
 
 		try {
 			String sql = "delete from answer where question_id= ? ";
@@ -147,15 +141,13 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public boolean updateAnswerByAnswerID(Answer answer) {
 
-		
-
 		String sql = "update answer set description=?,votes=?,modified_at=?,question_id=?,user_id=?,reliability=? where answer_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, answer.getDescription());
 			ps.setInt(2, answer.getVotes());
-			ps.setString(3,answer.getModifiedAt());
+			ps.setString(3, answer.getModifiedAt());
 			ps.setInt(4, answer.getQuestionID());
 			ps.setInt(5, answer.getUserID());
 			ps.setInt(6, answer.getReliability());
