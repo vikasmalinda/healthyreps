@@ -18,7 +18,7 @@ function renderCategory(categories,container) {
   categories.forEach((cat) => {
     let category = `<div class="category-element" >
             <span class="text font1" class="text"> 
-                <a href="allQuesOfCategory.html" id="${cat.categoryID}">${cat.categoryName}</a>
+                <a href="all-ques-of-category.html" id="${cat.categoryID}">${cat.categoryName}</a>
             </span>
             <img src="../img/yoga.png">
         </div>`;
@@ -34,7 +34,7 @@ function goToCategoryQuestions(event) {
   console.log(event.target.id);
   const id = event.target.id;
   localStorage.setItem("category_id", id);
-  window.location.href = "allQuesOfCategory.html";
+  window.location.href = "all-ques-of-category.html";
 }
 
 document.addEventListener("DOMContentLoaded", getAllCategory);
