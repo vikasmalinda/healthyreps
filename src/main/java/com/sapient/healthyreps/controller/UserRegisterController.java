@@ -19,17 +19,17 @@ public class UserRegisterController {
 
 	IUserRegisterDAO dao = new UserRegisterDAO();
 
-	@GetMapping("api/AllRegisteredUsers")
+	@GetMapping("/api/AllRegisteredUsers")
 	public List<UserRegister> getAllUser() {
 		return dao.getAllUserRegisterInfo();
 	}
 
-	@PostMapping("api/register")
+	@PostMapping("/api/register")
 	public String insertUser(@RequestBody UserCredential user) {
 		return dao.insertUser(user) ? "Inserted" : "Not-Inserted";
 	}
 
-	@GetMapping("api/register/{uId}")
+	@GetMapping("/api/register/{uId}")
 	public UserRegister getUser(@PathVariable("uId") int uid) {
 		try {
 			UserRegisterDAO.checkIdOfUser(uid);
