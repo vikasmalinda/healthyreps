@@ -4,39 +4,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Service;
+
 import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IPermissionDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
-import org.springframework.stereotype.Service;
-
 @Service
 public class PermissionDAO implements IPermissionDAO {
 
-    @Override
-    public boolean isIDPresent(int id, String tableName) throws InvalidId  {
+	@Override
+	public boolean isIDPresent(int id, String tableName) throws InvalidId {
 
-		String sqlForException = "select " + tableName + "_id from " + tableName + " where " + tableName
-				+ "_id=?";
-            try {
-                PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
-                psException.setInt(1, id);
-                ResultSet rs = psException.executeQuery();
-                if (!rs.next()) {
-                    throw new InvalidId(tableName);
-                }
-            } catch (SQLException e1) {
-				System.out.println("error traced");
-                e1.printStackTrace();
-            }
-            	
-        return false;
-    }
+		String sqlForException = "select " + tableName + "_id from " + tableName + " where " + tableName + "_id=?";
+		try {
+			PreparedStatement psException = DbConnect.getMySQLConn().prepareStatement(sqlForException);
+			psException.setInt(1, id);
+			ResultSet rs = psException.executeQuery();
+			if (!rs.next()) {
+				throw new InvalidId(tableName);
+			}
+		} catch (SQLException e1) {
+			System.out.println("error traced");
+			e1.printStackTrace();
+		}
 
-    @Override
+		return false;
+	}
+
+	@Override
 	public int getLastID(String tableName) {
 
-		String sql = "select "+tableName+"_id from "+tableName+" order by "+tableName+"_id DESC LIMIT 1";
+		String sql = "select " + tableName + "_id from " + tableName + " order by " + tableName + "_id DESC LIMIT 1";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);

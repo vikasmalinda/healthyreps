@@ -1,13 +1,11 @@
 package com.sapient.healthyreps.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.healthyreps.dao.UserRegisterDAO;
 import com.sapient.healthyreps.entity.RequirementForChangePassword;
-import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.exception.PasswordIsWeak;
 import com.sapient.healthyreps.exception.PasswordTooSmall;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;

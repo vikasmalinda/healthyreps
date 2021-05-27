@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.sapient.healthyreps.entity.Comment;
 import com.sapient.healthyreps.interfaces.ICommentDAO;
 import com.sapient.healthyreps.utils.DbConnect;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class CommentDAO implements ICommentDAO {
@@ -66,9 +66,9 @@ public class CommentDAO implements ICommentDAO {
 	@Override
 	public List<Comment> getAllComments(int answer_id) {
 
-		String sql="select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
+		String sql = "select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
 
-		List<Comment> list=new ArrayList<Comment>();
+		List<Comment> list = new ArrayList<Comment>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, answer_id);
@@ -95,7 +95,6 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean deleteComment(int comment_id) {
-		
 
 		try {
 			String sql = "delete from comment where comment_id= ? ";
@@ -113,7 +112,7 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean deleteCommentsByAnswerID(int answer_id) {
-		
+
 		try {
 			String sql = "delete from comment where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -130,7 +129,7 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean updateCommentByCommentID(Comment comment) {
-		
+
 		String sql = "update comment set description=?,modified_at=?,answer_id=?,user_id=?,reliability=? where comment_id=?";
 
 		try {
@@ -150,8 +149,6 @@ public class CommentDAO implements ICommentDAO {
 
 		return false;
 	}
-
-	
 
 	@Override
 	public boolean updateComment(Comment comment) {

@@ -6,9 +6,10 @@ import com.sapient.healthyreps.entity.Question;
 
 // contracts 
 public interface IQuestionDAO {
-	
-	public boolean insertQuestion(Question question); 
-	public List<Question> getAllQuestion(); 
+
+	public boolean insertQuestion(Question question);
+
+	public List<Question> getAllQuestion();
 
 	public int getquestionidoflastRow();
 
@@ -26,18 +27,18 @@ public interface IQuestionDAO {
 
 	public List<Question> getallquestionsfromcategoryidorderbyvotesASC(int categoryidsearchasc, String ord); // sort by
 																												// votes
-																									// ascending
+	// ascending
 
 //	public List<Question> getallquestionsfromcategoryidorderbyvotesDEC(int categoryidsearchdec); // sort by votes desc
 
 	public List<Question> getallquestionsfromcategoryidorderbyreputationASC(int categoryidsearchasc, String ord); // sort
 																													// by
-																										// reputation
-																										// asc
+	// reputation
+	// asc
 
 //	public List<Question> getallquestionsfromcategoryidorderbyreputationDEC(int categoryidsearchdec); // sort by
-																										// reputation
-																										// desc4
+	// reputation
+	// desc4
 
 	public boolean deletequestionsfromquestionid(int questioniddel);
 

@@ -3,9 +3,9 @@ package com.sapient.healthyreps.entity;
 public class Category {
 	private int categoryId;
 	private String categoryName;
-	
+
 	public Category() {
-		
+
 	}
 
 	public Category(int categoryId, String categoryName) {
@@ -14,14 +14,14 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-
 	public int getCategoryID() {
 		return categoryId;
 	}
+
 	public void setCategoryID(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	
+
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -34,5 +34,5 @@ public class Category {
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", category=" + categoryName + "]";
 	}
-	
+
 }

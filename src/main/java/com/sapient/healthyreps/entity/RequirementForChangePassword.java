@@ -18,7 +18,6 @@ public class RequirementForChangePassword {
 		this.email = email;
 	}
 
-
 	public String getNewPassword() {
 		return newPassword;
 	}

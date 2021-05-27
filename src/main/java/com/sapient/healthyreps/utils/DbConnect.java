@@ -3,7 +3,6 @@ package com.sapient.healthyreps.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class DbConnect {
@@ -29,7 +28,7 @@ public class DbConnect {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userName, password);
 			return con;
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
