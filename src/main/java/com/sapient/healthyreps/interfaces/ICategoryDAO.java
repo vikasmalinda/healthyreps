@@ -9,9 +9,9 @@ public interface ICategoryDAO {
 
 	public List<Category> getAllCategory();
 
-	public Category getCategoryById(int categoryId);
+	public Category getCategoryById(int category_id);
 
-	public boolean removeCategory(int categoryID);
+	public boolean removeCategory(int category_id);
 
 	public boolean updateCategory(Category category);
 

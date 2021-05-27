@@ -2,8 +2,6 @@ package com.sapient.healthyreps.controller;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +22,14 @@ public class AnswerController {
 
 	@Autowired
 	AnswerDAO answerDAO;
-	
+
 	@Autowired
 	PermissionDAO permissionDAO;
 
-	@PostMapping("question/{qid}/answer")
+	@PostMapping("api/question/{qid}/answer")
 	public boolean insertAnswer(@RequestBody Answer answer, @PathVariable int qid) {
 		try {
+
 			permissionDAO.isIDPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
@@ -40,7 +39,7 @@ public class AnswerController {
 		return answerDAO.insertAnswer(answer);
 	}
 
-	@GetMapping("question/{qid}/answer/{aid}")
+	@GetMapping("api/question/{qid}/answer/{aid}")
 	public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
@@ -54,7 +53,7 @@ public class AnswerController {
 
 	}
 
-	@GetMapping("question/{qid}/answer/order/{ord}")
+	@GetMapping("api/question/{qid}/answer/order/{ord}")
 	public List<Answer> getAllAnswersByQuestionID(@PathVariable int qid, @PathVariable String ord) {
 
 		try {
@@ -68,7 +67,7 @@ public class AnswerController {
 
 	}
 
-	@PutMapping("question/{qid}/answer/{aid}")
+	@PutMapping("api/question/{qid}/answer/{aid}")
 	public boolean updateAnswer(@RequestBody Answer answer, @PathVariable int aid) {
 
 		try {
@@ -82,7 +81,7 @@ public class AnswerController {
 
 	}
 
-	@DeleteMapping("question/{qid}/answer/{aid}")
+	@DeleteMapping("api/question/{qid}/answer/{aid}")
 	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
 		try {
 			permissionDAO.isIDPresent(aid, "answer");

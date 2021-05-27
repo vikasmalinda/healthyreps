@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.utils.DbConnect;
 import com.sapient.healthyreps.entity.SocialLinks;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.ISocialLinksDAO;
+import com.sapient.healthyreps.utils.DbConnect;
 
 public class SocialLinksDAO implements ISocialLinksDAO {
 
@@ -22,7 +22,7 @@ public class SocialLinksDAO implements ISocialLinksDAO {
 			e.printStackTrace();
 			return false;
 		}
-		String sql = "insert into SocialLinks values(?,?,?,?,?)";
+		String sql = "insert into social_link values(?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -43,7 +43,7 @@ public class SocialLinksDAO implements ISocialLinksDAO {
 	@Override
 	public List<SocialLinks> getAlLUrls() {
 		// TODO Auto-generated method stub
-		String sql = "Select linkId,facebookUrl,instagramUrl,twitterUrl,userId from Sociallinks";
+		String sql = "Select link_id,facebook_url,instagram_url,twitter_Url,user_id from social_link";
 		List<SocialLinks> links = new ArrayList<>();
 
 		try {

@@ -4,16 +4,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.dao.UserRegisterDAO;
 import com.sapient.healthyreps.entity.UserRegister;
+import com.sapient.healthyreps.exception.InvalidId;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
 @RestController
 public class LoginController {
 	IUserRegisterDAO dao = new UserRegisterDAO();
 
-	@PostMapping("/login")
+	@PostMapping("api/login")
 	public Boolean userLogin(@RequestBody UserRegister user) {
 		try {
 			UserRegisterDAO.checkIdOfUser(user.getUserId());

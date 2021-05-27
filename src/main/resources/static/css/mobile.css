@@ -7,18 +7,15 @@
     flex-direction: column;
     text-align: center;
   }
-
   .content-right {
     display: none;
   }
-
   .home-article {
     flex-direction: column;
   }
   .home-article-img {
     text-align: center;
   }
-
   .year-box {
     top: 0;
     left: 30vw;

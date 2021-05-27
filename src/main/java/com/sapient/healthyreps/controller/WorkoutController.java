@@ -19,23 +19,23 @@ public class WorkoutController {
 	@Autowired
 	WorkoutDAO workoutdao;
 
-	@PostMapping("/workout")
+	@PostMapping("api/workout")
 	public boolean insertWork(@RequestBody Workout workout) {
 		return workoutdao.insertWork(workout);
 	}
 
-	@DeleteMapping("/workout/{user_id}")
+	@DeleteMapping("api/workout/{user_id}")
 	public boolean deleteWork(@PathVariable int user_id) {
 		return workoutdao.deleteWork(user_id);
 	}
 
-	@RequestMapping(value = "/workout/{user_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "api/workout/{user_id}", method = RequestMethod.GET)
 	public Workout getWork(@PathVariable int user_id) {
 		return workoutdao.getSetsReps(user_id);
 
 	}
 
-	@PutMapping("/workout/{user_id}")
+	@PutMapping("api/workout/{user_id}")
 	public boolean updateWork(@RequestBody Workout workout, @PathVariable int user_id) {
 		return workoutdao.updateWork(workout, user_id);
 	}

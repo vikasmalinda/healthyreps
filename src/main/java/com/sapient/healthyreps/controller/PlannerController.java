@@ -17,27 +17,27 @@ public class PlannerController {
 	@Autowired
 	PlannerDAO plannerdao;
 
-	@PostMapping("/planner")
+	@PostMapping("api/planner")
 	public boolean insertPlanner(@RequestBody Planner planner) {
 		return plannerdao.insertPlanner(planner);
 	}
 
-	@DeleteMapping("/planner/{user_id}")
+	@DeleteMapping("api/planner/{user_id}")
 	public boolean deletePlanner(@PathVariable int user_id) {
 		return plannerdao.deletePlanner(user_id);
 	}
 
-	@GetMapping("/planner/{user_id}")
+	@GetMapping("api/planner/{user_id}")
 	public Planner getUser(@PathVariable int user_id) {
 		return plannerdao.getPlanner(user_id);
 	}
 
-	@PutMapping("/planner/updateExercise/{user_id}")
+	@PutMapping("api/planner/updateExercise/{user_id}")
 	public boolean updateExercise_perform(@RequestBody String exercise_perform, @PathVariable int user_id) {
 		return plannerdao.updateExercise_perform(exercise_perform, user_id);
 	}
 
-	@PutMapping("/planner/updateDiet/{user_id}")
+	@PutMapping("api/planner/updateDiet/{user_id}")
 	public boolean updateDiet_goal(@RequestBody String diet_goal, @PathVariable int user_id) {
 		return plannerdao.updateDiet_goal(diet_goal, user_id);
 	}

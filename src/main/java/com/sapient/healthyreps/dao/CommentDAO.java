@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.sapient.healthyreps.entity.Comment;
 import com.sapient.healthyreps.interfaces.ICommentDAO;
 import com.sapient.healthyreps.utils.DbConnect;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean insertComment(Comment comment) {
-		String sql = "insert into comment (Description,ModifiedAt,AnswerID,UserID,Reliability) values(?,?,?,?,?)";
+		String sql = "insert into comment (description,modified_at,answer_id,user_id,reliability) values(?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -35,13 +35,13 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public Comment getCommentByCommentID(int CommentID) {
+	public Comment getCommentByCommentID(int comment_id) {
 
-		String sql = "select CommentID, Description, ModifiedAt, AnswerID, UserID, Reliability from comment where CommentID=?";
+		String sql = "select comment_id, description, modified_at, answer_id, user_id, reliability from comment where comment_id=?";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, CommentID);
+			ps.setInt(1, comment_id);
 			ResultSet rs = ps.executeQuery();
 
 			rs.next();
@@ -64,14 +64,14 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public List<Comment> getAllComments(int AnswerID) {
+	public List<Comment> getAllComments(int answer_id) {
 
-		String sql="select commentID, description, modifiedAt, answerID, userID, reliability from comment where AnswerID= ?";
+		String sql = "select comment_id, description, modified_at, answer_id, user_id, reliability from comment where answer_id= ?";
 
-		List<Comment> list=new ArrayList<Comment>();
+		List<Comment> list = new ArrayList<Comment>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -94,13 +94,12 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public boolean deleteComment(int CommentID) {
-		
+	public boolean deleteComment(int comment_id) {
 
 		try {
-			String sql = "DELETE from comment where CommentID= ? ";
+			String sql = "delete from comment where comment_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, CommentID);
+			ps.setInt(1, comment_id);
 
 			return ps.executeUpdate() > 0;
 
@@ -112,12 +111,12 @@ public class CommentDAO implements ICommentDAO {
 	}
 
 	@Override
-	public boolean deleteCommentsByAnswerID(int AnswerID) {
-		
+	public boolean deleteCommentsByAnswerID(int answer_id) {
+
 		try {
-			String sql = "DELETE from comment where AnswerID= ? ";
+			String sql = "delete from comment where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 
 			return ps.executeUpdate() > 0;
 
@@ -130,8 +129,8 @@ public class CommentDAO implements ICommentDAO {
 
 	@Override
 	public boolean updateCommentByCommentID(Comment comment) {
-		
-		String sql = "UPDATE comment SET Description=?,ModifiedAt=?,AnswerID=?,UserID=?,Reliability=? WHERE CommentID=?";
+
+		String sql = "update comment set description=?,modified_at=?,answer_id=?,user_id=?,reliability=? where comment_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -151,12 +150,10 @@ public class CommentDAO implements ICommentDAO {
 		return false;
 	}
 
-	
-
 	@Override
 	public boolean updateComment(Comment comment) {
 
-		String sql = "UPDATE comment SET Description=?, ModifiedAt=?, AnswerID=?, UserID=?, Reliability=? WHERE commentID = ?";
+		String sql = "update comment set description=?, modified_at=?, answer_id=?, user_id=?, reliability=? where comment_id = ?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
