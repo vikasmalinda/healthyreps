@@ -96,10 +96,10 @@ function updateAnswer(e) {
   localStorage.setItem("answerOperation", "update");
   localStorage.setItem("answerId", aid);
 
-  window.location.href = "/repsHTML/html/newAnswer.html";
+  window.location.href = "/src/main/resources/static/html/newAnswer.html";
 }
 function addAnswer(e) {
-  window.location.href = "/repsHTML/html/newAnswer.html";
+  window.location.href = "/src/main/resources/static/html/newAnswer.html";
 }
 
 async function increaseVotes(e) {

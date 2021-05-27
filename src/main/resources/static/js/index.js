@@ -58,7 +58,7 @@ function goToAnswers(e) {
     const id = e.target.parentElement.parentElement.parentElement.id;
     localStorage.setItem("questionId", id);
     // console.log(e.target.parentElement.parentElement.parentElement.id);
-    window.location.href = "/repsHTML/html/QandA.html";
+    window.location.href = "/src/main/resources/static/html/QandA.html";
   } else if (e.target.classList.contains("delete-question")) {
     console.log("delete pressed");
     // console.log(e.target.parentElement.parentElement.id)
