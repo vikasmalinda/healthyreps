@@ -3,7 +3,9 @@ package com.sapient.healthyreps.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,18 +18,21 @@ import com.sapient.healthyreps.utils.DbConnect;
 public class AnswerDAO implements IAnswerDAO {
 
 	@Override
-	public boolean insertAnswer(Answer answer) {
+	public boolean insertAnswer(Answer answer,int qid) {
 
 		String sql = "insert into answer (description,votes,modified_at,question_id,user_id,reliability) values(?,?,?,?,?,?)";
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTime = sdf.format(dt);
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, answer.getDescription());
-			ps.setInt(2, answer.getVotes());
-			ps.setString(3, answer.getModifiedAt());
-			ps.setInt(4, answer.getQuestionID());
+			ps.setInt(2, 0);
+			ps.setString(3, currentTime);
+			ps.setInt(4, qid);
 			ps.setInt(5, answer.getUserID());
-			ps.setInt(6, answer.getReliability());
+			ps.setInt(6, 10);
 
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
@@ -39,6 +44,8 @@ public class AnswerDAO implements IAnswerDAO {
 
 	@Override
 	public Answer getAnswerByAnswerID(int answer_id) {
+
+
 
 		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where answer_id=?";
 		try {
@@ -70,8 +77,8 @@ public class AnswerDAO implements IAnswerDAO {
 	@Override
 	public List<Answer> getAllAnswersByQuestionID(int question_id, String order) {
 
-		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "
-				+ order;
+
+		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "+order;
 
 		List<Answer> list;
 		list = new ArrayList<Answer>();
@@ -106,7 +113,7 @@ public class AnswerDAO implements IAnswerDAO {
 	public boolean deleteAnswer(int answer_id) {
 
 		try {
-			String sql = "delete from answer where answer_id= ? ";
+			String sql = "DELETE from answer where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setInt(1, answer_id);
 
@@ -139,19 +146,24 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public boolean updateAnswerByAnswerID(Answer answer) {
+	public boolean updateAnswerByAnswerID(Answer answer,int aid) {
 
-		String sql = "update answer set description=?,votes=?,modified_at=?,question_id=?,user_id=?,reliability=? where answer_id=?";
+		
 
+		String sql = "update answer set description=?,modified_at=? where answer_id=?";
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTime = sdf.format(dt);
+		
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, answer.getDescription());
-			ps.setInt(2, answer.getVotes());
-			ps.setString(3, answer.getModifiedAt());
-			ps.setInt(4, answer.getQuestionID());
-			ps.setInt(5, answer.getUserID());
-			ps.setInt(6, answer.getReliability());
-			ps.setInt(7, answer.getAnswerID());
+//			ps.setInt(2, 0);
+			ps.setString(2,currentTime);
+//			ps.setInt(4, answer.getQuestionID());
+//			ps.setInt(5, answer.getUserID());
+//			ps.setInt(6, answer.getReliability());
+			ps.setInt(3, aid);
 
 			return ps.executeUpdate() > 0;
 

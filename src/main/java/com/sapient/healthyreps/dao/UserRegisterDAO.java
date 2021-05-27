@@ -33,7 +33,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 			return false;
 		}
 
-		String sql = "insert intouser(user_name,email_id,password,is_admin) values(?,?,?,?)";
+		String sql = "insert into user (user_name,email_id,password,is_admin) values (?,?,?,?)";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, user.getUserName());
@@ -71,7 +71,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 	}
 
 	private void duplicateEmail(String email_id) throws DuplicateEmail {
-		String sql = "Select * fromuserwhere email_id=?";
+		String sql = "Select * from user where email_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -131,7 +131,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 	}
 
 	public static void checkIdOfUser(int uid) throws InvalidId {
-		String sql = "Select * fromuserwhere user_id=?";
+		String sql = "Select * from user where user_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -148,7 +148,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public List<UserRegister> getUserByEmailAndPwd(String email, String Pwd) {
-		String sql = "select user_id,user_name,email_id,password fromuserwhere email_id = ? And password= ?";
+		String sql = "select user_id,user_name,email_id,password from user where email_id = ? And password= ?";
 		List<UserRegister> userList = new ArrayList<>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -173,7 +173,7 @@ public class UserRegisterDAO implements IUserRegisterDAO {
 
 	@Override
 	public Boolean updatePassword(String email, String newPassword) {
-		String sql = "updateuserset password = ?  where email_id = ? ";
+		String sql = "update user set password = ?  where email_id = ? ";
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
 			ps.setString(1, newPassword);

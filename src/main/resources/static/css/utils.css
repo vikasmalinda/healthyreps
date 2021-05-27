@@ -10,13 +10,11 @@
 .font1 {
 	font-family: var(--font1);
 }
-
 .font2 {
 	font-family: var(--font2);
 }
-
 .max-width-1 {
-	max-width: 80vw;
+  max-width: 80vw;
 }
 
 .max-width-full{
@@ -24,21 +22,21 @@
 }
 
 .max-width-2 {
-	max-width: 60vw;
+  max-width: 60vw;
 }
 
 .m-auto {
-	margin: auto;
+  margin: auto;
 }
 
 .my-2 {
-	margin-top: 12px;
-	margin-bottom: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .mx-1 {
-	margin-left: 23px;
-	margin-right: 23px;
+  margin-left: 23px;
+  margin-right: 23px;
 }
 
 .btn {
