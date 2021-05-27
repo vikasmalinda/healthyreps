@@ -11,10 +11,10 @@ async function getAllCategory() {
   let container = document.querySelector(".category-content");
   let arr = await categories.json();
   console.log(arr);
-  renderCategory(arr,container);
+  renderCategory(arr, container);
 }
 
-function renderCategory(categories,container) {
+function renderCategory(categories, container) {
   categories.forEach((cat) => {
     let category = `<div class="category-element" >
             <span class="text font1" class="text"> 
@@ -24,7 +24,7 @@ function renderCategory(categories,container) {
         </div>`;
     container.innerHTML += category;
   });
-  container.childNodes.forEach((category)=>{
+  container.childNodes.forEach((category) => {
     category.addEventListener("click", goToCategoryQuestions);
   });
 }
