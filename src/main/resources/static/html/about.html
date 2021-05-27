@@ -10,15 +10,62 @@
     <title>Reps About Page</title>
   </head>
   <body>
-    <nav class="navigation max-width-1 m-auto">
+    <nav class="navigation max-width-full m-auto navbar">
+        <a class="logo" href="/"><span>Reps</span></a>
       <div class="nav-left">
-        <a class="logo" href="/"><span>About Reps</span></a>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="newQuestion.html">New Question</a></li>
-          <li><a href="categoryPage.html">Category</a></li>
-        </ul>
+       <ul class="navbar-links">
+        <li class="navbar-dropdown">
+          <a href="#">About</a>
+        </li>
+         <li class="navbar-dropdown">
+          <a href="#">BMI Calculator</a>
+          <div class="dropdown">
+            <a href="#">Add New</a>
+          </div>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#">Category</a>
+          <div class="dropdown">
+            <a href="#">Post</a>
+            <a href="#">Question</a>
+          </div>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#">Planner</a>
+          <div class="dropdown">
+            <a href="#">Add New Planner</a>
+          </div>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#">Posts</a>
+          <div class="dropdown">
+            <a href="#">Latest Post</a>
+            <a href="#">Top Posts</a>
+            <a href="#">Add New Post</a>
+            <a href="#"></a>
+            <a href="#"></a>
+          </div>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#">Questions</a>
+          <div class="dropdown">
+            <a href="#">Latest Questions</a>
+            <a href="#">Top Questions</a>
+            <a href="#">Add New Question</a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+          </div>
+        </li>
+        <li class="navbar-dropdown">
+          <a href="#">Workout Timetable</a>
+          <div class="dropdown">
+            <a href="#">Add New</a>
+          </div>
+        </li>
+       
+      </ul>
+       
       </div>
       <div class="nav-right">
         <form action="/search.html" method="get">
@@ -29,6 +76,7 @@
             placeholder="Search"
           />
           <button class="btn">Search</button>
+          <button class="btn">Login</button>
         </form>
       </div>
     </nav>
