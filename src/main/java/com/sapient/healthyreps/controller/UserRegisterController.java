@@ -15,7 +15,6 @@ import com.sapient.healthyreps.entity.UserCredential;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
-@CrossOrigin
 @RestController
 public class UserRegisterController {
 

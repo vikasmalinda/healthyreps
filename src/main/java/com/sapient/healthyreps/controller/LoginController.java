@@ -10,7 +10,6 @@ import com.sapient.healthyreps.dao.UserRegisterDAO;
 import com.sapient.healthyreps.entity.UserRegister;
 import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 
-@CrossOrigin
 @RestController
 public class LoginController {
 	IUserRegisterDAO dao = new UserRegisterDAO();

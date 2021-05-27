@@ -7,7 +7,7 @@
 console.log("index.js connected!! by shivam");
 
 async function getAllCategory() {
-  let categories = await fetch("http://localhost:8080/category");
+  let categories = await fetch("http://healthyreps.herokuapp.com/api/category");
   let container = document.querySelector(".category-content");
   let arr = await categories.json();
   console.log(arr);

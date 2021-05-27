@@ -17,7 +17,6 @@ import com.sapient.healthyreps.dao.QuestionDAO;
 import com.sapient.healthyreps.entity.Question;
 import com.sapient.healthyreps.exception.InvalidId;
 
-@CrossOrigin
 @RestController
 
 public class QuestionController {

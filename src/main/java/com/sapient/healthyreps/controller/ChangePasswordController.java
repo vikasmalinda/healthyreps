@@ -16,7 +16,7 @@ import com.sapient.healthyreps.interfaces.IUserRegisterDAO;
 	private String email;
 	private String 
 }*/
-@CrossOrigin
+
 @RestController
 public class ChangePasswordController {
 	IUserRegisterDAO dao = new UserRegisterDAO();

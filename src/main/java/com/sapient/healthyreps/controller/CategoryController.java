@@ -17,7 +17,6 @@ import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Category;
 import com.sapient.healthyreps.exception.InvalidId;
 
-@CrossOrigin
 @RestController
 public class CategoryController {
 
