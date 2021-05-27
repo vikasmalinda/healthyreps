@@ -63,4 +63,27 @@ public class SocialLinksDAO implements ISocialLinksDAO {
 		}
 		return links;
 	}
+
+	@Override
+	public List<String> getUserLinks(int uid) {
+		// TODO Auto-generated method stub
+		String sql = "Select facebook_url,instagram_url,twitter_Url from social_link where user_id=?";
+		List<String> links = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, uid);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				links.add(rs.getString(1));
+				links.add(rs.getString(2));
+				links.add(rs.getString(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return links;
+	}
+
 }

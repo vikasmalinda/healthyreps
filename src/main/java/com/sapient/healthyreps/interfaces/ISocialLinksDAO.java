@@ -10,4 +10,7 @@ public interface ISocialLinksDAO {
 
 	public List<SocialLinks> getAlLUrls();
 
+	public List<String> getUserLinks(int uid);
+
+
 }

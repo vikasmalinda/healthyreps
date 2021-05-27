@@ -9,10 +9,10 @@ import java.util.List;
 import com.sapient.healthyreps.entity.Gallery;
 import com.sapient.healthyreps.exception.ImageAlreadyPresent;
 import com.sapient.healthyreps.exception.InvalidId;
-import com.sapient.healthyreps.interfaces.IGalleryDao;
+import com.sapient.healthyreps.interfaces.IGalleryDAO;
 import com.sapient.healthyreps.utils.DbConnect;
 
-public class GalleryDAO implements IGalleryDao {
+public class GalleryDAO implements IGalleryDAO {
 
 	@Override
 	public boolean insertNewImage(Gallery images) {
@@ -28,7 +28,7 @@ public class GalleryDAO implements IGalleryDao {
 			return false;
 		}
 
-		String sql = "insert into Gallery values(?,?,?)";
+		String sql = "insert into gallery values(?,?,?)";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -45,7 +45,7 @@ public class GalleryDAO implements IGalleryDao {
 	}
 
 	private void checkUrlOfImage(String image_url, int uid) throws ImageAlreadyPresent {
-		String sql = "Select * from Gallery where image_url=? and user_id=?";
+		String sql = "Select * from gallery where image_url=? and user_id=?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -63,7 +63,7 @@ public class GalleryDAO implements IGalleryDao {
 
 	@Override
 	public List<Gallery> getAllImages() {
-		String sql = "Select image_id,image_url,user_id from Gallery";
+		String sql = "Select image_id,image_url,user_id from gallery";
 		List<Gallery> images = new ArrayList<>();
 
 		try {
@@ -75,6 +75,26 @@ public class GalleryDAO implements IGalleryDao {
 				galleryImage.setImageUrl(rs.getString(2));
 				galleryImage.setUserId(rs.getInt(3));
 				images.add(galleryImage);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return images;
+	}
+
+	@Override
+	public List<String> getUserImageLinks(int uid) {
+		// TODO Auto-generated method stub
+		String sql = "Select image_url from gallery where user_id=?";
+		List<String> images = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
+			ps.setInt(1, uid);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				images.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
