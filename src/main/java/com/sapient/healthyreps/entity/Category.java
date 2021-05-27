@@ -1,27 +1,27 @@
 package com.sapient.healthyreps.entity;
 
 public class Category {
-	private int categoryID;
+	private int categoryId;
 	private String categoryName;
-	
+
 	public Category() {
-		
+
 	}
 
-	public Category(int categoryID, String category) {
+	public Category(int categoryId, String categoryName) {
 		super();
-		this.categoryID = categoryID;
-		this.categoryName = category;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 	}
-
 
 	public int getCategoryID() {
-		return categoryID;
+		return categoryId;
 	}
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+
+	public void setCategoryID(int categoryId) {
+		this.categoryId = categoryId;
 	}
-	
+
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -32,7 +32,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [categoryID=" + categoryID + ", category=" + categoryName + "]";
+		return "Category [categoryId=" + categoryId + ", category=" + categoryName + "]";
 	}
-	
+
 }

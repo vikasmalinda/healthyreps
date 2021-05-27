@@ -32,6 +32,7 @@
   border-radius: 5px;
   padding: 10px;
 }
+
 .comment-button {
   background-color: rgb(6, 159, 206);
   margin: 0px;
@@ -41,6 +42,7 @@
   width: 50%;
   border: none;
 }
+
 .comment-content {
   padding: 8px;
 }
@@ -55,6 +57,7 @@
   width: 60%;
   text-align: left;
 }
+
 .comment-button:hover {
   /* display: none; */
 }
@@ -65,6 +68,7 @@
   border-style: none;
   border-radius: 5px;
 }
+
 .comment-box button {
   display: inline;
   margin-left: 10px;

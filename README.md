@@ -30,4 +30,4 @@ phpmyadmin.co
 Credentials - 
 Server - sql6.freesqldatabase.com
 userName=sql6411086
-password=KnKEkV2hvJ
+password=Message on MS Teams channel - general to know this.

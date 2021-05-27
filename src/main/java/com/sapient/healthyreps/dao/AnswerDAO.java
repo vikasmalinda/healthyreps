@@ -43,7 +43,7 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public Answer getAnswerByAnswerID(int AnswerID) {
+	public Answer getAnswerByAnswerID(int answer_id) {
 
 
 
@@ -51,7 +51,7 @@ public class AnswerDAO implements IAnswerDAO {
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 			ResultSet rs = ps.executeQuery();
 
 			rs.next();
@@ -75,8 +75,7 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersByQuestionID(int QuestionID,String order) {
-		
+	public List<Answer> getAllAnswersByQuestionID(int question_id, String order) {
 
 
 		String sql = "select answer_id,description,votes,modified_at,question_id,user_id,reliability from answer where question_id= ? order by votes "+order;
@@ -85,7 +84,7 @@ public class AnswerDAO implements IAnswerDAO {
 		list = new ArrayList<Answer>();
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
+			ps.setInt(1, question_id);
 //			ps.setString(2, order);
 			ResultSet rs = ps.executeQuery();
 
@@ -110,15 +109,13 @@ public class AnswerDAO implements IAnswerDAO {
 
 	}
 
-	
-
 	@Override
-	public boolean deleteAnswer(int AnswerID) {
-	
+	public boolean deleteAnswer(int answer_id) {
+
 		try {
 			String sql = "DELETE from answer where answer_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, AnswerID);
+			ps.setInt(1, answer_id);
 
 			return ps.executeUpdate() > 0;
 
@@ -131,13 +128,12 @@ public class AnswerDAO implements IAnswerDAO {
 	}
 
 	@Override
-	public boolean deleteAnswersByQuestionID(int QuestionID) {
-		
+	public boolean deleteAnswersByQuestionID(int question_id) {
 
 		try {
-			String sql = "DELETE from answer where question_id= ? ";
+			String sql = "delete from answer where question_id= ? ";
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
-			ps.setInt(1, QuestionID);
+			ps.setInt(1, question_id);
 
 			return ps.executeUpdate() > 0;
 

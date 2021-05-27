@@ -17,8 +17,8 @@ public class CategoryDAO implements ICategoryDAO {
 
 	@Override
 	public boolean insertCategory(Category category) {
-		
-		String sql = "insert into category (categoryname) values (?)	";
+
+		String sql = "insert into category (category_name) values (?)	";
 		try {
 
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);
@@ -52,12 +52,12 @@ public class CategoryDAO implements ICategoryDAO {
 	}
 
 	@Override
-	public Category getCategoryById(int categoryID) {
+	public Category getCategoryById(int category_id) {
 
-		String sql = "select categoryid, categoryname from category where categoryID = ?";
+		String sql = "select category_id, category_name from category where category_id = ?";
 		Category cat = new Category();
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);) {
-			ps.setInt(1, categoryID);
+			ps.setInt(1, category_id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				cat.setCategoryID(rs.getInt(1));
@@ -72,11 +72,11 @@ public class CategoryDAO implements ICategoryDAO {
 	}
 
 	@Override
-	public boolean removeCategory(int categoryID) {
-		String sql = "delete from category where categoryid = ?";
+	public boolean removeCategory(int category_id) {
+		String sql = "delete from category where category_id = ?";
 
 		try (PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql)) {
-			ps.setInt(1, categoryID);
+			ps.setInt(1, category_id);
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,7 +87,7 @@ public class CategoryDAO implements ICategoryDAO {
 	@Override
 	public boolean updateCategory(Category category) {
 
-		String sql = "update category set categoryname=? where categoryid = ?";
+		String sql = "update category set category_name=? where category_id = ?";
 
 		try {
 			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql);

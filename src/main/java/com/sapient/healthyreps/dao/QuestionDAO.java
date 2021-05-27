@@ -21,16 +21,17 @@ public class QuestionDAO implements IQuestionDAO {
 	public int getquestionidoflastRow() {
 		// TODO Auto-generated method stub\
 		String sql = "select * from question";
-		int questionid = 0;
+		int question_id = 0;
 		try {
-			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			PreparedStatement ps = DbConnect.getMySQLConn().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs = ps.executeQuery();
 			rs.last();
-			questionid = rs.getInt(1);
+			question_id = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return questionid;
+		return question_id;
 	}
 
 	@Override
@@ -120,7 +121,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromuserId(int useridsearch) {
 		// TODO Auto-generated method stub
-		String sql = "select * from question where userid=" + useridsearch + " order by modifiedat DESC";
+		String sql = "select * from question where user_id=" + useridsearch + " order by modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -150,7 +151,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromuseridbyvotesASC(int useridsearchasc, String ord) {
 		// TODO Auto-generated method stub
-		String sql = "select * from question where userid=? order by votes " +ord+ ", modifiedat DESC";
+		String sql = "select * from question where user_id=? order by votes " + ord + ", modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -179,11 +180,10 @@ public class QuestionDAO implements IQuestionDAO {
 
 	}
 
-
 //	@Override
 //	public List<Question> getallquestionsfromuseridbyvotesDEC(int useridsearchdec) {
 //		// TODO Auto-generated method stub
-//		String sql = "select * from question where userid=? order by votes " +ord+ ", modifiedat DESC";
+//		String sql = "select * from question where user_id=? order by votes " +ord+ ", modified_at DESC";
 //		List<Question> list;
 //		list = new ArrayList<Question>();
 //		try {
@@ -213,9 +213,8 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromcategoryId(int categoryidsearch) {
 		// TODO Auto-generated method stub
-		String sql = "select * from sql6411086.question where sql6411086.question.categoryid="
-				+ categoryidsearch
-				+ " order by modifiedat DESC";
+		String sql = "select * from sql6411086.question where sql6411086.question.category_id=" + categoryidsearch
+				+ " order by modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -244,7 +243,7 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromcategoryidorderbyvotesASC(int categoryidsearchasc, String ord) {
 		// TODO Auto-generated method stub
-		String sql = "select * from question where categoryid=? order by votes " + ord + ", modifiedat DESC";
+		String sql = "select * from question where category_id=? order by votes " + ord + ", modified_at DESC";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -274,7 +273,7 @@ public class QuestionDAO implements IQuestionDAO {
 //	@Override
 //	public List<Question> getallquestionsfromcategoryidorderbyvotesDEC(int categoryidsearchdec) {
 //		// TODO Auto-generated method stub
-//		String sql = "select * from questions where categoryid=? order by votes DESC , modifiedat DESC";
+//		String sql = "select * from questions where category_id=? order by votes DESC , modified_at DESC";
 //		List<Question> list;
 //		list = new ArrayList<Question>();
 //		try {
@@ -304,8 +303,8 @@ public class QuestionDAO implements IQuestionDAO {
 	@Override
 	public List<Question> getallquestionsfromcategoryidorderbyreputationASC(int categoryidsearchascr, String ord) {
 		// TODO Auto-generated method stub
-		String sql = "select question.* FROM question, user where question.categoryid=? and question.userid = User.userid order by reputation "
-				+ ord + ", modifiedat desc";
+		String sql = "select question.* from question, user where question.category_id=? and question.user_id = User.user_id order by reputation "
+				+ ord + ", modified_at desc";
 		List<Question> list;
 		list = new ArrayList<Question>();
 		try {
@@ -335,7 +334,7 @@ public class QuestionDAO implements IQuestionDAO {
 //	@Override
 //	public List<Question> getallquestionsfromcategoryidorderbyreputationDEC(int categoryidsearchdecr) {
 //		// TODO Auto-generated method stub
-//		String sql = "SELECT questions.* FROM reps.questions, reps.sampleuser WHERE questions.categoryid=? and questions.userid = sampleuser.userid order by reputation DESC, modifiedat desc";
+//		String sql = "select questions.* from reps.questions, reps.sampleuser where questions.category_id=? and questions.user_id = sampleuser.user_id order by reputation DESC, modified_at desc";
 //		List<Question> list;
 //		list = new ArrayList<Question>();
 //		try {
@@ -379,7 +378,7 @@ public class QuestionDAO implements IQuestionDAO {
 	}
 
 	@Override
-	public boolean updatequestionfromquestionid(Question question, int questionid) {
+	public boolean updatequestionfromquestionid(Question question, int question_id) {
 		// TODO Auto-generated method stub
 		Date dt = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -392,7 +391,7 @@ public class QuestionDAO implements IQuestionDAO {
 			ps.setString(3, currentTime);
 			ps.setInt(4, question.getCategoryID());
 			ps.setString(5, question.getImageLink());
-			ps.setInt(6, questionid);
+			ps.setInt(6, question_id);
 
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
