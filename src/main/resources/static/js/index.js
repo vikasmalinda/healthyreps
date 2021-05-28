@@ -38,7 +38,7 @@ function renderQuestions(questions) {
         </div>
 
         <div class="home-article-content font1">
-          <a href="/"  class="question-link">
+          <a href=""  class="question-link">
           <h3>${q.title}</h3>
           </a>
 
