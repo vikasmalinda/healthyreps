@@ -20,7 +20,7 @@ function addWorkout() {
 
   if (formValidation(obj)) {
     console.log(obj);
-    fetch("https://healthyreps.herokuapp.com/workout/", {
+    fetch("https://healthyreps.herokuapp.com/api/workout/", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
