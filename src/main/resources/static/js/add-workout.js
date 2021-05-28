@@ -30,7 +30,7 @@ function addWorkout() {
       .then((resp) => resp.json())
       .then((resp) => {
         alert("Workout Added!");
-        window.location.href = "../html/add-workout.html";
+        //window.location.href = "../html/add-workout.html";
         return true;
       })
       .catch((err) => console.log("Error : ", err));
