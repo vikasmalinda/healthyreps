@@ -21,7 +21,7 @@ let form = document.querySelector("#searchForm");
 //Initial function call when the DOM is loaded
 async function getAllQuestion() {
   let questions = await fetch(
-    "http://healthyreps.herokuapp.com/api/allquestions"
+    "https://healthyreps.herokuapp.com/api/allquestions"
   );
   let arr = await questions.json();
   console.log(arr);
@@ -70,7 +70,7 @@ function goToAnswers(e) {
 
 //Function to delete a question
 async function deleteQuestion(id) {
-  let url = `http://healthyreps.herokuapp.com/api/user/1/question-delete(allanswers)/${id}`;
+  let url = `https://healthyreps.herokuapp.com/api/user/1/question-delete(allanswers)/${id}`;
   let res = await fetch(url, {
     method: "DELETE",
   });
@@ -79,7 +79,7 @@ async function deleteQuestion(id) {
   console.log(res);
 
   let questions = await fetch(
-    "http://healthyreps.herokuapp.com/api/allquestions"
+    "https://healthyreps.herokuapp.com/api/allquestions"
   );
   let arr = await questions.json();
   console.log(arr);
@@ -102,7 +102,7 @@ function compVotesAsc(a, b) {
 
 async function getQuestionsByVotes() {
   let questions = await fetch(
-    "http://healthyreps.herokuapp.com/api/allquestions"
+    "https://healthyreps.herokuapp.com/api/allquestions"
   );
   let arr = await questions.json();
   // console.log(arr);
@@ -134,7 +134,7 @@ function compDateAsc(a, b) {
 
 async function getQuestionsByDate() {
   let questions = await fetch(
-    "http://healthyreps.herokuapp.com/api/allquestions"
+    "https://healthyreps.herokuapp.com/api/allquestions"
   );
   let arr = await questions.json();
   // console.log(arr);
