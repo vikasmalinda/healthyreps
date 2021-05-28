@@ -6,95 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/utils.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/all-ques-of-category.css" >
+    <link rel="stylesheet" href="../css/all-ques-of-category.css" />
     <script type="text/javascript" src="../js/all-ques-of-category.js"></script>
     <title>Category Name</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body>
-    <nav class="navigation max-width-full m-auto navbar">
-        <a class="logo" href="/"><span>Reps</span></a>
-      <div class="nav-left">
-       <ul class="navbar-links">
-        <li class="navbar-dropdown">
-          <a href="#">About</a>
-        </li>
-         <li class="navbar-dropdown">
-          <a href="#">BMI Calculator</a>
-          <div class="dropdown">
-            <a href="#">Add New</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Category</a>
-          <div class="dropdown">
-            <a href="#">Post</a>
-            <a href="#">Question</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Planner</a>
-          <div class="dropdown">
-            <a href="#">Add New Planner</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Posts</a>
-          <div class="dropdown">
-            <a href="#">Latest Post</a>
-            <a href="#">Top Posts</a>
-            <a href="#">Add New Post</a>
-            <a href="#"></a>
-            <a href="#"></a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Questions</a>
-          <div class="dropdown">
-            <a href="#">Latest Questions</a>
-            <a href="#">Top Questions</a>
-            <a href="#">Add New Question</a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Workout Timetable</a>
-          <div class="dropdown">
-            <a href="#">Add New</a>
-          </div>
-        </li>
-       
-      </ul>
-       
-      </div>
-      <div class="nav-right">
-        <form action="search.html" method="get">
-          <input
-            type="text"
-            class="form-input"
-            name="query"
-            placeholder="Search"
-          />
-          <button class="btn">Search</button>
-          <button class="btn">Login</button>
-        </form>
-      </div>
-    </nav>
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+      $(function () {
+        $("#nav-placeholder").load("nav.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
 
     <div class="label max-width-1 m-auto">
-    	<div class="font2" id="cname"> 
-    		Category Name 
-    	</div>
-    	<div class="font2">
-    		Sort By
-        	<button class="btn">votes</button>
-        	<button class="btn">Date</button>
-    	</div>
+      <div class="font2" id="cname">Category Name</div>
+      <div class="font2">
+        Sort By
+        <button class="btn">votes</button>
+        <button class="btn">Date</button>
+      </div>
     </div>
 
-     <div class="category-content max-width-1 m-auto">
-    	<!-- <div class="category-element" >
+    <div class="category-content max-width-1 m-auto">
+      <!-- <div class="category-element" >
     		<p>
     			<b><em>Lorem ipsum dolor sit amet?</em></b>
     			<br> 
@@ -136,8 +73,6 @@
     			Ut pulvinar blandit nisi, eget iaculis augue semper a. Donec scelerisque eu mauris sit amet eleifend. Ut eu dui ultrices, iaculis orci ac, feugiat urna. Fusce urna justo, convallis ac ligula ac, bibendum dapibus ex. Integer cursus libero quis nunc commodo lacinia. Sed augue nisi, egestas ut risus vitae, mattis dapibus nisl. Duis tempus ex sed dui porta, et mattis sapien mattis. In lacus nisl, sagittis eu lacus consectetur, congue malesuada tortor. Curabitur cursus purus feugiat felis tincidunt sagittis.
     		</p>
     	</div> -->
- 
-    	
     </div>
 
     <div class="footer"><span class="text">&copy;</span>2021 Reps.com</div>

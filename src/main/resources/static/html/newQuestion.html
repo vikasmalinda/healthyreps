@@ -9,78 +9,17 @@
     <link rel="stylesheet" href="../css/question.css" />
     <link rel="stylesheet" href="../css/mobile.css" />
     <title>Add a new question</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body>
-        <nav class="navigation max-width-full m-auto navbar">
-        <a class="logo" href="/"><span>Reps</span></a>
-      <div class="nav-left">
-       <ul class="navbar-links">
-        <li class="navbar-dropdown">
-          <a href="#">About</a>
-        </li>
-         <li class="navbar-dropdown">
-          <a href="#">BMI Calculator</a>
-          <div class="dropdown">
-            <a href="#">Add New</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Category</a>
-          <div class="dropdown">
-            <a href="#">Post</a>
-            <a href="#">Question</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Planner</a>
-          <div class="dropdown">
-            <a href="#">Add New Planner</a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Posts</a>
-          <div class="dropdown">
-            <a href="#">Latest Post</a>
-            <a href="#">Top Posts</a>
-            <a href="#">Add New Post</a>
-            <a href="#"></a>
-            <a href="#"></a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Questions</a>
-          <div class="dropdown">
-            <a href="#">Latest Questions</a>
-            <a href="#">Top Questions</a>
-            <a href="#">Add New Question</a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-          </div>
-        </li>
-        <li class="navbar-dropdown">
-          <a href="#">Workout Timetable</a>
-          <div class="dropdown">
-            <a href="#">Add New</a>
-          </div>
-        </li>
-       
-      </ul>
-       
-      </div>
-      <div class="nav-right">
-        <form action="search.html" method="get">
-          <input
-            type="text"
-            class="form-input"
-            name="query"
-            placeholder="Search"
-          />
-          <button class="btn">Search</button>
-          <button class="btn">Login</button>
-        </form>
-      </div>
-    </nav>
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+      $(function () {
+        $("#nav-placeholder").load("nav.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
     <hr />
     <div class="question-content font1">
       <div class="max-width-1 m-auto">

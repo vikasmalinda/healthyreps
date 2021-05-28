@@ -17,7 +17,7 @@ import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Answer;
 import com.sapient.healthyreps.exception.InvalidId;
 
-@CrossOrigin("*")
+
 @RestController
 
 public class AnswerController {
@@ -32,20 +32,20 @@ public class AnswerController {
 	public boolean insertAnswer(@RequestBody Answer answer, @PathVariable int qid) {
 		try {
 
-			permissionDAO.isIDPresent(qid, "question");
+			permissionDAO.isIdPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;
 		}
 
-		return answerDAO.insertAnswer(answer,qid);
+		return answerDAO.insertAnswer(answer, qid);
 	}
 
 	@GetMapping("/api/question/{qid}/answer/{aid}")
 	public Answer getAnswerbyID(@PathVariable int aid) {
 
 		try {
-			permissionDAO.isIDPresent(aid, "answer");
+			permissionDAO.isIdPresent(aid, "answer");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -59,7 +59,7 @@ public class AnswerController {
 	public List<Answer> getAllAnswersByQuestionID(@PathVariable int qid, @PathVariable String ord) {
 
 		try {
-			permissionDAO.isIDPresent(qid, "question");
+			permissionDAO.isIdPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -73,20 +73,20 @@ public class AnswerController {
 	public boolean updateAnswer(@RequestBody Answer answer, @PathVariable int aid) {
 
 		try {
-			permissionDAO.isIDPresent(aid, "answer");
+			permissionDAO.isIdPresent(aid, "answer");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;
 		}
 
-		return answerDAO.updateAnswerByAnswerID(answer,aid);
+		return answerDAO.updateAnswerByAnswerID(answer, aid);
 
 	}
 
 	@DeleteMapping("/api/question/{qid}/answer/{aid}")
 	public boolean deleteAnswerByAnswerId(@PathVariable int aid) {
 		try {
-			permissionDAO.isIDPresent(aid, "answer");
+			permissionDAO.isIdPresent(aid, "answer");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return false;

@@ -1,11 +1,11 @@
-
-
 async function getAllQuestions() {
-   let category_id = localStorage.getItem("category_id");
-   let questions = await fetch("http://localhost:8080/category/"+category_id+"/questions");
-   let arr = await questions.json();
-   // console.log(arr);
-   renderQuestions(arr);
+  let category_id = localStorage.getItem("category_id");
+  let questions = await fetch(
+    "http://localhost:8080/api/category/" + category_id + "/questions"
+  );
+  let arr = await questions.json();
+  // console.log(arr);
+  renderQuestions(arr);
 }
 
 function renderQuestions(questions) {
@@ -36,6 +36,5 @@ function goToAnswers(e) {
   localStorage.setItem("questionId", id);
   window.location.href = "QandA.html";
 }
-
 
 document.addEventListener("DOMContentLoaded", getAllQuestions);

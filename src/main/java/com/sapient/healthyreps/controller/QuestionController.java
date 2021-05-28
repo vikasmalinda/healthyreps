@@ -17,7 +17,7 @@ import com.sapient.healthyreps.dao.QuestionDAO;
 import com.sapient.healthyreps.entity.Question;
 import com.sapient.healthyreps.exception.InvalidId;
 
-@CrossOrigin("*")
+
 @RestController
 
 public class QuestionController {
@@ -41,7 +41,7 @@ public class QuestionController {
 	@GetMapping("/api/question/{qid}")
 	public Question getQuestionFromQuestionID(@PathVariable int qid) {
 		try {
-			permissionDAO.isIDPresent(qid, "question");
+			permissionDAO.isIdPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -52,8 +52,8 @@ public class QuestionController {
 	@GetMapping("/api/user/{uid}/questions")
 	public List<Question> getAllQuestionFromUserID(@PathVariable int uid) {
 		try {
-			permissionDAO.isIDPresent(uid, "user");
-		} catch (InvalidID e1) {
+			permissionDAO.isIdPresent(uid, "user");
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -63,8 +63,8 @@ public class QuestionController {
 	@GetMapping("/api/user/{uid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromUserIDOrderByVotes(@PathVariable int uid, @PathVariable String ord) {
 		try {
-			permissionDAO.isIDPresent(uid, "user");
-		} catch (InvalidID e1) {
+			permissionDAO.isIdPresent(uid, "user");
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		}
@@ -74,7 +74,7 @@ public class QuestionController {
 	@GetMapping("/api/category/{cid}/questions")
 	public List<Question> getAllQuestionFromCategoryID(@PathVariable int cid) {
 		try {
-			permissionDAO.isIDPresent(cid, "category");
+			permissionDAO.isIdPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -85,7 +85,7 @@ public class QuestionController {
 	@GetMapping("/api/category/{cid}/questions/order-votes/{ord}")
 	public List<Question> getAllQuestionFromCategoryIDOrderByVotes(@PathVariable int cid, @PathVariable String ord) {
 		try {
-			permissionDAO.isIDPresent(cid, "category");
+			permissionDAO.isIdPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -97,7 +97,7 @@ public class QuestionController {
 	public List<Question> getAllQuestionFromCategoryIDOrderByReputation(@PathVariable int cid,
 			@PathVariable String ord) {
 		try {
-			permissionDAO.isIDPresent(cid, "category");
+			permissionDAO.isIdPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -109,8 +109,8 @@ public class QuestionController {
 	public String insertAnswer(@RequestBody Question question, @PathVariable int uid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "user");
-		} catch (InvalidID e1) {
+			permissionDAO.isIdPresent(uid, "user");
+		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			flag = 1;
 		}
@@ -125,8 +125,8 @@ public class QuestionController {
 	public String updateQuestion(@RequestBody Question question, @PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "user");
-			permissionDAO.isIDPresent(qid, "question");
+			permissionDAO.isIdPresent(uid, "user");
+			permissionDAO.isIdPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			flag = 1;
@@ -143,8 +143,8 @@ public class QuestionController {
 	public String deleteAnswerByAnswerId(@PathVariable int uid, @PathVariable int qid) {
 		int flag = 0;
 		try {
-			permissionDAO.isIDPresent(uid, "user");
-			permissionDAO.isIDPresent(qid, "question");
+			permissionDAO.isIdPresent(uid, "user");
+			permissionDAO.isIdPresent(qid, "question");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			flag = 1;
