@@ -54,8 +54,8 @@ async function handleFormData(e) {
 
   if (localStorage.getItem("operationQuestion") === "updateQuestion") {
     localStorage.removeItem("operationQuestion");
-    window.location.href = "/src/main/resources/static/html/QandA.html";
-  } else window.location.href = "/src/main/resources/static/html/";
+    window.location.href = "QandA.html";
+  } else window.location.href = "/";
 }
 
 async function populateLists() {
