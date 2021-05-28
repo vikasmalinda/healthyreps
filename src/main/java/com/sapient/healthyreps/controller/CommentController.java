@@ -3,6 +3,7 @@ package com.sapient.healthyreps.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.sapient.healthyreps.dao.CommentDAO;
 import com.sapient.healthyreps.dao.PermissionDAO;
 import com.sapient.healthyreps.entity.Comment;
 import com.sapient.healthyreps.exception.InvalidId;
+
 
 @RestController
 public class CommentController {
@@ -30,14 +32,14 @@ public class CommentController {
 	}
 
 	@GetMapping("/api/answer/{aid}/comment{cid}")
-	public String getCommentbyID(@PathVariable int cid) {
+	public Comment getCommentbyID(@PathVariable int cid) {
 		try {
-			permissionDAO.isIDPresent(cid, "category");
+			permissionDAO.isIdPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
 		}
-		return comDAO.getCommentByCommentID(cid).toString();
+		return comDAO.getCommentByCommentID(cid);
 	}
 
 	@GetMapping("/api/answer/{aid}/comment")
@@ -48,7 +50,7 @@ public class CommentController {
 	@DeleteMapping("/api/comment/{cid}")
 	public String deleteComment(@PathVariable int cid) {
 		try {
-			permissionDAO.isIDPresent(cid, "category");
+			permissionDAO.isIdPresent(cid, "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;
@@ -60,7 +62,7 @@ public class CommentController {
 	@PutMapping("/api/answer/{aid}/comment/{cid}")
 	public String updateComment(@RequestBody Comment comment) {
 		try {
-			permissionDAO.isIDPresent(comment.getCommentID(), "category");
+			permissionDAO.isIdPresent(comment.getCommentID(), "category");
 		} catch (InvalidId e1) {
 			e1.printStackTrace();
 			return null;

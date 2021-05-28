@@ -6,34 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/utils.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/post.css">
+    <link rel="stylesheet" href="../css/mobile.css" />
+    <link rel="stylesheet" href="../css/post.css" />
     <script src="../js/post.js" async></script>
     <title>Post</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body>
-    <nav class="navigation max-width-1 m-auto">
-      <div class="nav-left">
-        <a class="logo" href="/"><span>Reps</span></a>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="newQuestion.html">New Question</a></li>
-          <li><a href="categoryPage.html">Category</a></li>
-        </ul>
-      </div>
-      <div class="nav-right">
-        <form action="/search.html" method="get">
-          <input
-            type="text"
-            class="form-input"
-            name="query"
-            placeholder="Search"
-          />
-          <button class="btn">Search</button>
-        </form>
-      </div>
-    </nav>
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+      $(function () {
+        $("#nav-placeholder").load("nav.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
     <div class="max-width-1 m-auto">
       <hr />
     </div>
@@ -111,8 +98,15 @@
               <img src="../img/avatar.png" alt="Avatar" /> User Name
             </div>
             <div class="commentContent">
-              <p class="commentText">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dicta sint nesciunt impedit reiciendis dolores perferendis tenetur alias ullam recusandae inventore voluptates magni, atque sed dignissimos? Adipisci doloremque voluptas pariatur.
+              <p class="commentText">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem
+                quo facere sed, hic magnam magni non nihil suscipit doloremque
+                expedita, iusto eveniet pariatur praesentium reiciendis?
+                Assumenda obcaecati voluptatibus corporis ullam? Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quibusdam dicta
+                sint nesciunt impedit reiciendis dolores perferendis tenetur
+                alias ullam recusandae inventore voluptates magni, atque sed
+                dignissimos? Adipisci doloremque voluptas pariatur.
               </p>
             </div>
 
@@ -121,9 +115,7 @@
                 <button id="deleteBtn">Delete</button>
                 <button id="editBtn">Edit</button>
               </div>
-              <div id="rating">
-                Rating: <span id="score">10</span>
-              </div>
+              <div id="rating">Rating: <span id="score">10</span></div>
               <div class="actionbuttons">
                 <button id="upvoteBtn">Upvote</button>
                 <button id="downvoteBtn">Downvote</button>
@@ -140,8 +132,15 @@
               <img src="../img/avatar.png" alt="Avatar" /> User Name
             </div>
             <div class="commentContent">
-              <p class="commentText">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quo facere sed, hic magnam magni non nihil suscipit doloremque expedita, iusto eveniet pariatur praesentium reiciendis? Assumenda obcaecati voluptatibus corporis ullam?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dicta sint nesciunt impedit reiciendis dolores perferendis tenetur alias ullam recusandae inventore voluptates magni, atque sed dignissimos? Adipisci doloremque voluptas pariatur.
+              <p class="commentText">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem
+                quo facere sed, hic magnam magni non nihil suscipit doloremque
+                expedita, iusto eveniet pariatur praesentium reiciendis?
+                Assumenda obcaecati voluptatibus corporis ullam? Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quibusdam dicta
+                sint nesciunt impedit reiciendis dolores perferendis tenetur
+                alias ullam recusandae inventore voluptates magni, atque sed
+                dignissimos? Adipisci doloremque voluptas pariatur.
               </p>
             </div>
             <div class="commentRight">
@@ -149,9 +148,7 @@
                 <button id="deleteBtn">Delete</button>
                 <button id="editBtn">Edit</button>
               </div>
-              <div id="rating">
-                Rating: <span id="score">10</span>
-              </div>
+              <div id="rating">Rating: <span id="score">10</span></div>
               <div class="actionbuttons">
                 <button id="upvoteBtn">Upvote</button>
                 <button id="downvoteBtn">Downvote</button>
