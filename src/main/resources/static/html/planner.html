@@ -6,8 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planner</title>
     <link rel="stylesheet" href="../css/planner.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body class="col-12 col-s-12">
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+    <script>
+      $(function () {
+        $("#nav-placeholder").load("html/nav.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
+
       <div class="col-12 col-s-12">
         <form class="displayForm col-3 col-s-1">
             <ul>
